@@ -9,11 +9,13 @@ import linkedbrainz.testcases.model.SPARQLResultSet;
 import linkedbrainz.testcases.model.SQLResultSet;
 
 import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
+import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP;
 
 public class Utils
 {
@@ -35,15 +37,16 @@ public class Utils
 			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
 			+ "PREFIX vocab: <http://localhost:2020/vocab/resource/>"
 			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
+	public static final long TIMEOUT = 100000;
 	private static PrefixMapping prefixMapping = null;
 
 	private static final String DB_DRIVER = "org.postgresql.Driver";
 	private static final String DB_CONNECTION = "jdbc:postgresql";
-	private static final String DB_HOST = "[insert here your host name or ip]";
-	private static final String DB_PORT = "[insert here your db port]";
-	private static final String DB = "[insert here your db name]";
-	private static final String DB_USER = "[insert here your db user]";
-	private static final String DB_PASSWORD = "[insert here your db password]";
+	private static final String DB_HOST = "localhost";
+	private static final String DB_PORT = "5432";
+	private static final String DB = "musicbrainz_db";
+	private static final String DB_USER = "musicbrainz";
+	private static final String DB_PASSWORD = "musicbrainz";
 	private static Connection dbConnection = null;
 
 	public static PrefixMapping getPrefixMapping()
@@ -95,12 +98,13 @@ public class Utils
 	{
 		Query query = QueryFactory.create(queryString); // exception happens
 														// here
-		com.hp.hpl.jena.query.QueryExecution qe = QueryExecutionFactory
-				.sparqlService(serviceEndpoint, query);
-
+		QueryEngineHTTP qe = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(serviceEndpoint, query);
+		qe.addParam("timeout", "10000");
+		
 		try
 		{
 			com.hp.hpl.jena.query.ResultSet rs = qe.execSelect();
+			
 			if (rs.hasNext())
 			{
 				// show the result, more can be done here

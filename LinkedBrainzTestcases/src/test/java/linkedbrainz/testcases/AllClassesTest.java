@@ -22,12 +22,14 @@ public class AllClassesTest {
 			result = Utils.runSPARQLQuery(allClassesQuery, Utils.SERVICE_ENDPOINT);
 			
 			assertNotNull(result.getResultSet());
+			
+			result.close();
 		}
 		catch (NullPointerException e)
 		{
 			System.out.println(e.getMessage());
 			
-			assertTrue(false);
+			fail("AllClassesTest failed.");
 		}
 	}
 	
