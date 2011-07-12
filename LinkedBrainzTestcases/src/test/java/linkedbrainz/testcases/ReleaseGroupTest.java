@@ -21,8 +21,8 @@ public class ReleaseGroupTest
 	@Test
 	public void checkReleaseGroups()
 	{
-		TestResult testResult = Utils.getInstance().checkClass("release_group",
-				"mo:SignalGroup", "ReleaseGroupsCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaGUID(
+				"release_group", "gid", "mo:SignalGroup", "ReleaseGroupsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 

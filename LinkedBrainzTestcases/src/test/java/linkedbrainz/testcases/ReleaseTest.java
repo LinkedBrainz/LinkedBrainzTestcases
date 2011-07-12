@@ -10,11 +10,11 @@ import org.junit.Test;
 /**
  * 
  * @author zazi
- *
+ * 
  */
 public class ReleaseTest
 {
-	
+
 	/**
 	 * Fetches 5 releases from the DB and resolves them via a SPARQL query.
 	 * 
@@ -22,14 +22,15 @@ public class ReleaseTest
 	@Test
 	public void checkReleases()
 	{
-		TestResult testResult = Utils.getInstance().checkClass("release", "mo:Release", "ReleasesCheck");
-		
-		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());			
+		TestResult testResult = Utils.getInstance().checkClassViaGUID(
+				"release", "gid", "mo:Release", "ReleasesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
-	public static junit.framework.Test suite() 
-	{ 
-	    return new JUnit4TestAdapter(ReleaseTest.class); 
+
+	public static junit.framework.Test suite()
+	{
+		return new JUnit4TestAdapter(ReleaseTest.class);
 	}
 
 }

@@ -10,28 +10,27 @@ import org.junit.Test;
 /**
  * 
  * @author zazi
- *
+ * 
  */
 public class RecordingTest
 {
 
 	/**
-	 * Fetches 5 recordings from the DB and resolves them via a SPARQL
-	 * query.
+	 * Fetches 5 recordings from the DB and resolves them via a SPARQL query.
 	 * 
 	 */
 	@Test
 	public void checkRecordings()
 	{
-		TestResult testResult = Utils.getInstance().checkClass("recording",
-				"mo:Signal", "RecordingsCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaGUID(
+				"recording", "gid", "mo:Signal", "RecordingsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
-	public static junit.framework.Test suite() 
-	{ 
-	    return new JUnit4TestAdapter(RecordingTest.class); 
+
+	public static junit.framework.Test suite()
+	{
+		return new JUnit4TestAdapter(RecordingTest.class);
 	}
 }

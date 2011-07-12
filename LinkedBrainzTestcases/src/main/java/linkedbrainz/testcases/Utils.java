@@ -59,6 +59,10 @@ public class Utils
 	private static final String DB_PASSWORD = "musicbrainz";
 	private Connection dbConnection = null;
 
+	private String initSqlQuery = null;
+	private String initSparqlQuery = null;
+	private int limit = 0;
+
 	private Utils()
 	{
 
@@ -281,24 +285,69 @@ public class Utils
 	}
 
 	/**
+	 * Fetches 5 classes of a specific type from the DB and resolves them via
+	 * the GUID in a SPARQL query.
+	 * 
+	 * @param table
+	 *            the specific table for the SQL query
+	 * @param row
+	 *            the specific row for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkClassViaGUID(String table, String row,
+			String className, String checkName)
+	{
+		initSqlQuery = "SELECT gid FROM musicbrainz.TABLE LIMIT 5";
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI "
+				+ "WHERE { "
+				+ "?URI rdf:type CLASS_NAME . "
+				+ "?URI mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . } ";
+		limit = 5;
+
+		return checkClass(table, row, className, checkName);
+	}
+
+	public TestResult checkClassViaID(String table, String row,
+			String className, String checkName)
+	{
+		initSqlQuery = "SELECT id FROM musicbrainz.TABLE LIMIT 1";
+		initSparqlQuery = Utils.DEFAULT_PREFIXES + "SELECT DISTINCT ?URI "
+				+ "WHERE { " + "?URI rdf:type CLASS_NAME . "
+				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
+		limit = 1;
+
+		return checkClass(table, row, className, checkName);
+	}
+
+	/**
 	 * Fetches 5 classes of a specific type from the DB and resolves them via a
 	 * SPARQL query.
 	 * 
+	 * @param table
+	 *            the specific table for the SQL query
+	 * @param row
+	 *            the specific row for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return
 	 */
-	public TestResult checkClass(String table, String className,
+	private TestResult checkClass(String table, String row, String className,
 			String checkName)
 	{
-		String initSqlQuery = "SELECT gid FROM musicbrainz.TABLE LIMIT 5";
+		String initSqlQuery = this.initSqlQuery;
 		String sqlQuery = initSqlQuery.replace("TABLE", table);
 		SQLResultSet sqlResultSet = null;
 
 		List<String> gids = null;
 
-		String initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?artistURI "
-				+ "WHERE { "
-				+ "?artistURI rdf:type CLASS_NAME . "
-				+ "?artistURI mo:musicbrainz_guid \"GUID_PLACEHOLDER\"^^xsd:string . } ";
+		String initSparqlQuery = this.initSparqlQuery;
 		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
 		String currentSparqlQuery = null;
 		SPARQLResultSet sparqlResultSet = null;
@@ -331,7 +380,7 @@ public class Utils
 			{
 				while (sqlRS.next())
 				{
-					gids.add(sqlRS.getString("gid"));
+					gids.add(sqlRS.getString(row));
 				}
 			} catch (SQLException e)
 			{
@@ -343,14 +392,14 @@ public class Utils
 			sqlResultSet.close();
 		}
 
-		if (gids.size() == 5)
+		if (gids.size() == limit)
 		{
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < limit; i++)
 			{
 				sparqlRS = null;
 
-				currentSparqlQuery = sparqlQuery.replace("GUID_PLACEHOLDER",
-						gids.get(i));
+				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER", gids
+						.get(i));
 
 				try
 				{
@@ -375,11 +424,11 @@ public class Utils
 			}
 		}
 
-		String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to 5";
+		String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to " + this.limit;
 		String queryCounterFailMsg = initQueryCounterFailMsg.replace(
 				"CHECK_NAME", checkName);
 
-		return new TestResult(queryCounter == 5, queryCounterFailMsg);
+		return new TestResult(queryCounter == this.limit, queryCounterFailMsg);
 
 	}
 

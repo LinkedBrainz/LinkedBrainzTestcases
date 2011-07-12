@@ -20,8 +20,8 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtists()
 	{
-		TestResult testResult = Utils.getInstance().checkClass("artist",
-				"mo:MusicArtist", "ArtistsCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaGUID("artist",
+				"gid", "mo:MusicArtist", "ArtistsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
