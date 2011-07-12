@@ -8,30 +8,39 @@ import org.junit.Test;
 
 import java.sql.Connection;
 
-public class DBConnectionTest 
+/**
+ * 
+ * @author zazi
+ * 
+ */
+public class DBConnectionTest
 {
-	
-	@Test public void checkDBConnectionTest()
+
+	/**
+	 * Checks the connection to a PostgreSQL database.
+	 */
+	@Test
+	public void checkDBConnectionTest()
 	{
 		Connection connection = null;
-		
+
 		try
 		{
-			connection = Utils.getDBConnection();
-			
-			assertEquals(connection.getMetaData().getDatabaseProductName(), "PostgreSQL");
-		}
-		catch (Exception e)
+			connection = Utils.getInstance().getDBConnection();
+
+			assertEquals(connection.getMetaData().getDatabaseProductName(),
+					"PostgreSQL");
+		} catch (Exception e)
 		{
 			System.out.println(e.getMessage());
-			
+
 			assertTrue(false);
 		}
-		
+
 	}
-	
-	public static junit.framework.Test suite() 
-	{ 
-	    return new JUnit4TestAdapter(DBConnectionTest.class); 
+
+	public static junit.framework.Test suite()
+	{
+		return new JUnit4TestAdapter(DBConnectionTest.class);
 	}
 }

@@ -4,6 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * A model class for SQL result sets. Hold the result set and the related
+ * execution statement.
+ * 
+ * @author zazi
+ * 
+ */
 public class SQLResultSet
 {
 
@@ -36,6 +43,9 @@ public class SQLResultSet
 		this.statement = statement;
 	}
 
+	/**
+	 * Closes the related statement.
+	 */
 	public void close()
 	{
 		if (statement != null)

@@ -9,16 +9,23 @@ import linkedbrainz.testcases.model.SPARQLResultSet;
 import linkedbrainz.testcases.model.SQLResultSet;
 
 import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP;
+import com.hp.hpl.jena.sparql.resultset.ResultSetMem;
 
+/**
+ * 
+ * @author zazi
+ * 
+ */
 public class Utils
 {
+
+	private static Utils instance = null;
 
 	public static final String SERVICE_ENDPOINT = "http://localhost:2020/sparql";
 	public static final String DEFAULT_PREFIXES = "PREFIX dc: <http://purl.org/dc/elements/1.1/>"
@@ -38,7 +45,7 @@ public class Utils
 			+ "PREFIX vocab: <http://localhost:2020/vocab/resource/>"
 			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
 	public static final long TIMEOUT = 100000;
-	private static PrefixMapping prefixMapping = null;
+	private PrefixMapping prefixMapping = null;
 
 	private static final String DB_DRIVER = "org.postgresql.Driver";
 	private static final String DB_CONNECTION = "jdbc:postgresql";
@@ -47,9 +54,35 @@ public class Utils
 	private static final String DB = "musicbrainz_db";
 	private static final String DB_USER = "musicbrainz";
 	private static final String DB_PASSWORD = "musicbrainz";
-	private static Connection dbConnection = null;
+	private Connection dbConnection = null;
 
-	public static PrefixMapping getPrefixMapping()
+	private Utils()
+	{
+
+	}
+
+	/**
+	 * Singleton
+	 * 
+	 * @return the one and only Utils instance
+	 */
+	public static Utils getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new Utils();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Sets the prefix mapping for ARQ if necessary, otherwise it returns the
+	 * already initialised PrefixMapping instance.
+	 * 
+	 * @return a initialised PrefixMapping instance
+	 */
+	public PrefixMapping getPrefixMapping()
 	{
 		if (prefixMapping == null)
 		{
@@ -93,34 +126,67 @@ public class Utils
 		return prefixMapping;
 	}
 
-	public static SPARQLResultSet runSPARQLQuery(String queryString,
+	/**
+	 * Runs a SPARQL query against a given SPARQL endpoint.
+	 * 
+	 * @param queryString
+	 *            the preformatted SPARQL query
+	 * @param serviceEndpoint
+	 *            the given SPARQL endpoint
+	 * @return a fresh SPARQLResultSet instance or null if something goes wrong
+	 */
+	public SPARQLResultSet runSPARQLQuery(String queryString,
 			String serviceEndpoint)
 	{
 		Query query = QueryFactory.create(queryString); // exception happens
-														// here
-		QueryEngineHTTP qe = (QueryEngineHTTP) QueryExecutionFactory.sparqlService(serviceEndpoint, query);
+		// here
+		QueryEngineHTTP qe = (QueryEngineHTTP) QueryExecutionFactory
+				.sparqlService(serviceEndpoint, query);
 		qe.addParam("timeout", "10000");
-		
+
+		SPARQLResultSet resultSet = null;
+		ResultSetMem tempRS = null;
+		ResultSetMem tempRS2 = null;
+
 		try
 		{
+			System.out.println("[EXEC]  SPARQL query:\n\t\t" + queryString);
+
 			com.hp.hpl.jena.query.ResultSet rs = qe.execSelect();
-			
-			if (rs.hasNext())
+
+			// need to create in-memory copies since the Result is of the type
+			// com.hp.hpl.jena.sparql.resultset.XMLInputStAX$ResultSetStAX
+			tempRS = new ResultSetMem(rs);
+			tempRS2 = new ResultSetMem(tempRS, true);
+
+			resultSet = new SPARQLResultSet(tempRS, qe);
+
+			if (tempRS2.hasNext())
 			{
 				// show the result, more can be done here
-				ResultSetFormatter.out(rs, getPrefixMapping());
+				System.out.println("[EXEC] SPARQL query result");
+				ResultSetFormatter.out(tempRS2, getPrefixMapping());
 			}
 
-			return new SPARQLResultSet(rs, qe);
+			return resultSet;
 		} catch (Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.out
+					.println("[EXEC] Exception while processing a SPARQL query: "
+							+ e.getMessage());
 
 			return null;
 		}
 	}
 
-	public final static Connection getDBConnection()
+	/**
+	 * Tries to establish a DB connection to the given parameters that are set
+	 * (DB_DRIVER, DB_CONNECTION, DB_HOST, DB_PORT, DB, DB_USER, DB_PASSWORD) or
+	 * returns the already established DB connection.
+	 * 
+	 * @return a DB connection
+	 */
+	public Connection getDBConnection()
 	{
 		if (dbConnection == null)
 		{
@@ -173,43 +239,39 @@ public class Utils
 		return dbConnection;
 	}
 
-	public static final SQLResultSet runSQLQuery(String query)
-			throws SQLException
+	/**
+	 * Runs a SQL query against a preset DB connection (would be initialised
+	 * automatically via getDBConnection()).
+	 * 
+	 * @param query
+	 *            the given preformatted SPQL query
+	 * @return a fresh SQLResultSet instance or null if something goes wrong
+	 * @throws SQLException
+	 *             if something went wrong
+	 */
+	public SQLResultSet runSQLQuery(String query) throws SQLException
 	{
 
 		Connection dbConnection = null;
 		Statement statement = null;
-
-		// String selectTableSQL = "SELECT USER_ID, USERNAME from DBUSER";
 
 		try
 		{
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
 
-			System.out.println("DB query:\n" + query);
+			System.out.println("[EXEC]  DB query:\n\t\t" + query);
 
 			// execute select SQL statement
 			java.sql.ResultSet rs = statement.executeQuery(query);
-
-			/*
-			 * while (rs.next()) {
-			 * 
-			 * String userid = rs.getString("USER_ID"); String username =
-			 * rs.getString("USERNAME");
-			 * 
-			 * System.out.println("userid : " + userid);
-			 * System.out.println("username : " + username);
-			 * 
-			 * }
-			 */
 
 			return new SQLResultSet(rs, statement);
 
 		} catch (SQLException e)
 		{
-
-			System.out.println(e.getMessage());
+			System.out
+					.println("[EXEC] Exception while processing a SQL query: "
+							+ e.getMessage());
 
 			return null;
 		}

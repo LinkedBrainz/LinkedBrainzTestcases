@@ -3,6 +3,13 @@ package linkedbrainz.testcases.model;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.ResultSet;
 
+/**
+ * A model class for SPARQL result sets. Holds the result set and the related
+ * query execution object.
+ * 
+ * @author zazi
+ * 
+ */
 public class SPARQLResultSet
 {
 
@@ -35,6 +42,9 @@ public class SPARQLResultSet
 		this.queryExecution = queryExecution;
 	}
 
+	/**
+	 * Closes the related query execution object.
+	 */
 	public void close()
 	{
 		if (queryExecution != null)
