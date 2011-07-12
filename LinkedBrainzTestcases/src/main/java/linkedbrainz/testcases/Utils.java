@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import linkedbrainz.testcases.model.SPARQLResultSet;
 import linkedbrainz.testcases.model.SQLResultSet;
+import linkedbrainz.testcases.model.TestResult;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -275,6 +278,109 @@ public class Utils
 
 			return null;
 		}
+	}
+
+	/**
+	 * Fetches 5 classes of a specific type from the DB and resolves them via a
+	 * SPARQL query.
+	 * 
+	 */
+	public TestResult checkClass(String table, String className,
+			String checkName)
+	{
+		String initSqlQuery = "SELECT gid FROM musicbrainz.TABLE LIMIT 5";
+		String sqlQuery = initSqlQuery.replace("TABLE", table);
+		SQLResultSet sqlResultSet = null;
+
+		List<String> gids = null;
+
+		String initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?artistURI "
+				+ "WHERE { "
+				+ "?artistURI rdf:type CLASS_NAME . "
+				+ "?artistURI mo:musicbrainz_guid \"GUID_PLACEHOLDER\"^^xsd:string . } ";
+		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
+		String currentSparqlQuery = null;
+		SPARQLResultSet sparqlResultSet = null;
+		com.hp.hpl.jena.query.ResultSet sparqlRS = null;
+		int queryCounter = 0;
+
+		String initSqlFailMsg = "CHECK_NAME failed due to a SQLException";
+		String sqlFailMsg = initSqlFailMsg.replace("CHECK_NAME", checkName);
+
+		String initSparqlFailMsg = "CHECK_NAME failed due to a SPARQL query execution";
+		String sparqlFailMsg = initSparqlFailMsg.replace("CHECK_NAME",
+				checkName);
+
+		try
+		{
+			sqlResultSet = Utils.getInstance().runSQLQuery(sqlQuery);
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+			return new TestResult(false, sqlFailMsg);
+		}
+
+		if (sqlResultSet != null)
+		{
+			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+			gids = new ArrayList<String>();
+
+			try
+			{
+				while (sqlRS.next())
+				{
+					gids.add(sqlRS.getString("gid"));
+				}
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+
+				return new TestResult(false, sqlFailMsg);
+			}
+
+			sqlResultSet.close();
+		}
+
+		if (gids.size() == 5)
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				sparqlRS = null;
+
+				currentSparqlQuery = sparqlQuery.replace("GUID_PLACEHOLDER",
+						gids.get(i));
+
+				try
+				{
+					sparqlResultSet = Utils.getInstance().runSPARQLQuery(
+							currentSparqlQuery, Utils.SERVICE_ENDPOINT);
+
+					sparqlRS = sparqlResultSet.getResultSet();
+
+					while (sparqlRS.hasNext())
+					{
+						queryCounter++;
+						sparqlRS.next();
+					}
+				} catch (Exception e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sparqlFailMsg);
+				}
+
+				sparqlResultSet.close();
+			}
+		}
+
+		String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to 5";
+		String queryCounterFailMsg = initQueryCounterFailMsg.replace(
+				"CHECK_NAME", checkName);
+
+		return new TestResult(queryCounter == 5, queryCounterFailMsg);
+
 	}
 
 }
