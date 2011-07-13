@@ -463,14 +463,14 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkInstanceNamesViaGUID(String classTable,
+	public TestResult checkInstanceNamesViaGUID(String classTable, String classTableRow,
 			String classNameTable, String className, String propertyName,
 			String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
 				+ "musicbrainz.CLASS.gid AS id "
 				+ "FROM musicbrainz.CLASS "
-				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.name = CLASS_NAME.id LIMIT 5";
+				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.CLASS_ROW = CLASS_NAME.id LIMIT 5";
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?name "
 				+ "WHERE { ?URI a CLASS_NAME ; "
@@ -478,7 +478,7 @@ public class Utils
 				+ "PROPERTY_NAME ?name . }";
 		limit = 5;
 
-		return checkInstanceNames(classTable, classNameTable, className,
+		return checkInstanceNames(classTable, classTableRow, classNameTable, className,
 				propertyName, checkName);
 	}
 
@@ -499,14 +499,14 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkInstanceNamesViaID(String classTable,
+	public TestResult checkInstanceNamesViaID(String classTable, String classTableRow,
 			String classNameTable, String className, String propertyName,
 			String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
 				+ "musicbrainz.CLASS.id AS id "
 				+ "FROM musicbrainz.CLASS "
-				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.name = CLASS_NAME.id LIMIT 1";
+				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.CLASS_ROW = CLASS_NAME.id LIMIT 1";
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?name "
 				+ "WHERE { ?URI rdf:type CLASS_NAME ; "
@@ -514,7 +514,7 @@ public class Utils
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
 		limit = 1;
 
-		return checkInstanceNames(classTable, classNameTable, className,
+		return checkInstanceNames(classTable, classTableRow, classNameTable, className,
 				propertyName, checkName);
 	}
 
@@ -524,6 +524,8 @@ public class Utils
 	 * 
 	 * @param classTable
 	 *            the specific class table for the SQL query
+	 * @param classTable Row
+	 * 			  the specific row in the class table for the SQL query           
 	 * @param classNameTable
 	 *            the specific class name table for the SQL query
 	 * @param className
@@ -535,7 +537,7 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	private TestResult checkInstanceNames(String classTable,
+	private TestResult checkInstanceNames(String classTable, String classTableRow,
 			String classNameTable, String className, String propertyName,
 			String checkName)
 	{
@@ -545,10 +547,11 @@ public class Utils
 		String initSqlQuery = this.initSqlQuery;
 		String initSqlQuery2 = initSqlQuery.replace("CLASS_NAME",
 				classNameTable);
-		String sqlQuery = initSqlQuery2.replace("CLASS", classTable);
+		String initSqlQuery3 = initSqlQuery2.replace("CLASS_ROW", classTableRow);
+		String sqlQuery = initSqlQuery3.replace("CLASS", classTable);
 
-		Map<String, String> artistNames = null;
-		String artistNamesKey = null;
+		Map<String, String> names = null;
+		String namesKey = null;
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = initSparqlQuery.replace("CLASS_NAME",
@@ -569,13 +572,13 @@ public class Utils
 		if (sqlResultSet != null)
 		{
 			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-			artistNames = new HashMap<String, String>();
+			names = new HashMap<String, String>();
 
 			try
 			{
 				while (sqlRS.next())
 				{
-					artistNames.put(sqlRS.getString("id"), sqlRS
+					names.put(sqlRS.getString("id"), sqlRS
 							.getString("name"));
 				}
 			} catch (SQLException e)
@@ -588,17 +591,17 @@ public class Utils
 			sqlResultSet.close();
 		}
 
-		if (artistNames.size() == limit)
+		if (names.size() == limit)
 		{
-			Iterator<String> iter = artistNames.keySet().iterator();
+			Iterator<String> iter = names.keySet().iterator();
 
 			for (int i = 0; i < limit; i++)
 			{
 				sparqlRS = null;
-				artistNamesKey = iter.next();
+				namesKey = iter.next();
 
 				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
-						artistNamesKey);
+						namesKey);
 
 				try
 				{
@@ -609,7 +612,7 @@ public class Utils
 
 					while (sparqlRS.hasNext())
 					{
-						if (artistNames.get(artistNamesKey).equals(
+						if (names.get(namesKey).equals(
 								sparqlRS.next().getLiteral("name").getString()))
 						{
 							queryCounter++;

@@ -36,8 +36,23 @@ public class LabelTest
 	public void checkLabelNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"label", "label_name", "mo:Label", "foaf:name",
+				"label", "name", "label_name", "mo:Label", "foaf:name",
 				"LabelNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 labels from the DB and resolves theirs sort labels against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelSortLabels()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"label", "sort_name", "label_name", "mo:Label", "ov:sortLabel",
+				"LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

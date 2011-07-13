@@ -37,7 +37,7 @@ public class ReleaseGroupTest
 	public void checkReleaseGroupNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"release_group", "release_name", "mo:SignalGroup", "dct:title",
+				"release_group", "name", "release_name", "mo:SignalGroup", "dct:title",
 				"ReleaseGroupNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

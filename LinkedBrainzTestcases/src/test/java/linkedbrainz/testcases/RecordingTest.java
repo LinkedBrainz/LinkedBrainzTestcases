@@ -38,7 +38,7 @@ public class RecordingTest
 	public void checkMusicArtistNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"recording", "track_name", "mo:Signal", "dct:title",
+				"recording", "name", "track_name", "mo:Signal", "dct:title",
 				"RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

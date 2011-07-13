@@ -36,8 +36,23 @@ public class ArtistTest
 	public void checkMusicArtistNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"artist", "artist_name", "mo:MusicArtist", "foaf:name",
+				"artist", "name", "artist_name", "mo:MusicArtist", "foaf:name",
 				"ArtistNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music artists from the DB and resolves theirs sort labels against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistSortLabels()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"artist", "sort_name", "artist_name", "mo:MusicArtist", "ov:sortLabel",
+				"ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

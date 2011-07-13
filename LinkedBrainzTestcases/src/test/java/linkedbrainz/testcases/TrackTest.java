@@ -46,7 +46,7 @@ public class TrackTest
 	public void checkTrackNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaID(
-				"track", "track_name", "mo:Track", "dct:title",
+				"track", "name", "track_name", "mo:Track", "dct:title",
 				"TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

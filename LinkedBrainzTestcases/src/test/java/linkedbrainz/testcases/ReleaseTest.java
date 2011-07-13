@@ -37,7 +37,7 @@ public class ReleaseTest
 	public void checkReleaseNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"release", "release_name", "mo:Release", "dct:title",
+				"release", "name", "release_name", "mo:Release", "dct:title",
 				"ReleaseNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
