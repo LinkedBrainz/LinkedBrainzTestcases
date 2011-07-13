@@ -26,6 +26,21 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 labels from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelNames()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"label", "label_name", "mo:Label", "foaf:name",
+				"LabelNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{

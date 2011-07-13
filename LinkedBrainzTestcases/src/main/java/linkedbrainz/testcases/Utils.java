@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import linkedbrainz.testcases.model.SPARQLResultSet;
 import linkedbrainz.testcases.model.SQLResultSet;
@@ -59,9 +62,20 @@ public class Utils
 	private static final String DB_PASSWORD = "musicbrainz";
 	private Connection dbConnection = null;
 
+	private SQLResultSet sqlResultSet = null;
+	private SPARQLResultSet sparqlResultSet = null;
+	private String currentSparqlQuery = null;
+	private com.hp.hpl.jena.query.ResultSet sparqlRS = null;
+	private int queryCounter = 0;
 	private String initSqlQuery = null;
 	private String initSparqlQuery = null;
 	private int limit = 0;
+	private String initSqlFailMsg = "CHECK_NAME failed due to a SQLException";
+	private String initSparqlFailMsg = "CHECK_NAME failed due to a SPARQL query execution";
+	private String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to ";
+	private String sqlFailMsg = null;
+	private String sparqlFailMsg = null;
+	private String queryCounterFailMsg = null;
 
 	private Utils()
 	{
@@ -285,7 +299,7 @@ public class Utils
 	}
 
 	/**
-	 * Fetches 5 classes of a specific type from the DB and resolves them via
+	 * Fetches 5 instances of a specific type from the DB and resolves them via
 	 * the GUID in a SPARQL query.
 	 * 
 	 * @param table
@@ -293,7 +307,7 @@ public class Utils
 	 * @param row
 	 *            the specific row for the SQL query
 	 * @param className
-	 *            the class name of the specific RDF class
+	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -304,20 +318,34 @@ public class Utils
 		initSqlQuery = "SELECT gid FROM musicbrainz.TABLE LIMIT 5";
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI "
-				+ "WHERE { "
-				+ "?URI rdf:type CLASS_NAME . "
+				+ "WHERE { ?URI rdf:type CLASS_NAME . "
 				+ "?URI mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . } ";
 		limit = 5;
 
 		return checkClass(table, row, className, checkName);
 	}
 
+	/**
+	 * Fetches an instance of a specific type from the DB and resolves it via
+	 * the ID in a SPARQL query.
+	 * 
+	 * @param table
+	 *            the specific table for the SQL query
+	 * @param row
+	 *            the specific row for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
 	public TestResult checkClassViaID(String table, String row,
 			String className, String checkName)
 	{
 		initSqlQuery = "SELECT id FROM musicbrainz.TABLE LIMIT 1";
-		initSparqlQuery = Utils.DEFAULT_PREFIXES + "SELECT DISTINCT ?URI "
-				+ "WHERE { " + "?URI rdf:type CLASS_NAME . "
+		initSparqlQuery = Utils.DEFAULT_PREFIXES 
+				+ "SELECT DISTINCT ?URI "
+				+ "WHERE { ?URI rdf:type CLASS_NAME . "
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
 		limit = 1;
 
@@ -325,45 +353,36 @@ public class Utils
 	}
 
 	/**
-	 * Fetches 5 classes of a specific type from the DB and resolves them via a
-	 * SPARQL query.
+	 * Fetches some instances of a specific type from the DB and resolves them
+	 * via a SPARQL query.
 	 * 
 	 * @param table
 	 *            the specific table for the SQL query
 	 * @param row
 	 *            the specific row for the SQL query
 	 * @param className
-	 *            the class name of the specific RDF class
+	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param checkName
 	 *            the name of the specific check
-	 * @return
+	 * @return the result of the test (incl. fail message)
 	 */
 	private TestResult checkClass(String table, String row, String className,
 			String checkName)
 	{
+		resetQueryVars();
+		initFailMsgs(checkName);
+
 		String initSqlQuery = this.initSqlQuery;
 		String sqlQuery = initSqlQuery.replace("TABLE", table);
-		SQLResultSet sqlResultSet = null;
 
 		List<String> gids = null;
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
-		String currentSparqlQuery = null;
-		SPARQLResultSet sparqlResultSet = null;
-		com.hp.hpl.jena.query.ResultSet sparqlRS = null;
-		int queryCounter = 0;
-
-		String initSqlFailMsg = "CHECK_NAME failed due to a SQLException";
-		String sqlFailMsg = initSqlFailMsg.replace("CHECK_NAME", checkName);
-
-		String initSparqlFailMsg = "CHECK_NAME failed due to a SPARQL query execution";
-		String sparqlFailMsg = initSparqlFailMsg.replace("CHECK_NAME",
-				checkName);
 
 		try
 		{
-			sqlResultSet = Utils.getInstance().runSQLQuery(sqlQuery);
+			sqlResultSet = runSQLQuery(sqlQuery);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
@@ -403,8 +422,8 @@ public class Utils
 
 				try
 				{
-					sparqlResultSet = Utils.getInstance().runSPARQLQuery(
-							currentSparqlQuery, Utils.SERVICE_ENDPOINT);
+					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+							SERVICE_ENDPOINT);
 
 					sparqlRS = sparqlResultSet.getResultSet();
 
@@ -424,12 +443,219 @@ public class Utils
 			}
 		}
 
-		String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to " + this.limit;
-		String queryCounterFailMsg = initQueryCounterFailMsg.replace(
-				"CHECK_NAME", checkName);
+		return new TestResult(queryCounter == limit, queryCounterFailMsg);
+	}
 
-		return new TestResult(queryCounter == this.limit, queryCounterFailMsg);
+	/**
+	 * Fetches 5 instances from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 * @param classTable
+	 *            the specific class table for the SQL query
+	 * @param classNameTable
+	 *            the specific class name table for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkInstanceNamesViaGUID(String classTable,
+			String classNameTable, String className, String propertyName,
+			String checkName)
+	{
+		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
+				+ "musicbrainz.CLASS.gid AS id "
+				+ "FROM musicbrainz.CLASS "
+				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.name = CLASS_NAME.id LIMIT 5";
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI ?name "
+				+ "WHERE { ?URI a CLASS_NAME ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
+				+ "PROPERTY_NAME ?name . }";
+		limit = 5;
 
+		return checkInstanceNames(classTable, classNameTable, className,
+				propertyName, checkName);
+	}
+
+	/**
+	 * Fetches 1 instance from the DB and resolves its name against the result
+	 * of the related SPARQL query.
+	 * 
+	 * @param classTable
+	 *            the specific class table for the SQL query
+	 * @param classNameTable
+	 *            the specific class name table for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkInstanceNamesViaID(String classTable,
+			String classNameTable, String className, String propertyName,
+			String checkName)
+	{
+		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
+				+ "musicbrainz.CLASS.id AS id "
+				+ "FROM musicbrainz.CLASS "
+				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.name = CLASS_NAME.id LIMIT 1";
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI ?name "
+				+ "WHERE { ?URI rdf:type CLASS_NAME ; "
+				+ "PROPERTY_NAME ?name . "
+				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
+		limit = 1;
+
+		return checkInstanceNames(classTable, classNameTable, className,
+				propertyName, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 * @param classTable
+	 *            the specific class table for the SQL query
+	 * @param classNameTable
+	 *            the specific class name table for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkInstanceNames(String classTable,
+			String classNameTable, String className, String propertyName,
+			String checkName)
+	{
+		resetQueryVars();
+		initFailMsgs(checkName);
+
+		String initSqlQuery = this.initSqlQuery;
+		String initSqlQuery2 = initSqlQuery.replace("CLASS_NAME",
+				classNameTable);
+		String sqlQuery = initSqlQuery2.replace("CLASS", classTable);
+
+		Map<String, String> artistNames = null;
+		String artistNamesKey = null;
+
+		String initSparqlQuery = this.initSparqlQuery;
+		String initSparqlQuery2 = initSparqlQuery.replace("CLASS_NAME",
+				className);
+		String sparqlQuery = initSparqlQuery2.replace("PROPERTY_NAME",
+				propertyName);
+
+		try
+		{
+			sqlResultSet = runSQLQuery(sqlQuery);
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+			return new TestResult(false, sqlFailMsg);
+		}
+
+		if (sqlResultSet != null)
+		{
+			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+			artistNames = new HashMap<String, String>();
+
+			try
+			{
+				while (sqlRS.next())
+				{
+					artistNames.put(sqlRS.getString("id"), sqlRS
+							.getString("name"));
+				}
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+
+				return new TestResult(false, sqlFailMsg);
+			}
+
+			sqlResultSet.close();
+		}
+
+		if (artistNames.size() == limit)
+		{
+			Iterator<String> iter = artistNames.keySet().iterator();
+
+			for (int i = 0; i < limit; i++)
+			{
+				sparqlRS = null;
+				artistNamesKey = iter.next();
+
+				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
+						artistNamesKey);
+
+				try
+				{
+					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+							SERVICE_ENDPOINT);
+
+					sparqlRS = sparqlResultSet.getResultSet();
+
+					while (sparqlRS.hasNext())
+					{
+						if (artistNames.get(artistNamesKey).equals(
+								sparqlRS.next().getLiteral("name").getString()))
+						{
+							queryCounter++;
+						}
+					}
+				} catch (Exception e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sparqlFailMsg);
+				}
+
+				sparqlResultSet.close();
+			}
+		}
+
+		return new TestResult(queryCounter == limit, queryCounterFailMsg);
+	}
+
+	/**
+	 * Reset the required variables of the standard check processing (compare
+	 * SQL query results with SPARQL query results).
+	 */
+	private void resetQueryVars()
+	{
+		sqlResultSet = null;
+		sparqlResultSet = null;
+		currentSparqlQuery = null;
+		sparqlRS = null;
+		queryCounter = 0;
+	}
+
+	/**
+	 * Initialises the different fail messages with the name of the specific
+	 * check.
+	 * 
+	 * @param checkName
+	 *            the name of the specific check
+	 */
+	private void initFailMsgs(String checkName)
+	{
+		sqlFailMsg = initSqlFailMsg.replace("CHECK_NAME", checkName);
+		sparqlFailMsg = initSparqlFailMsg.replace("CHECK_NAME", checkName);
+		initQueryCounterFailMsg = initQueryCounterFailMsg + limit;
+		queryCounterFailMsg = initQueryCounterFailMsg.replace("CHECK_NAME",
+				checkName);
 	}
 
 }

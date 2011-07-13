@@ -9,14 +9,18 @@ import org.junit.Test;
 
 /**
  * 
+ * ATTENTION: requires to switch off the resultSizeLimit; please run these test
+ * separately if possible since they cause heavy load on the machine and usually
+ * take a bit longer
+ * 
+ * 
  * @author zazi
- *
+ * 
  */
 public class TrackTest
 {
 	/**
-	 * Fetches 1 track from the DB and resolves it via a SPARQL
-	 * query.
+	 * Fetches 1 track from the DB and resolves it via a SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
@@ -24,16 +28,33 @@ public class TrackTest
 	@Test
 	public void checkTracks()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaID(
-				"track", "id", "mo:Track", "TracksCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaID("track",
+				"id", "mo:Track", "TracksCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
-	public static junit.framework.Test suite() 
-	{ 
-	    return new JUnit4TestAdapter(TrackTest.class); 
+
+	/**
+	 * Fetches 1 track from the DB and resolves its names against the result of
+	 * the related SPARQL query.
+	 * 
+	 * ATTENTION: requires to switch off the resultSizeLimit
+	 * 
+	 */
+	@Test
+	public void checkTrackNames()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaID(
+				"track", "track_name", "mo:Track", "dct:title",
+				"TrackNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	public static junit.framework.Test suite()
+	{
+		return new JUnit4TestAdapter(TrackTest.class);
 	}
 
 }

@@ -27,6 +27,21 @@ public class ReleaseTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 releases from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseNames()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"release", "release_name", "mo:Release", "dct:title",
+				"ReleaseNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{

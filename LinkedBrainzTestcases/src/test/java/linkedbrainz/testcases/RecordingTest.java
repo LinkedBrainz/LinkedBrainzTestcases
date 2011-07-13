@@ -28,6 +28,21 @@ public class RecordingTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
+	
+	/**
+	 * Fetches 5 recordings from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistNames()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"recording", "track_name", "mo:Signal", "dct:title",
+				"RecordingNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{

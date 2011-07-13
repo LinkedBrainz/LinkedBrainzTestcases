@@ -27,6 +27,21 @@ public class ReleaseGroupTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
+	
+	/**
+	 * Fetches 5 release groups from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupNames()
+	{
+		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
+				"release_group", "release_name", "mo:SignalGroup", "dct:title",
+				"ReleaseGroupNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{
