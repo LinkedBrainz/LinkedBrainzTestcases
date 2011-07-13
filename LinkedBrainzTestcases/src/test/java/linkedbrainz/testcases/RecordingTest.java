@@ -35,11 +35,26 @@ public class RecordingTest
 	 * 
 	 */
 	@Test
-	public void checkMusicArtistNames()
+	public void checkRecordingNames()
 	{
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
 				"recording", "name", "track_name", "mo:Signal", "dct:title",
 				"RecordingNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 recordings from the DB and resolves their ISRC codes against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingISRCs()
+	{
+		TestResult testResult = Utils.getInstance().checkSimplePropertyViaGUIDOnTheRight(
+				"isrc", "recording", "recording", "isrc", "mo:Signal", "mo:isrc", "ISRC",
+				"RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

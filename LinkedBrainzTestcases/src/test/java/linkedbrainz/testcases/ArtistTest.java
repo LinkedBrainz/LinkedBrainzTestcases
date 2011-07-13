@@ -58,8 +58,8 @@ public class ArtistTest
 	}
 
 	/**
-	 * Fetches 5 (+1) music artists from the DB and resolves their aliases against
-	 * the result of the related SPARQL query.
+	 * Fetches 5 (+1) music artists from the DB and resolves their aliases
+	 * against the result of the related SPARQL query.
 	 * 
 	 */
 	@Test
@@ -69,6 +69,21 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance().checkInstanceAliases(
 				"artist", "mo:MusicArtist",
 				"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d", "ArtistAliasesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 music artists from the DB and resolves their genders against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistGender()
+	{
+		TestResult testResult = Utils.getInstance().checkSimplePropertyViaGUIDOnTheLeft(
+				"artist", "gender", "gender", "name", "mo:MusicArtist", "foaf:gender", "gender",
+				"ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
