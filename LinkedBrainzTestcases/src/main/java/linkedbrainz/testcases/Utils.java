@@ -343,8 +343,7 @@ public class Utils
 			String className, String checkName)
 	{
 		initSqlQuery = "SELECT id FROM musicbrainz.TABLE LIMIT 1";
-		initSparqlQuery = Utils.DEFAULT_PREFIXES 
-				+ "SELECT DISTINCT ?URI "
+		initSparqlQuery = Utils.DEFAULT_PREFIXES + "SELECT DISTINCT ?URI "
 				+ "WHERE { ?URI rdf:type CLASS_NAME . "
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
 		limit = 1;
@@ -463,9 +462,9 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkInstanceNamesViaGUID(String classTable, String classTableRow,
-			String classNameTable, String className, String propertyName,
-			String checkName)
+	public TestResult checkInstanceNamesViaGUID(String classTable,
+			String classTableRow, String classNameTable, String className,
+			String propertyName, String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
 				+ "musicbrainz.CLASS.gid AS id "
@@ -478,8 +477,8 @@ public class Utils
 				+ "PROPERTY_NAME ?name . }";
 		limit = 5;
 
-		return checkInstanceNames(classTable, classTableRow, classNameTable, className,
-				propertyName, checkName);
+		return checkInstanceNames(classTable, classTableRow, classNameTable,
+				className, propertyName, checkName);
 	}
 
 	/**
@@ -499,9 +498,9 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkInstanceNamesViaID(String classTable, String classTableRow,
-			String classNameTable, String className, String propertyName,
-			String checkName)
+	public TestResult checkInstanceNamesViaID(String classTable,
+			String classTableRow, String classNameTable, String className,
+			String propertyName, String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
 				+ "musicbrainz.CLASS.id AS id "
@@ -514,8 +513,8 @@ public class Utils
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
 		limit = 1;
 
-		return checkInstanceNames(classTable, classTableRow, classNameTable, className,
-				propertyName, checkName);
+		return checkInstanceNames(classTable, classTableRow, classNameTable,
+				className, propertyName, checkName);
 	}
 
 	/**
@@ -524,8 +523,8 @@ public class Utils
 	 * 
 	 * @param classTable
 	 *            the specific class table for the SQL query
-	 * @param classTable Row
-	 * 			  the specific row in the class table for the SQL query           
+	 * @param classTable
+	 *            Row the specific row in the class table for the SQL query
 	 * @param classNameTable
 	 *            the specific class name table for the SQL query
 	 * @param className
@@ -537,9 +536,9 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	private TestResult checkInstanceNames(String classTable, String classTableRow,
-			String classNameTable, String className, String propertyName,
-			String checkName)
+	private TestResult checkInstanceNames(String classTable,
+			String classTableRow, String classNameTable, String className,
+			String propertyName, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -547,7 +546,8 @@ public class Utils
 		String initSqlQuery = this.initSqlQuery;
 		String initSqlQuery2 = initSqlQuery.replace("CLASS_NAME",
 				classNameTable);
-		String initSqlQuery3 = initSqlQuery2.replace("CLASS_ROW", classTableRow);
+		String initSqlQuery3 = initSqlQuery2
+				.replace("CLASS_ROW", classTableRow);
 		String sqlQuery = initSqlQuery3.replace("CLASS", classTable);
 
 		Map<String, String> names = null;
@@ -578,8 +578,7 @@ public class Utils
 			{
 				while (sqlRS.next())
 				{
-					names.put(sqlRS.getString("id"), sqlRS
-							.getString("name"));
+					names.put(sqlRS.getString("id"), sqlRS.getString("name"));
 				}
 			} catch (SQLException e)
 			{
@@ -630,6 +629,189 @@ public class Utils
 		}
 
 		return new TestResult(queryCounter == limit, queryCounterFailMsg);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves theirs names against the
+	 * result of the related SPARQL query.
+	 * 
+	 * @param classTable
+	 *            the specific class table for the SQL query
+	 * @param classTable
+	 *            Row the specific row in the class table for the SQL query
+	 * @param classNameTable
+	 *            the specific class name table for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkInstanceAliases(String classTable, String className,
+			String proofGUID, String checkName)
+	{
+		resetQueryVars();
+		initFailMsgs(checkName);
+
+		// fetch some arbitrary MBZ gids for the beginning
+		String initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id "
+				+ "FROM musicbrainz.CLASS " + "LIMIT 5";
+		String sqlQuery = initSqlQuery.replace("CLASS", classTable);
+		limit = 5;
+
+		Map<String, List<String>> aliases = null;
+		String aliasesKey = null;
+
+		String initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI ?alias "
+				+ "WHERE { ?URI a CLASS_NAME ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
+				+ "skos:altLabel ?alias . }";
+		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
+
+		int overallAliasesCounter = 0;
+
+		try
+		{
+			sqlResultSet = runSQLQuery(sqlQuery);
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+			return new TestResult(false, sqlFailMsg);
+		}
+
+		if (sqlResultSet != null)
+		{
+			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+			aliases = new HashMap<String, List<String>>();
+
+			try
+			{
+				// init aliases map with empty lists
+				while (sqlRS.next())
+				{
+					aliases.put(sqlRS.getString("id"), new ArrayList<String>());
+				}
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+
+				return new TestResult(false, sqlFailMsg);
+			}
+
+			sqlResultSet.close();
+		}
+
+		// add a hardcoded GUID, since one could fetch instances that have no
+		// aliases and the wondering about the results
+		aliases.put(proofGUID, new ArrayList<String>());
+
+		if (aliases.size() == limit + 1)
+		{
+			Iterator<String> iter = aliases.keySet().iterator();
+
+			for (int j = 0; j < aliases.size(); j++)
+			{
+				aliasesKey = iter.next();
+				initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id, "
+						+ "musicbrainz.CLASS_alias.name AS CLASS_alias_name_id, "
+						+ "musicbrainz.CLASS_name.id AS CLASS_name_id, "
+						+ "musicbrainz.CLASS_alias.CLASS AS CLASS_alias_CLASS_id, "
+						+ "musicbrainz.CLASS_alias.id AS CLASS_alias_id, "
+						+ "musicbrainz.CLASS_name.name AS alias "
+						+ "FROM musicbrainz.CLASS_alias "
+						+ "INNER JOIN musicbrainz.CLASS_name  ON CLASS_alias.name = CLASS_name.id "
+						+ "INNER JOIN musicbrainz.CLASS ON CLASS_alias.CLASS = CLASS.id "
+						+ "WHERE CLASS.gid = 'GUID_PLACEHOLDER'";
+				String initSqlQuery2 = initSqlQuery
+						.replace("CLASS", classTable);
+				sqlQuery = initSqlQuery2
+						.replace("GUID_PLACEHOLDER", aliasesKey);
+				sqlResultSet = null;
+
+				try
+				{
+					sqlResultSet = runSQLQuery(sqlQuery);
+				} catch (SQLException e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sqlFailMsg);
+				}
+
+				if (sqlResultSet != null)
+				{
+					java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+					try
+					{
+						// fill alias lists with aliases
+						while (sqlRS.next())
+						{
+
+							aliases.get(sqlRS.getString("id")).add(
+									sqlRS.getString("alias"));
+							overallAliasesCounter++;
+						}
+
+						System.out.println("[EXEC]  fetched "
+								+ aliases.get(aliasesKey).size()
+								+ " aliases for GUID " + aliasesKey);
+					} catch (SQLException e)
+					{
+						System.out.println(e.getMessage());
+
+						return new TestResult(false, sqlFailMsg);
+					}
+
+					sqlResultSet.close();
+				}
+
+			}
+
+			iter = aliases.keySet().iterator();
+
+			for (int i = 0; i < aliases.size(); i++)
+			{
+				sparqlRS = null;
+				aliasesKey = iter.next();
+
+				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
+						aliasesKey);
+
+				try
+				{
+					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+							SERVICE_ENDPOINT);
+
+					sparqlRS = sparqlResultSet.getResultSet();
+
+					while (sparqlRS.hasNext())
+					{
+						if (aliases.get(aliasesKey)
+								.contains(
+										sparqlRS.next().getLiteral("alias")
+												.getString()))
+						{
+							queryCounter++;
+						}
+					}
+				} catch (Exception e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sparqlFailMsg);
+				}
+
+				sparqlResultSet.close();
+			}
+		}
+
+		return new TestResult(queryCounter == overallAliasesCounter,
+				queryCounterFailMsg);
 	}
 
 	/**

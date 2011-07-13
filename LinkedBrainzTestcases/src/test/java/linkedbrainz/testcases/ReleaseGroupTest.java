@@ -29,7 +29,7 @@ public class ReleaseGroupTest
 	}
 	
 	/**
-	 * Fetches 5 release groups from the DB and resolves theirs names against the
+	 * Fetches 5 release groups from the DB and resolves their names against the
 	 * result of the related SPARQL query.
 	 * 
 	 */

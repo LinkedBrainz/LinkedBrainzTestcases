@@ -30,7 +30,7 @@ public class RecordingTest
 	}
 	
 	/**
-	 * Fetches 5 recordings from the DB and resolves theirs names against the
+	 * Fetches 5 recordings from the DB and resolves their names against the
 	 * result of the related SPARQL query.
 	 * 
 	 */

@@ -28,7 +28,7 @@ public class LabelTest
 	}
 	
 	/**
-	 * Fetches 5 labels from the DB and resolves theirs names against the
+	 * Fetches 5 labels from the DB and resolves their names against the
 	 * result of the related SPARQL query.
 	 * 
 	 */
@@ -43,7 +43,7 @@ public class LabelTest
 	}
 	
 	/**
-	 * Fetches 5 labels from the DB and resolves theirs sort labels against the
+	 * Fetches 5 labels from the DB and resolves their sort labels against the
 	 * result of the related SPARQL query.
 	 * 
 	 */
@@ -53,6 +53,22 @@ public class LabelTest
 		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
 				"label", "sort_name", "label_name", "mo:Label", "ov:sortLabel",
 				"LabelSortLabelsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) labels from the DB and resolves their aliases against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelAliases()
+	{
+		// add Columbia Records as proof GUID
+		TestResult testResult = Utils.getInstance().checkInstanceAliases(
+				"label", "mo:Label",
+				"011d1192-6f65-45bd-85c4-0400dd45693e", "LabelAliasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
