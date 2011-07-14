@@ -28,7 +28,7 @@ public class RecordingTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
+
 	/**
 	 * Fetches 5 recordings from the DB and resolves their names against the
 	 * result of the related SPARQL query.
@@ -37,13 +37,14 @@ public class RecordingTest
 	@Test
 	public void checkRecordingNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"recording", "name", "track_name", "mo:Signal", "dct:title",
-				"RecordingNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("recording", "track_name",
+						"name", "name", "mo:Signal", "dct:title", "title",
+						"RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 recordings from the DB and resolves their ISRC codes against
 	 * the result of the related SPARQL query.
@@ -52,9 +53,10 @@ public class RecordingTest
 	@Test
 	public void checkRecordingISRCs()
 	{
-		TestResult testResult = Utils.getInstance().checkSimplePropertyViaGUIDOnTheRight(
-				"isrc", "recording", "recording", "isrc", "mo:Signal", "mo:isrc", "ISRC",
-				"RecordingISRCsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheRight("isrc", "recording",
+						"recording", "isrc", "mo:Signal", "mo:isrc", "ISRC",
+						"RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

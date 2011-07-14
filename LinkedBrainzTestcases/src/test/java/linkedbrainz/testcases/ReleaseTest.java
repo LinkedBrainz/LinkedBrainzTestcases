@@ -27,7 +27,7 @@ public class ReleaseTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 releases from the DB and resolves their names against the
 	 * result of the related SPARQL query.
@@ -36,9 +36,10 @@ public class ReleaseTest
 	@Test
 	public void checkReleaseNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"release", "name", "release_name", "mo:Release", "dct:title",
-				"ReleaseNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("release", "release_name",
+						"name", "name", "mo:Release", "dct:title", "title",
+						"ReleaseNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

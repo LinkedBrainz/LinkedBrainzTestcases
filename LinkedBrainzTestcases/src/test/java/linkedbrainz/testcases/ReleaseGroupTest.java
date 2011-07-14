@@ -27,7 +27,7 @@ public class ReleaseGroupTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
+
 	/**
 	 * Fetches 5 release groups from the DB and resolves their names against the
 	 * result of the related SPARQL query.
@@ -36,9 +36,10 @@ public class ReleaseGroupTest
 	@Test
 	public void checkReleaseGroupNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"release_group", "name", "release_name", "mo:SignalGroup", "dct:title",
-				"ReleaseGroupNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("release_group",
+						"release_name", "name", "name", "mo:SignalGroup",
+						"dct:title", "title", "ReleaseGroupNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

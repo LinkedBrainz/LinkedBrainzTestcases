@@ -35,9 +35,10 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"artist", "name", "artist_name", "mo:MusicArtist", "foaf:name",
-				"ArtistNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
+						"name", "name", "mo:MusicArtist", "foaf:name", "name",
+						"ArtistNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -50,9 +51,10 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistSortLabels()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"artist", "sort_name", "artist_name", "mo:MusicArtist",
-				"ov:sortLabel", "ArtistSortLabelsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
+						"sort_name", "name", "mo:MusicArtist", "ov:sortLabel",
+						"sortName", "ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -81,9 +83,10 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistGender()
 	{
-		TestResult testResult = Utils.getInstance().checkSimplePropertyViaGUIDOnTheLeft(
-				"artist", "gender", "gender", "name", "mo:MusicArtist", "foaf:gender", "gender",
-				"ArtistGenderCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("artist", "gender",
+						"gender", "name", "mo:MusicArtist", "foaf:gender",
+						"gender", "ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

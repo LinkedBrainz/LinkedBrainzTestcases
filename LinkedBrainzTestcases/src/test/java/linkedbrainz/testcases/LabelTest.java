@@ -26,22 +26,23 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 labels from the DB and resolves their names against the
-	 * result of the related SPARQL query.
+	 * Fetches 5 labels from the DB and resolves their names against the result
+	 * of the related SPARQL query.
 	 * 
 	 */
 	@Test
 	public void checkLabelNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"label", "name", "label_name", "mo:Label", "foaf:name",
-				"LabelNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
+						"name", "name", "mo:Label", "foaf:name", "name",
+						"LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 labels from the DB and resolves their sort labels against the
 	 * result of the related SPARQL query.
@@ -50,16 +51,17 @@ public class LabelTest
 	@Test
 	public void checkLabelSortLabels()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"label", "sort_name", "label_name", "mo:Label", "ov:sortLabel",
-				"LabelSortLabelsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
+						"sort_name", "name", "mo:Label", "ov:sortLabel",
+						"sortName", "LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels from the DB and resolves their aliases against
-	 * the result of the related SPARQL query.
+	 * Fetches 5 (+1) labels from the DB and resolves their aliases against the
+	 * result of the related SPARQL query.
 	 * 
 	 */
 	@Test
@@ -67,8 +69,8 @@ public class LabelTest
 	{
 		// add Columbia Records as proof GUID
 		TestResult testResult = Utils.getInstance().checkInstanceAliases(
-				"label", "mo:Label",
-				"011d1192-6f65-45bd-85c4-0400dd45693e", "LabelAliasesCheck");
+				"label", "mo:Label", "011d1192-6f65-45bd-85c4-0400dd45693e",
+				"LabelAliasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

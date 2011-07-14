@@ -35,9 +35,10 @@ public class WorkTest
 	@Test
 	public void checkWorkNames()
 	{
-		TestResult testResult = Utils.getInstance().checkInstanceNamesViaGUID(
-				"work", "name", "work_name", "mo:MusicalWork", "dct:title",
-				"WorkNamesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("work", "work_name",
+						"name", "name", "mo:MusicalWork", "dct:title", "title",
+						"WorkNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

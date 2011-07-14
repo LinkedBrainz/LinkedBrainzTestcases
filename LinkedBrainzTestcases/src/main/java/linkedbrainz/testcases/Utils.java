@@ -446,192 +446,6 @@ public class Utils
 	}
 
 	/**
-	 * Fetches 5 instances from the DB and resolves their names against the
-	 * result of the related SPARQL query.
-	 * 
-	 * @param classTable
-	 *            the specific class table for the SQL query
-	 * @param classNameTable
-	 *            the specific class name table for the SQL query
-	 * @param className
-	 *            the class name of the specific RDF class for the SPARQL query
-	 * @param propertyName
-	 *            the property name of the specific RDF property for the SPARQL
-	 *            query
-	 * @param checkName
-	 *            the name of the specific check
-	 * @return the result of the test (incl. fail message)
-	 */
-	public TestResult checkInstanceNamesViaGUID(String classTable,
-			String classTableRow, String classNameTable, String className,
-			String propertyName, String checkName)
-	{
-		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
-				+ "musicbrainz.CLASS.gid AS id "
-				+ "FROM musicbrainz.CLASS "
-				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.CLASS_ROW = CLASS_NAME.id LIMIT 5";
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?URI ?name "
-				+ "WHERE { ?URI a CLASS_NAME ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
-				+ "PROPERTY_NAME ?name . }";
-		limit = 5;
-
-		return checkInstanceNames(classTable, classTableRow, classNameTable,
-				className, propertyName, checkName);
-	}
-
-	/**
-	 * Fetches 1 instance from the DB and resolves its name against the result
-	 * of the related SPARQL query.
-	 * 
-	 * @param classTable
-	 *            the specific class table for the SQL query
-	 * @param classNameTable
-	 *            the specific class name table for the SQL query
-	 * @param className
-	 *            the class name of the specific RDF class for the SPARQL query
-	 * @param propertyName
-	 *            the property name of the specific RDF property for the SPARQL
-	 *            query
-	 * @param checkName
-	 *            the name of the specific check
-	 * @return the result of the test (incl. fail message)
-	 */
-	public TestResult checkInstanceNamesViaID(String classTable,
-			String classTableRow, String classNameTable, String className,
-			String propertyName, String checkName)
-	{
-		initSqlQuery = "SELECT musicbrainz.CLASS_NAME.name AS name, "
-				+ "musicbrainz.CLASS.id AS id "
-				+ "FROM musicbrainz.CLASS "
-				+ "INNER JOIN musicbrainz.CLASS_NAME  ON CLASS.CLASS_ROW = CLASS_NAME.id LIMIT 1";
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?URI ?name "
-				+ "WHERE { ?URI rdf:type CLASS_NAME ; "
-				+ "PROPERTY_NAME ?name . "
-				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
-		limit = 1;
-
-		return checkInstanceNames(classTable, classTableRow, classNameTable,
-				className, propertyName, checkName);
-	}
-
-	/**
-	 * Fetches some instances from the DB and resolves their names against the
-	 * result of the related SPARQL query.
-	 * 
-	 * @param classTable
-	 *            the specific class table for the SQL query
-	 * @param classTable
-	 *            Row the specific row in the class table for the SQL query
-	 * @param classNameTable
-	 *            the specific class name table for the SQL query
-	 * @param className
-	 *            the class name of the specific RDF class for the SPARQL query
-	 * @param propertyName
-	 *            the property name of the specific RDF property for the SPARQL
-	 *            query
-	 * @param checkName
-	 *            the name of the specific check
-	 * @return the result of the test (incl. fail message)
-	 */
-	private TestResult checkInstanceNames(String classTable,
-			String classTableRow, String classNameTable, String className,
-			String propertyName, String checkName)
-	{
-		resetQueryVars();
-		initFailMsgs(checkName);
-
-		String initSqlQuery = this.initSqlQuery;
-		String initSqlQuery2 = initSqlQuery.replace("CLASS_NAME",
-				classNameTable);
-		String initSqlQuery3 = initSqlQuery2
-				.replace("CLASS_ROW", classTableRow);
-		String sqlQuery = initSqlQuery3.replace("CLASS", classTable);
-
-		Map<String, String> names = null;
-		String namesKey = null;
-
-		String initSparqlQuery = this.initSparqlQuery;
-		String initSparqlQuery2 = initSparqlQuery.replace("CLASS_NAME",
-				className);
-		String sparqlQuery = initSparqlQuery2.replace("PROPERTY_NAME",
-				propertyName);
-
-		try
-		{
-			sqlResultSet = runSQLQuery(sqlQuery);
-		} catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-
-			return new TestResult(false, sqlFailMsg);
-		}
-
-		if (sqlResultSet != null)
-		{
-			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-			names = new HashMap<String, String>();
-
-			try
-			{
-				while (sqlRS.next())
-				{
-					names.put(sqlRS.getString("id"), sqlRS.getString("name"));
-				}
-			} catch (SQLException e)
-			{
-				System.out.println(e.getMessage());
-
-				return new TestResult(false, sqlFailMsg);
-			}
-
-			sqlResultSet.close();
-		}
-
-		if (names.size() == limit)
-		{
-			Iterator<String> iter = names.keySet().iterator();
-
-			for (int i = 0; i < limit; i++)
-			{
-				sparqlRS = null;
-				namesKey = iter.next();
-
-				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
-						namesKey);
-
-				try
-				{
-					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
-							SERVICE_ENDPOINT);
-
-					sparqlRS = sparqlResultSet.getResultSet();
-
-					while (sparqlRS.hasNext())
-					{
-						if (names.get(namesKey).equals(
-								sparqlRS.next().getLiteral("name").getString()))
-						{
-							queryCounter++;
-						}
-					}
-				} catch (Exception e)
-				{
-					System.out.println(e.getMessage());
-
-					return new TestResult(false, sparqlFailMsg);
-				}
-
-				sparqlResultSet.close();
-			}
-		}
-
-		return new TestResult(queryCounter == limit, queryCounterFailMsg);
-	}
-
-	/**
 	 * Fetches some instances from the DB and resolves their aliases against the
 	 * result of the related SPARQL query.
 	 * 
@@ -813,9 +627,9 @@ public class Utils
 		return new TestResult(queryCounter == overallAliasesCounter,
 				queryCounterFailMsg);
 	}
-	
+
 	/**
-	 * Fetches some instances from the DB and resolves the values of a specific
+	 * Fetches 5 instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
 	 * 
 	 * @param classTable1
@@ -826,7 +640,8 @@ public class Utils
 	 *            the row of of the table of the left side of the INNER JOIN of
 	 *            the SQL query
 	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific RDF property
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -837,21 +652,23 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaGUIDOnTheLeft(String classTable1,
-			String classTable2, String classTableRow1, String classTableRow2, String className,
-			String propertyName, String valueName, String checkName)
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS1.gid AS id, "
-			+ "musicbrainz.CLASS2.CLASS_ROW2 AS VALUE_NAME "
-			+ "FROM musicbrainz.CLASS1 "
-			+ "INNER JOIN musicbrainz.CLASS2 ON CLASS1.CLASS_ROW1 = CLASS2.id "
-			+ "LIMIT 5";
-		limit = 5;
-		
-		return checkSimpleProperty(classTable1, classTable2, classTableRow1, classTableRow2, className, propertyName, valueName, checkName);
+				+ "musicbrainz.CLASS2.CLASS_ROW2 AS VALUE_NAME "
+				+ "FROM musicbrainz.CLASS1 "
+				+ "INNER JOIN musicbrainz.CLASS2 ON CLASS1.CLASS_ROW1 = CLASS2.id "
+				+ "LIMIT 5";
+
+		return checkSimplePropertyViaGUID(classTable1, classTable2,
+				classTableRow1, classTableRow2, className, propertyName,
+				valueName, checkName);
 	}
-	
+
 	/**
-	 * Fetches some instances from the DB and resolves the values of a specific
+	 * Fetches 5 instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
 	 * 
 	 * @param classTable1
@@ -859,10 +676,11 @@ public class Utils
 	 * @param classTable2
 	 *            the table of the right side of the INNER JOIN of the SQL query
 	 * @param classTableRow1
-	 *            the row of the table of the left side of the INNER JOIN of
-	 *            the SQL query
+	 *            the row of the table of the left side of the INNER JOIN of the
+	 *            SQL query
 	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific RDF property
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -873,17 +691,175 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaGUIDOnTheRight(String classTable1,
-			String classTable2, String classTableRow1, String classTableRow2, String className,
-			String propertyName, String valueName, String checkName)
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
 	{
 		initSqlQuery = "SELECT musicbrainz.CLASS2.gid AS id, "
-			+ "musicbrainz.CLASS1.CLASS_ROW2 AS VALUE_NAME "
-			+ "FROM musicbrainz.CLASS1 "
-			+ "INNER JOIN musicbrainz.CLASS2 ON CLASS1.CLASS_ROW1 = CLASS2.id "
-			+ "LIMIT 5";
+				+ "musicbrainz.CLASS1.CLASS_ROW2 AS VALUE_NAME "
+				+ "FROM musicbrainz.CLASS1 "
+				+ "INNER JOIN musicbrainz.CLASS2 ON CLASS1.CLASS_ROW1 = CLASS2.id "
+				+ "LIMIT 5";
+
+		return checkSimplePropertyViaGUID(classTable1, classTable2,
+				classTableRow1, classTableRow2, className, propertyName,
+				valueName, checkName);
+	}
+
+	/**
+	 * Fetches 5 instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTable1
+	 *            the table of the left side of the INNER JOIN of the SQL query
+	 * @param classTable2
+	 *            the table of the right side of the INNER JOIN of the SQL query
+	 * @param classTableRow1
+	 *            the row of the table of the left side of the INNER JOIN of the
+	 *            SQL query
+	 * @param classTableRow2
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkSimplePropertyViaGUID(String classTable1,
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
+	{
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
+				+ "WHERE { ?URI a CLASS_NAME ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
+				+ "PROPERTY_NAME ?VALUE_NAME . }";
+
 		limit = 5;
-		
-		return checkSimpleProperty(classTable1, classTable2, classTableRow1, classTableRow2, className, propertyName, valueName, checkName);
+
+		return checkSimpleProperty(classTable1, classTable2, classTableRow1,
+				classTableRow2, className, propertyName, valueName, checkName);
+	}
+
+	/**
+	 * Fetches one instance from the DB and resolves the value of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTable1
+	 *            the table of the left side of the INNER JOIN of the SQL query
+	 * @param classTable2
+	 *            the table of the right side of the INNER JOIN of the SQL query
+	 * @param classTableRow1
+	 *            the row of of the table of the left side of the INNER JOIN of
+	 *            the SQL query
+	 * @param classTableRow2
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkSimplePropertyViaIDOnTheLeft(String classTable1,
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
+	{
+		initSqlQuery = "SELECT musicbrainz.CLASS2.CLASS_ROW2 AS VALUE_NAME, "
+				+ "musicbrainz.CLASS1.id AS id "
+				+ "FROM musicbrainz.CLASS1 "
+				+ "INNER JOIN musicbrainz.CLASS2  ON CLASS1.CLASS_ROW1 = CLASS2.id LIMIT 1";
+
+		return checkSimplePropertyViaID(classTable1, classTable2,
+				classTableRow1, classTableRow2, className, propertyName,
+				valueName, checkName);
+	}
+
+	/**
+	 * Fetches one instance from the DB and resolves the value of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTable1
+	 *            the table of the left side of the INNER JOIN of the SQL query
+	 * @param classTable2
+	 *            the table of the right side of the INNER JOIN of the SQL query
+	 * @param classTableRow1
+	 *            the row of the table of the left side of the INNER JOIN of the
+	 *            SQL query
+	 * @param classTableRow2
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkSimplePropertyViaIDOnTheRight(String classTable1,
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
+	{
+		initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW2 AS VALUE_NAME, "
+				+ "musicbrainz.CLASS2.id AS id "
+				+ "FROM musicbrainz.CLASS1 "
+				+ "INNER JOIN musicbrainz.CLASS2  ON CLASS1.CLASS_ROW1 = CLASS2.id LIMIT 1";
+
+		return checkSimplePropertyViaID(classTable1, classTable2,
+				classTableRow1, classTableRow2, className, propertyName,
+				valueName, checkName);
+	}
+
+	/**
+	 * Fetches one instance from the DB and resolves the value of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTable1
+	 *            the table of the left side of the INNER JOIN of the SQL query
+	 * @param classTable2
+	 *            the table of the right side of the INNER JOIN of the SQL query
+	 * @param classTableRow1
+	 *            the row of the table of the left side of the INNER JOIN of the
+	 *            SQL query
+	 * @param classTableRow2
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkSimplePropertyViaID(String classTable1,
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
+	{
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
+				+ "WHERE { ?URI rdf:type CLASS_NAME ; "
+				+ "PROPERTY_NAME ?VALUE_NAME . "
+				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
+
+		limit = 1;
+
+		return checkSimpleProperty(classTable1, classTable2, classTableRow1,
+				classTableRow2, className, propertyName, valueName, checkName);
 	}
 
 	/**
@@ -898,7 +874,8 @@ public class Utils
 	 *            the row of of the table of the left side of the INNER JOIN of
 	 *            the SQL query
 	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific RDF property
+	 *            the row of the table that delivers the values for the specific
+	 *            RDF property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -909,8 +886,9 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	private TestResult checkSimpleProperty(String classTable1,
-			String classTable2, String classTableRow1, String classTableRow2, String className,
-			String propertyName, String valueName, String checkName)
+			String classTable2, String classTableRow1, String classTableRow2,
+			String className, String propertyName, String valueName,
+			String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -918,18 +896,15 @@ public class Utils
 		String initSqlQuery = this.initSqlQuery;
 		String initSqlQuery2 = initSqlQuery.replace("CLASS1", classTable1);
 		String initSqlQuery3 = initSqlQuery2.replace("CLASS2", classTable2);
-		String initSqlQuery4 = initSqlQuery3.replace("CLASS_ROW1", classTableRow1);
+		String initSqlQuery4 = initSqlQuery3.replace("CLASS_ROW1",
+				classTableRow1);
 		String initSqlQuery5 = initSqlQuery4.replace("VALUE_NAME", valueName);
 		String sqlQuery = initSqlQuery5.replace("CLASS_ROW2", classTableRow2);
 
 		Map<String, String> genders = null;
 		String gendersKey = null;
 
-		String initSparqlQuery = Utils.DEFAULT_PREFIXES
-		+ "SELECT DISTINCT ?URI ?VALUE_NAME "
-		+ "WHERE { ?URI a CLASS_NAME ; "
-		+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
-		+ "PROPERTY_NAME ?VALUE_NAME . }";
+		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = initSparqlQuery.replace("VALUE_NAME",
 				valueName);
 		String initSparqlQuery3 = initSparqlQuery2.replace("CLASS_NAME",
