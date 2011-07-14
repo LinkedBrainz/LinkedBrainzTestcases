@@ -1,6 +1,9 @@
 package linkedbrainz.testcases;
 
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.testcases.model.TestResult;
 
@@ -21,25 +24,27 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtists()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple("artist",
-				"gid", "mo:MusicArtist", "ArtistsCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple(
+				"artist", "gid", "mo:MusicArtist", "ArtistsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 solo music artists from the DB and resolves them via a SPARQL query.
+	 * Fetches 5 solo music artists from the DB and resolves them via a SPARQL
+	 * query.
 	 * 
 	 */
 	@Test
 	public void checkSoloMusicArtists()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUIDAndCondition("artist",
-				"gid", "type", "1", "mo:SoloMusicArtist", "SoloArtistsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDAndCondition("artist", "gid", "type", "1",
+						"mo:SoloMusicArtist", "SoloArtistsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 music groups from the DB and resolves them via a SPARQL query.
 	 * 
@@ -47,8 +52,9 @@ public class ArtistTest
 	@Test
 	public void checkMusicGroups()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUIDAndCondition("artist",
-				"gid", "type", "2", "mo:MusicGroup", "GroupsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDAndCondition("artist", "gid", "type", "2",
+						"mo:MusicGroup", "GroupsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -113,6 +119,44 @@ public class ArtistTest
 				.checkSimplePropertyViaGUIDOnTheLeft("artist", "gender",
 						"gender", "name", "mo:MusicArtist", "foaf:gender",
 						"gender", "ArtistGenderCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 music artists from the DB and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsReleasesRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("release");
+		classTables.add("artist_credit_name");
+		classTables.add("artist_credit");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("artist");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+
+		classNames.add("mo:MusicArtist");
+		classNames.add("mo:Release");
+
+		valueNames.add("artistURI");
+		valueNames.add("releaseURI");
+		valueNames.add("releaseGUID");
+
+		// add Tori Amos as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIProperty(
+				classTables, classTableRows, classNames, "foaf:made",
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5", "ArtistsReleasesRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

@@ -297,7 +297,7 @@ public class Utils
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Fetches 5 instances of a specific type from the DB and resolves them via
 	 * the GUID in a SPARQL query.
@@ -307,20 +307,23 @@ public class Utils
 	 * @param row
 	 *            the specific row for the SQL query
 	 * @param condition
-	 * 			  the condition that specifies the specific RDF class in the SQL query           
+	 *            the condition that specifies the specific RDF class in the SQL
+	 *            query
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkClassViaGUIDAndCondition(String table, String row, String conditionRow,
-			String condition, String className, String checkName)
+	public TestResult checkClassViaGUIDAndCondition(String table, String row,
+			String conditionRow, String condition, String className,
+			String checkName)
 	{
-		String initSqlQuery2 = "SELECT gid FROM musicbrainz.TABLE " +
-					   "WHERE musicbrainz.TABLE.CONDITION_ROW = CONDITION " +
-					   "LIMIT 5";
-		String initSqlQuery3 = initSqlQuery2.replace("CONDITION_ROW", conditionRow);
+		String initSqlQuery2 = "SELECT gid FROM musicbrainz.TABLE "
+				+ "WHERE musicbrainz.TABLE.CONDITION_ROW = CONDITION "
+				+ "LIMIT 5";
+		String initSqlQuery3 = initSqlQuery2.replace("CONDITION_ROW",
+				conditionRow);
 		initSqlQuery = initSqlQuery3.replace("CONDITION", condition);
 
 		return checkClassViaGUID(table, row, className, checkName);
@@ -347,7 +350,7 @@ public class Utils
 
 		return checkClassViaGUID(table, row, className, checkName);
 	}
-	
+
 	/**
 	 * Fetches 5 instances of a specific type from the DB and resolves them via
 	 * the GUID in a SPARQL query.
@@ -950,8 +953,8 @@ public class Utils
 		String initSqlQuery5 = initSqlQuery4.replace("VALUE_NAME", valueName);
 		String sqlQuery = initSqlQuery5.replace("CLASS_ROW2", classTableRow2);
 
-		Map<String, String> genders = null;
-		String gendersKey = null;
+		Map<String, String> values = null;
+		String valuesKey = null;
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = initSparqlQuery.replace("VALUE_NAME",
@@ -974,13 +977,13 @@ public class Utils
 		if (sqlResultSet != null)
 		{
 			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-			genders = new HashMap<String, String>();
+			values = new HashMap<String, String>();
 
 			try
 			{
 				while (sqlRS.next())
 				{
-					genders.put(sqlRS.getString("id"), sqlRS
+					values.put(sqlRS.getString("id"), sqlRS
 							.getString(valueName));
 				}
 			} catch (SQLException e)
@@ -993,17 +996,17 @@ public class Utils
 			sqlResultSet.close();
 		}
 
-		if (genders.size() == limit)
+		if (values.size() == limit)
 		{
-			Iterator<String> iter = genders.keySet().iterator();
+			Iterator<String> iter = values.keySet().iterator();
 
 			for (int i = 0; i < limit; i++)
 			{
 				sparqlRS = null;
-				gendersKey = iter.next();
+				valuesKey = iter.next();
 
 				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
-						gendersKey);
+						valuesKey);
 
 				try
 				{
@@ -1014,7 +1017,7 @@ public class Utils
 
 					while (sparqlRS.hasNext())
 					{
-						if (genders.get(gendersKey).equals(
+						if (values.get(valuesKey).equals(
 								sparqlRS.next().getLiteral(valueName)
 										.getString()))
 						{
@@ -1033,6 +1036,265 @@ public class Utils
 		}
 
 		return new TestResult(queryCounter == limit, queryCounterFailMsg);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the id(s) for the check that are
+	 *            located on the left side of the relation and is located on the
+	 *            right side of the first INNER JOIN. The second one delivers
+	 *            the id(s) for the check that are located on the right side of
+	 *            the relation and is located on the right side of the third
+	 *            INNER JOIN. The third one is located on the left side of the
+	 *            INNER JOINs. The fourth one is located on the right side of
+	 *            the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the id(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for resource ids of
+	 *            the right side of the relation.
+	 * @param proofID
+	 *            a hardcoded ID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This id should
+	 *            usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIProperty(ArrayList<String> classTables,
+			ArrayList<String> classTableRows, ArrayList<String> classNames,
+			String propertyName, ArrayList<String> valueNames, String proofID,
+			String checkName)
+	{
+		resetQueryVars();
+		initFailMsgs(checkName);
+
+		// fetch some arbitrary MBZ gids for the beginning
+		String initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id "
+				+ "FROM musicbrainz.CLASS " + "LIMIT 5";
+		String sqlQuery = initSqlQuery.replace("CLASS", classTables.get(0));
+		limit = 5;
+
+		String initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+		String initSparqlQuery2 = replacePlaceholders(classNames, "CLASS_NAME",
+				initSparqlQuery);
+		String initSparqlQuery3 = replacePlaceholders(valueNames, "VALUE_NAME",
+				initSparqlQuery2);
+		String sparqlQuery = initSparqlQuery3.replace("PROPERTY_NAME",
+				propertyName);
+
+		Map<String, List<String>> relations = null;
+		String relationsKey = null;
+
+		int overallRelationsCounter = 0;
+		int relationsCounter = 0;
+
+		try
+		{
+			sqlResultSet = runSQLQuery(sqlQuery);
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+
+			return new TestResult(false, sqlFailMsg);
+		}
+
+		if (sqlResultSet != null)
+		{
+			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+			relations = new HashMap<String, List<String>>();
+
+			try
+			{
+				// init relations map with empty lists
+				while (sqlRS.next())
+				{
+					relations.put(sqlRS.getString("id"),
+							new ArrayList<String>());
+				}
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+
+				return new TestResult(false, sqlFailMsg);
+			}
+
+			sqlResultSet.close();
+		}
+
+		// add a hardcoded ID, since one could fetch instances that have no
+		// relations and the wondering about the results
+		relations.put(proofID, new ArrayList<String>());
+
+		if (relations.size() == limit + 1)
+		{
+			Iterator<String> iter = relations.keySet().iterator();
+
+			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+					+ "FROM musicbrainz.CLASS3 "
+					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+					+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
+					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS4.id = CLASS2.CLASS_ROW5 "
+					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+			String initSqlQuery2 = replacePlaceholders(classTableRows,
+					"CLASS_ROW", initSqlQuery);
+			String initSqlQuery3 = replacePlaceholders(classTables, "CLASS",
+					initSqlQuery2);
+
+			for (int j = 0; j < relations.size(); j++)
+			{
+				relationsKey = iter.next();
+				sqlQuery = initSqlQuery3
+						.replace("ID_PLACEHOLDER", relationsKey);
+				sqlResultSet = null;
+
+				try
+				{
+					sqlResultSet = runSQLQuery(sqlQuery);
+				} catch (SQLException e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sqlFailMsg);
+				}
+
+				if (sqlResultSet != null)
+				{
+					java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+					try
+					{
+						// fill relation lists with relations
+						while (sqlRS.next())
+						{
+
+							relations
+									.get(
+											sqlRS.getString(classTables.get(0)
+													+ "_id")).add(
+											sqlRS.getString(classTables.get(1)
+													+ "_id"));
+							overallRelationsCounter++;
+						}
+
+						System.out.println("[EXEC]  fetched "
+								+ relations.get(relationsKey).size()
+								+ " relations for ID " + relationsKey);
+					} catch (SQLException e)
+					{
+						System.out.println(e.getMessage());
+
+						return new TestResult(false, sqlFailMsg);
+					}
+
+					sqlResultSet.close();
+				}
+
+			}
+
+			iter = relations.keySet().iterator();
+
+			for (int i = 0; i < relations.size(); i++)
+			{
+				sparqlRS = null;
+				relationsCounter = 0;
+				relationsKey = iter.next();
+
+				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
+						relationsKey);
+
+				try
+				{
+					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+							SERVICE_ENDPOINT);
+
+					sparqlRS = sparqlResultSet.getResultSet();
+
+					while (sparqlRS.hasNext())
+					{
+						if (relations.get(relationsKey).contains(
+								sparqlRS.next().getLiteral(valueNames.get(2))
+										.getString()))
+						{
+							queryCounter++;
+							relationsCounter++;
+						}
+					}
+
+					if (relationsCounter != relations.get(relationsKey).size())
+					{
+						return new TestResult(false, sparqlFailMsg);
+					}
+				} catch (Exception e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sparqlFailMsg);
+				}
+
+				sparqlResultSet.close();
+			}
+		}
+
+		return new TestResult(queryCounter == overallRelationsCounter,
+				queryCounterFailMsg);
+	}
+
+	/**
+	 * Replaces placeholders in a given string with given replacements on basis
+	 * of a specific replacement identifier prefix
+	 * 
+	 * @param replacements
+	 *            the list of replacements
+	 * @param replacementIdentifierPrefix
+	 *            the specific replacement identifier prefix
+	 * @param initString
+	 *            the initial string that includes the placeholders
+	 * @return a string filled with the replacements
+	 */
+	private String replacePlaceholders(ArrayList<String> replacements,
+			String replacementIdentifierPrefix, String initString)
+	{
+		String tempString = null;
+		String replacementString = initString;
+
+		for (int i = 0; i < replacements.size(); i++)
+		{
+			tempString = replacementString.replace(replacementIdentifierPrefix
+					+ (i + 1), replacements.get(i));
+			replacementString = tempString;
+		}
+
+		return replacementString;
 	}
 
 	/**
