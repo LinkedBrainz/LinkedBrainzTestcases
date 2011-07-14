@@ -2,6 +2,8 @@ package linkedbrainz.testcases;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.testcases.model.TestResult;
 
@@ -57,6 +59,47 @@ public class RecordingTest
 				.checkSimplePropertyViaGUIDOnTheRight("isrc", "recording",
 						"recording", "isrc", "mo:Signal", "mo:isrc", "ISRC",
 						"RecordingISRCsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) recordings and their music artists from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingMusicArtistsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("recording");
+		classTables.add("artist");
+		classTables.add("artist_credit");
+		classTables.add("artist_credit_name");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist");
+
+		classNames.add("mo:Signal");
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("recordingURI");
+		valueNames.add("artistURI");
+		valueNames.add("artistGUID");
+
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance().checkURIInversePropertyViaGUIDs(
+				classTables, classTableRows, classNames, "foaf:maker",
+				valueNames, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+				"RecordingsArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

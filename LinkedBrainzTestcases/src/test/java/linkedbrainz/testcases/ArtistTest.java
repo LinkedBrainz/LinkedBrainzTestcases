@@ -124,7 +124,7 @@ public class ArtistTest
 	}
 
 	/**
-	 * Fetches 5 music artists and their releases from the DB and resolves them
+	 * Fetches 5 (+1) music artists and their releases from the DB and resolves them
 	 * via a SPARQL query.
 	 * 
 	 */
@@ -164,7 +164,7 @@ public class ArtistTest
 	}
 	
 	/**
-	 * Fetches 5 music artists and their recordings from the DB and resolves them
+	 * Fetches 5 (+1) music artists and their recordings from the DB and resolves them
 	 * via a SPARQL query.
 	 * 
 	 */
@@ -204,8 +204,12 @@ public class ArtistTest
 	}
 	
 	/**
-	 * Fetches 5 music artists and their works from the DB and resolves them
+	 * Fetches 5 (+1) music artists and their works from the DB and resolves them
 	 * via a SPARQL query.
+	 * 
+	 * ATTENTION: the 'artist_credit' row in the table 'work' is currently not
+	 * used and might be removed in the future (that is why it won't deliver
+	 * results at the moment)
 	 * 
 	 */
 	@Test
@@ -244,7 +248,7 @@ public class ArtistTest
 	}
 	
 	/**
-	 * Fetches 5 music artists and their release groups from the DB and resolves them
+	 * Fetches 5 (+1) music artists and their release groups from the DB and resolves them
 	 * via a SPARQL query.
 	 * 
 	 */
@@ -284,7 +288,7 @@ public class ArtistTest
 	}
 	
 	/**
-	 * Fetches 5 music artists and their tracks from the DB and resolves them
+	 * Fetches 5 (+1) music artists and their tracks from the DB and resolves them
 	 * via a SPARQL query.
 	 * 
 	 */
