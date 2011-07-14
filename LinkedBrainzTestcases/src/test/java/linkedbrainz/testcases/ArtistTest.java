@@ -124,7 +124,8 @@ public class ArtistTest
 	}
 
 	/**
-	 * Fetches 5 music artists from the DB and resolves them via a SPARQL query.
+	 * Fetches 5 music artists and their releases from the DB and resolves them
+	 * via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -154,9 +155,170 @@ public class ArtistTest
 		valueNames.add("releaseGUID");
 
 		// add Tori Amos as proof GUID
-		TestResult testResult = Utils.getInstance().checkURIProperty(
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5", "ArtistsReleasesRelationsCheck");
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				"ArtistsReleasesRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music artists and their recordings from the DB and resolves them
+	 * via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsRecordingsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("recording");
+		classTables.add("artist_credit_name");
+		classTables.add("artist_credit");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("artist");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+
+		classNames.add("mo:MusicArtist");
+		classNames.add("mo:Signal");
+
+		valueNames.add("artistURI");
+		valueNames.add("recordingURI");
+		valueNames.add("recordingGUID");
+
+		// add Tori Amos as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "foaf:made",
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				"ArtistsRecordingsReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music artists and their works from the DB and resolves them
+	 * via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsWorksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("work");
+		classTables.add("artist_credit_name");
+		classTables.add("artist_credit");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("artist");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+
+		classNames.add("mo:MusicArtist");
+		classNames.add("mo:MusicalWork");
+
+		valueNames.add("artistURI");
+		valueNames.add("workURI");
+		valueNames.add("workGUID");
+
+		// add Tori Amos as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "foaf:made",
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				"ArtistsWorksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music artists and their release groups from the DB and resolves them
+	 * via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsReleaseGroupsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("release_group");
+		classTables.add("artist_credit_name");
+		classTables.add("artist_credit");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("artist");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+
+		classNames.add("mo:MusicArtist");
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("artistURI");
+		valueNames.add("releaseGroupURI");
+		valueNames.add("releaseGroupGUID");
+
+		// add Tori Amos as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "foaf:made",
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				"ArtistsReleaseGroupsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music artists and their tracks from the DB and resolves them
+	 * via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsTracksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("track");
+		classTables.add("artist_credit_name");
+		classTables.add("artist_credit");
+
+		classTableRows.add("gid");
+		classTableRows.add("id");
+		classTableRows.add("artist");
+		classTableRows.add("artist_credit");
+		classTableRows.add("artist_credit");
+
+		classNames.add("mo:MusicArtist");
+		classNames.add("mo:Track");
+
+		valueNames.add("artistURI");
+		valueNames.add("trackURI");
+		valueNames.add("trackURI");
+
+		// add Tori Amos as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
+				classTables, classTableRows, classNames, "foaf:made",
+				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

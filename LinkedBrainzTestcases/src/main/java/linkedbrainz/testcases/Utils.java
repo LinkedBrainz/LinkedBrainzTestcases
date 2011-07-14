@@ -1044,6 +1044,137 @@ public class Utils
 	 * 
 	 * @param classTables
 	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the GUID(s) for the check that are located on the
+	 *            right side of the relation and is located on the right side of
+	 *            the third INNER JOIN. The third one is located on the left
+	 *            side of the INNER JOINs. The fourth one is located on the
+	 *            right side of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the GUID(s) for the check that are located on the
+	 *            right side of the relation. The third one is the non-'id' row
+	 *            of the first INNER JOIN. The forth one is the non-'id' row of
+	 *            the second INNER JOIN. The fifth one is the non-'id' row of
+	 *            the third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource
+	 *            GUIDs of the right side of the relation.
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaGUIDs(ArrayList<String> classTables,
+			ArrayList<String> classTableRows, ArrayList<String> classNames,
+			String propertyName, ArrayList<String> valueNames, String proofID,
+			String checkName)
+	{
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+
+		limit = 5;
+
+		return this
+				.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+						classNames, propertyName, valueNames, proofID, false,
+						checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, String proofID, String checkName)
+	{
+		initSparqlQuery = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
+
+		limit = 1;
+
+		return this.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, proofID, true, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
 	 *            items. The first one delivers the id(s) for the check that are
 	 *            located on the left side of the relation and is located on the
 	 *            right side of the first INNER JOIN. The second one delivers
@@ -1074,8 +1205,73 @@ public class Utils
 	 *            consists of 3 items. The first one is the value name for
 	 *            resources of the left side of the relation. The second one is
 	 *            the value name for resources of the right side of the
-	 *            relation. The third one is the value name for resource ids of
-	 *            the right side of the relation.
+	 *            relation. The third one is the value name for the resource
+	 *            GUIDs of the right side of the relation.
+	 * @param proofID
+	 *            a hardcoded id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This id should
+	 *            usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkURIPropertyViaGUIDAndOrID(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, String proofID,
+			boolean comparisonOnResource, String checkName)
+	{
+		initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+				+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+				+ "FROM musicbrainz.CLASS3 "
+				+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+				+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
+				+ "INNER JOIN musicbrainz.CLASS2 ON CLASS4.id = CLASS2.CLASS_ROW5 "
+				+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+
+		return this.checkURIProperty(classTables, classTableRows, classNames,
+				propertyName, valueNames, proofID, comparisonOnResource,
+				checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the id(s) for the check that are
+	 *            located on the left side of the relation and is located on the
+	 *            right side of the first INNER JOIN. The second one delivers
+	 *            the id(s) for the check that are located on the right side of
+	 *            the relation and is located on the right side of the third
+	 *            INNER JOIN. The third one is located on the left side of the
+	 *            INNER JOINs. The fourth one is located on the right side of
+	 *            the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the id(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
 	 * @param proofID
 	 *            a hardcoded ID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This id should
@@ -1084,27 +1280,22 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkURIProperty(ArrayList<String> classTables,
+	private TestResult checkURIProperty(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, String proofID,
-			String checkName)
+			boolean comparisonOnResource, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
 
 		// fetch some arbitrary MBZ gids for the beginning
 		String initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id "
-				+ "FROM musicbrainz.CLASS " + "LIMIT 5";
-		String sqlQuery = initSqlQuery.replace("CLASS", classTables.get(0));
-		limit = 5;
+				+ "FROM musicbrainz.CLASS " + "LIMIT LIMIT_PLACEHOLDER";
+		String initSqlQuery2 = initSqlQuery.replace("LIMIT_PLACEHOLDER",
+				Integer.toString(limit));
+		String sqlQuery = initSqlQuery2.replace("CLASS", classTables.get(0));
 
-		String initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = replacePlaceholders(classNames, "CLASS_NAME",
 				initSparqlQuery);
 		String initSparqlQuery3 = replacePlaceholders(valueNames, "VALUE_NAME",
@@ -1159,15 +1350,9 @@ public class Utils
 		{
 			Iterator<String> iter = relations.keySet().iterator();
 
-			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS3 "
-					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
-					+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS4.id = CLASS2.CLASS_ROW5 "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-			String initSqlQuery2 = replacePlaceholders(classTableRows,
-					"CLASS_ROW", initSqlQuery);
+			initSqlQuery = this.initSqlQuery;
+			initSqlQuery2 = replacePlaceholders(classTableRows, "CLASS_ROW",
+					initSqlQuery);
 			String initSqlQuery3 = replacePlaceholders(classTables, "CLASS",
 					initSqlQuery2);
 
@@ -1241,12 +1426,34 @@ public class Utils
 
 					while (sparqlRS.hasNext())
 					{
-						if (relations.get(relationsKey).contains(
-								sparqlRS.next().getLiteral(valueNames.get(2))
-										.getString()))
+						if (comparisonOnResource)
 						{
-							queryCounter++;
-							relationsCounter++;
+							ArrayList<String> resources = (ArrayList<String>) relations
+									.get(relationsKey);
+							String resourceURI = sparqlRS.next().getResource(
+									valueNames.get(2)).getURI();
+
+							// check the URI against the id it should contain
+							for (int k = 0; k < resources.size(); k++)
+							{
+								if (resourceURI.contains("/" + resources.get(k)
+										+ "#_"))
+
+								{
+									queryCounter++;
+									relationsCounter++;
+									break;
+								}
+							}
+						} else
+						{
+							if (relations.get(relationsKey).contains(
+									sparqlRS.next().getLiteral(
+											valueNames.get(2)).getString()))
+							{
+								queryCounter++;
+								relationsCounter++;
+							}
 						}
 					}
 
