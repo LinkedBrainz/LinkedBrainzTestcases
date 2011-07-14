@@ -22,7 +22,7 @@ public class RecordingTest
 	@Test
 	public void checkRecordings()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUID(
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple(
 				"recording", "gid", "mo:Signal", "RecordingsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

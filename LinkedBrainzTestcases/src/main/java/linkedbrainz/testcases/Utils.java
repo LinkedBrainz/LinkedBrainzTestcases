@@ -297,6 +297,34 @@ public class Utils
 			return null;
 		}
 	}
+	
+	/**
+	 * Fetches 5 instances of a specific type from the DB and resolves them via
+	 * the GUID in a SPARQL query.
+	 * 
+	 * @param table
+	 *            the specific table for the SQL query
+	 * @param row
+	 *            the specific row for the SQL query
+	 * @param condition
+	 * 			  the condition that specifies the specific RDF class in the SQL query           
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkClassViaGUIDAndCondition(String table, String row, String conditionRow,
+			String condition, String className, String checkName)
+	{
+		String initSqlQuery2 = "SELECT gid FROM musicbrainz.TABLE " +
+					   "WHERE musicbrainz.TABLE.CONDITION_ROW = CONDITION " +
+					   "LIMIT 5";
+		String initSqlQuery3 = initSqlQuery2.replace("CONDITION_ROW", conditionRow);
+		initSqlQuery = initSqlQuery3.replace("CONDITION", condition);
+
+		return checkClassViaGUID(table, row, className, checkName);
+	}
 
 	/**
 	 * Fetches 5 instances of a specific type from the DB and resolves them via
@@ -312,10 +340,31 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkClassViaGUID(String table, String row,
+	public TestResult checkClassViaGUIDSimple(String table, String row,
 			String className, String checkName)
 	{
 		initSqlQuery = "SELECT gid FROM musicbrainz.TABLE LIMIT 5";
+
+		return checkClassViaGUID(table, row, className, checkName);
+	}
+	
+	/**
+	 * Fetches 5 instances of a specific type from the DB and resolves them via
+	 * the GUID in a SPARQL query.
+	 * 
+	 * @param table
+	 *            the specific table for the SQL query
+	 * @param row
+	 *            the specific row for the SQL query
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkClassViaGUID(String table, String row,
+			String className, String checkName)
+	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI "
 				+ "WHERE { ?URI rdf:type CLASS_NAME . "

@@ -21,7 +21,7 @@ public class LabelTest
 	@Test
 	public void checkLabels()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUID("label",
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple("label",
 				"gid", "mo:Label", "LabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

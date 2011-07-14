@@ -22,7 +22,7 @@ public class ReleaseTest
 	@Test
 	public void checkReleases()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUID(
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple(
 				"release", "gid", "mo:Release", "ReleasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

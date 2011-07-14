@@ -21,8 +21,34 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtists()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUID("artist",
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple("artist",
 				"gid", "mo:MusicArtist", "ArtistsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 solo music artists from the DB and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkSoloMusicArtists()
+	{
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDAndCondition("artist",
+				"gid", "type", "1", "mo:SoloMusicArtist", "SoloArtistsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 music groups from the DB and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicGroups()
+	{
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDAndCondition("artist",
+				"gid", "type", "2", "mo:MusicGroup", "GroupsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

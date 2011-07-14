@@ -21,7 +21,7 @@ public class WorkTest
 	@Test
 	public void checkWorks()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUID("work",
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple("work",
 				"gid", "mo:MusicalWork", "WorksCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
