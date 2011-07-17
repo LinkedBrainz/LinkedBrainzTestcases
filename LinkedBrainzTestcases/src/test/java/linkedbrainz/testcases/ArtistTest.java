@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.testcases.model.TestResult;
+import linkedbrainz.testcases.model.URICondition;
 
 import org.junit.Test;
 
@@ -321,8 +322,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
-						classTableRows, classNames, "foaf:made", valueNames, 3, 1,
-						"c0b2500e-0cef-4130-869d-732b23ed9df5",
+						classTableRows, classNames, "foaf:made", valueNames, 3,
+						1, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 						"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -341,6 +342,57 @@ public class ArtistTest
 						"country", "iso_code", "mo:MusicArtist",
 						"foaf:based_near", "country", 5, true,
 						"ArtistsCountryCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) music artists and their Wikipedia links from the DB and
+	 * resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsWikilinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("wikiURI");
+		valueNames.add("wikiURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "id", "179",
+								"http://en.wikipedia.org/wiki/",
+								"http://dbpedia.org/resource/"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

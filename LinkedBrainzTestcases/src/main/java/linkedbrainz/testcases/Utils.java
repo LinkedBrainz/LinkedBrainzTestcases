@@ -10,9 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.SPARQLResultSet;
 import linkedbrainz.testcases.model.SQLResultSet;
 import linkedbrainz.testcases.model.TestResult;
+import linkedbrainz.testcases.model.URICondition;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -69,6 +71,8 @@ public class Utils
 	private int queryCounter = 0;
 	private String candidatesSqlQuery = null;
 	private String initSqlQuery = null;
+	private String queryCondition = null;
+	private Condition condition = null;
 	private String initSparqlQuery = null;
 	private int limit = 0;
 	private String initSqlFailMsg = "CHECK_NAME failed due to a SQLException";
@@ -1214,11 +1218,12 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, true, true, true,
-				numberOfJoins, limit, proofID, false, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				true, false, false, true, numberOfJoins, limit, proofID, false,
+				false, checkName);
 	}
-	
+
 	/**
 	 * Fetches some instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
@@ -1275,9 +1280,10 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, true, false, true,
-				numberOfJoins, limit, proofID, true, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				false, false, false, true, numberOfJoins, limit, proofID, true,
+				false, checkName);
 	}
 
 	/**
@@ -1336,9 +1342,10 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, false, true, true,
-				numberOfJoins, limit, proofID, false, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, false,
+				true, false, false, true, numberOfJoins, limit, proofID, false,
+				false, checkName);
 	}
 
 	/**
@@ -1396,9 +1403,10 @@ public class Utils
 			String propertyName, ArrayList<String> valueNames,
 			int numberOfJoins, int limit, String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, true, true, false,
-				numberOfJoins, limit, proofID, false, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				true, false, false, false, numberOfJoins, limit, proofID,
+				false, false, checkName);
 	}
 
 	/**
@@ -1457,9 +1465,10 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, true, false, false,
-				numberOfJoins, limit, proofID, true, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				false, false, false, false, numberOfJoins, limit, proofID,
+				true, false, checkName);
 	}
 
 	/**
@@ -1518,9 +1527,77 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, false, true, false,
-				numberOfJoins, limit, proofID, false, checkName);
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, false,
+				true, false, false, false, numberOfJoins, limit, proofID,
+				false, false, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			Condition condition, String proofID, String checkName)
+	{
+		initCondition(condition.getConditionClass(), condition
+				.getConditionRow(), condition.getConditionValue());
+		
+		this.condition = condition;
+
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				false, false, true, false, numberOfJoins, limit, proofID, true,
+				true, checkName);
 	}
 
 	/**
@@ -1587,21 +1664,25 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkURIPropertyViaGUIDAndOrID(
+	public TestResult checkURIPropertyViaGUIDAndOrIDAndOrURI(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
 			ArrayList<String> valueNames, boolean leftSideGUID,
-			boolean rightSideGUID, boolean inverseProperty, int numberOfJoins,
-			int limit, String proofID, boolean comparisonOnResource,
-			String checkName)
+			boolean rightSideGUID, boolean leftSideURI, boolean rightSideURI,
+			boolean inverseProperty, int numberOfJoins, int limit,
+			String proofID, boolean comparisonOnResource,
+			boolean withCondition, String checkName)
 	{
+		boolean URIComparison = false;
+		boolean baseURIreplacement = false;
+
 		// to init the candidates SQL query and the SPARQL query
 		if (leftSideGUID)
 		{
 			initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
 			// left side = GUID + right side = GUID
-			if (rightSideGUID)
+			if (rightSideGUID && !rightSideURI)
 			{
 				initSparqlQuery = Utils.DEFAULT_PREFIXES
 						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1610,23 +1691,47 @@ public class Utils
 						+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
 						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
 						+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
-			}
-			// left side = GUID + right side = ID
-			else
+			} else
 			{
-				initSparqlQuery = Utils.DEFAULT_PREFIXES
-						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-						+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-						+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
+				// left side = GUID + right side = ID
+				if (!rightSideGUID && !rightSideURI)
+				{
+					// VALUE_NAME2 == VALUE_NAME3 in this case
+					initSparqlQuery = Utils.DEFAULT_PREFIXES
+							+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+							+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+							+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+							+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+							+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
+
+				}
+				// left side = GUID + right side = URI
+				else if (rightSideURI)
+				{
+					// TODO: should be quite similar to the query above
+					// (!rightSideGUID);
+					// however, the handling of the comparison is different - a
+					// comparison on the whole string instead of a containing ID
+					// value
+
+					// VALUE_NAME2 == VALUE_NAME3 in this case
+					initSparqlQuery = Utils.DEFAULT_PREFIXES
+							+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+							+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+							+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+							+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . } ";
+
+					URIComparison = true;
+				}
 			}
-		} else
+		}
+		// left side != URI => left side must be ID
+		else if (!leftSideURI)
 		{
 			initCandidatesSqlQuery(classTables.get(0), "id", limit);
 
 			// left side = ID + right side = GUID
-			if (rightSideGUID)
+			if (rightSideGUID && !rightSideURI)
 			{
 				initSparqlQuery = Utils.DEFAULT_PREFIXES
 						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1637,10 +1742,20 @@ public class Utils
 						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDER#_\") } ";
 			}
 			// left side = ID + right side = ID
-			else
+			else if (!rightSideGUID && !rightSideURI)
 			{
 				// TODO
 			}
+			// left side = ID + right side = URI
+			else if (rightSideURI)
+			{
+				// TODO
+			}
+		}
+		// left side = URI
+		else
+		{
+			// TODO: handle 'left side = URI' -> right side = GUID or ID or URI
 		}
 
 		// to init the SQL query
@@ -1651,10 +1766,10 @@ public class Utils
 			{
 			case 1:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS1 "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW3 = CLASS1.id "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS1 "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW3 = CLASS1.id "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 2:
 				// TODO
@@ -1715,15 +1830,39 @@ public class Utils
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 4:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS1 "
+						+ "INNER JOIN musicbrainz.CLASS3 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+						+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
+						+ "INNER JOIN musicbrainz.CLASS5 ON CLASS4.CLASS_ROW5 = CLASS5.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS3.CLASS_ROW6 = CLASS2.id "
+						+ "WHERE CONDITION"
+						+ "musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+
+				// TODO: define CONDITION as optional part:
+				// "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND "
 				break;
 			default:
 				break;
 			}
 		}
 
+		if (withCondition)
+		{
+			String initSqlQuery2 = initSqlQuery.replace("CONDITION",
+					queryCondition);
+			initSqlQuery = initSqlQuery2;
+
+			if (condition instanceof URICondition)
+			{
+				baseURIreplacement = true;
+			}
+		}
+
 		return checkURIProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
-				checkName);
+				URIComparison, baseURIreplacement, checkName);
 	}
 
 	/**
@@ -1777,7 +1916,8 @@ public class Utils
 	private TestResult checkURIProperty(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, int limit,
-			String proofID, boolean comparisonOnResource, String checkName)
+			String proofID, boolean comparisonOnResource,
+			boolean URIComparison, boolean baseURIreplacement, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -1923,16 +2063,48 @@ public class Utils
 							String resourceURI = sparqlRS.next().getResource(
 									valueNames.get(2)).getURI();
 
-							// check the URI against the id it should contain
-							for (int k = 0; k < resources.size(); k++)
+							if (URIComparison)
 							{
-								if (resourceURI.contains("/" + resources.get(k)
-										+ "#_"))
-
+								if (baseURIreplacement)
 								{
-									queryCounter++;
-									relationsCounter++;
-									break;
+									URICondition uriCondition = (URICondition) condition;
+
+									String resourceURI2 = resourceURI
+											.replace(
+													uriCondition
+															.getLinkedDataBaseURI(),
+													uriCondition
+															.getOriginalBaseURI());
+									resourceURI = resourceURI2;
+									
+									System.out.println("[EXEC]  replaced URI: " + resourceURI);
+								}
+
+								// check the URI against the URI from SQL query
+								for (int k = 0; k < resources.size(); k++)
+								{
+									if (resourceURI.equals(resources.get(k)))
+
+									{
+										queryCounter++;
+										relationsCounter++;
+										break;
+									}
+								}
+							} else
+							{
+								// check the URI against the id it should
+								// contain
+								for (int k = 0; k < resources.size(); k++)
+								{
+									if (resourceURI.contains("/"
+											+ resources.get(k) + "#_"))
+
+									{
+										queryCounter++;
+										relationsCounter++;
+										break;
+									}
 								}
 							}
 						} else
@@ -2078,5 +2250,28 @@ public class Utils
 			initSqlQuery4 = initSqlQuery3.replace("SELECT_CLASS1", "CLASS1");
 			initSqlQuery = initSqlQuery4.replace("SELECT_CLASS2", "CLASS2");
 		}
+	}
+
+	/**
+	 * Initialises an condition of an SQL query
+	 * 
+	 * @param conditionClass
+	 *            the specific table of the condition for the SQL query
+	 * @param conditionRow
+	 *            the specific row of the condition for the SQL query
+	 * @param conditionValue
+	 *            the specific value (static (!)) of the condition for the SQL
+	 *            query
+	 */
+	private void initCondition(String conditionClass, String conditionRow,
+			String conditionValue)
+	{
+		String initCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
+		String initCondition2 = initCondition.replace("CONDITION_CLASS",
+				conditionClass);
+		String initCondition3 = initCondition2.replace("CONDITION_ROW",
+				conditionRow);
+		queryCondition = initCondition3.replace("CONDITION_VALUE",
+				conditionValue);
 	}
 }
