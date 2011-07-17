@@ -40,7 +40,7 @@ public class WorkTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("work", "work_name",
 						"name", "name", "mo:MusicalWork", "dct:title", "title",
-						"WorkNamesCheck");
+						5, false, "WorkNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -64,8 +64,8 @@ public class WorkTest
 	}
 
 	/**
-	 * Fetches 5 (+1) works and their music artists from the DB and resolves them via
-	 * a SPARQL query.
+	 * Fetches 5 (+1) works and their music artists from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 * ATTENTION: the 'artist_credit' row in the table 'work' is currently not
 	 * used and might be removed in the future (that is why it won't deliver
@@ -103,7 +103,7 @@ public class WorkTest
 		// che fate all'amore" (Zerlina, Coro)" as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames,
+						classNames, "foaf:maker", valueNames, 3,
 						"00955628-ace0-3873-9ef2-e0e66b203fc3",
 						"WorksArtistsRelationsCheck");
 

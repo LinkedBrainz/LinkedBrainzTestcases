@@ -41,8 +41,8 @@ public class RecordingTest
 	{
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("recording", "track_name",
-						"name", "name", "mo:Signal", "dct:title", "title",
-						"RecordingNamesCheck");
+						"name", "name", "mo:Signal", "dct:title", "title", 5,
+						false, "RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -57,15 +57,15 @@ public class RecordingTest
 	{
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheRight("isrc", "recording",
-						"recording", "isrc", "mo:Signal", "mo:isrc", "ISRC",
-						"RecordingISRCsCheck");
+						"recording", "isrc", "mo:Signal", "mo:isrc", "ISRC", 5,
+						false, "RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) recordings and their music artists from the DB and resolves
-	 * them via a SPARQL query.
+	 * Fetches 5 (+1) recordings and their music artists from the DB and
+	 * resolves them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -96,10 +96,11 @@ public class RecordingTest
 
 		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
 		// GUID
-		TestResult testResult = Utils.getInstance().checkURIInversePropertyViaGUIDs(
-				classTables, classTableRows, classNames, "foaf:maker",
-				valueNames, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
-				"RecordingsArtistsRelationsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
+						classNames, "foaf:maker", valueNames, 3,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingsArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

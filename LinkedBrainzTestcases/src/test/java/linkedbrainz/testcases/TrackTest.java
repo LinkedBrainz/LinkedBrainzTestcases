@@ -27,7 +27,7 @@ public class TrackTest
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
 	 */
-	/*@Test
+	@Test
 	public void checkTracks()
 	{
 		TestResult testResult = Utils.getInstance().checkClassViaID("track",
@@ -37,30 +37,30 @@ public class TrackTest
 
 	}
 
-	*//**
+	/**
 	 * Fetches 1 track from the DB and resolves its names against the result of
 	 * the related SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
-	 *//*
+	 */
 	@Test
 	public void checkTrackNames()
 	{
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaIDOnTheLeft("track", "track_name",
-						"name", "name", "mo:Track", "dct:title", "title",
-						"TrackNamesCheck");
+						"name", "name", "mo:Track", "dct:title", "title", "_",
+						1, false, "TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
-	}*/
-	
+	}
+
 	/**
-	 * Fetches 1 (+1) track(s) and their music artists from the DB and resolves them via
-	 * a SPARQL query.
+	 * Fetches 1 (+1) track(s) and their music artists from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
-	 * ATTENTION: requires to switch off the resultSizeLimit
-	 * 			  causes Java heap space error ATM :\
+	 * ATTENTION: requires to switch off the resultSizeLimit causes Java heap
+	 * space error ATM :\
 	 * 
 	 */
 	@Test
@@ -91,10 +91,9 @@ public class TrackTest
 
 		// add ""Five Man Army" from Massive Attack as proof id
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames,
-						"11",
-						"TracksArtistsRelationsCheck");
+				.checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
+						classTables, classTableRows, classNames, "foaf:maker",
+						valueNames, 3, "11", "TracksArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

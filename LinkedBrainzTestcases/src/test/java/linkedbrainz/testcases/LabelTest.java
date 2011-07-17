@@ -21,8 +21,8 @@ public class LabelTest
 	@Test
 	public void checkLabels()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple("label",
-				"gid", "mo:Label", "LabelsCheck");
+		TestResult testResult = Utils.getInstance().checkClassViaGUIDSimple(
+				"label", "gid", "mo:Label", "LabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -37,8 +37,8 @@ public class LabelTest
 	{
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
-						"name", "name", "mo:Label", "foaf:name", "name",
-						"LabelNamesCheck");
+						"name", "name", "mo:Label", "foaf:name", "name", 5,
+						false, "LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -54,7 +54,7 @@ public class LabelTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
 						"sort_name", "name", "mo:Label", "ov:sortLabel",
-						"sortName", "LabelSortLabelsCheck");
+						"sortName", 5, false, "LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

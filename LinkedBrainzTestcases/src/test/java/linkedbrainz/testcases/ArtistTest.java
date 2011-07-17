@@ -70,7 +70,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
 						"name", "name", "mo:MusicArtist", "foaf:name", "name",
-						"ArtistNamesCheck");
+						5, false, "ArtistNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -86,7 +86,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
 						"sort_name", "name", "mo:MusicArtist", "ov:sortLabel",
-						"sortName", "ArtistSortLabelsCheck");
+						"sortName", 5, false, "ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -118,14 +118,14 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft("artist", "gender",
 						"gender", "name", "mo:MusicArtist", "foaf:gender",
-						"gender", "ArtistGenderCheck");
+						"gender", 5, false, "ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
 	/**
-	 * Fetches 5 (+1) music artists and their releases from the DB and resolves them
-	 * via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their releases from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -157,15 +157,15 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, 3, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsReleasesRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their recordings from the DB and resolves them
-	 * via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their recordings from the DB and
+	 * resolves them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -197,15 +197,15 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, 3, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsRecordingsReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their works from the DB and resolves them
-	 * via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their works from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 * ATTENTION: the 'artist_credit' row in the table 'work' is currently not
 	 * used and might be removed in the future (that is why it won't deliver
@@ -241,15 +241,15 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, 3, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsWorksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their release groups from the DB and resolves them
-	 * via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their release groups from the DB and
+	 * resolves them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -281,15 +281,15 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, 3, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsReleaseGroupsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their tracks from the DB and resolves them
-	 * via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their tracks from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -319,10 +319,28 @@ public class ArtistTest
 		valueNames.add("trackURI");
 
 		// add Tori Amos as proof GUID
-		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
-				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, "c0b2500e-0cef-4130-869d-732b23ed9df5",
-				"ArtistsTracksRelationsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
+						classTableRows, classNames, "foaf:made", valueNames, 3,
+						"c0b2500e-0cef-4130-869d-732b23ed9df5",
+						"ArtistsTracksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 music artists from the DB and resolves their countries against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistCountry()
+	{
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft("artist", "country",
+						"country", "iso_code", "mo:MusicArtist",
+						"foaf:based_near", "country", 5, true,
+						"ArtistsCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
