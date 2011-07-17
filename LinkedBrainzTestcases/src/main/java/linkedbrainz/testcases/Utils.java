@@ -1214,19 +1214,70 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
-
-		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
-
-		return this.checkURIInversePropertyViaGUIDAndOrID(classTables,
-				classTableRows, classNames, propertyName, valueNames,
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, true, true, true,
 				numberOfJoins, limit, proofID, false, checkName);
+	}
+	
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, String checkName)
+	{
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, true, false, true,
+				numberOfJoins, limit, proofID, true, checkName);
 	}
 
 	/**
@@ -1285,114 +1336,9 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-				+ "PROPERTY_NAME ?VALUE_NAME2 . "
-				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-				+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
-				+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDER#_\") } ";
-
-		initCandidatesSqlQuery(classTables.get(0), "id", limit);
-
-		return this.checkURIInversePropertyViaGUIDAndOrID(classTables,
-				classTableRows, classNames, propertyName, valueNames,
-				numberOfJoins, limit, proofID, true, checkName);
-	}
-
-	/**
-	 * Fetches one instance from the DB and resolves the values of a specific
-	 * property against the result of the related SPARQL query.
-	 * 
-	 * @param classTables
-	 *            the list of table for the SQL query currently consists of 4
-	 *            items. The first one delivers the id(s) for the check that are
-	 *            located on the left side of the relation and is located on the
-	 *            right side of the first INNER JOIN. The second one delivers
-	 *            the id(s) for the check that are located on the right side of
-	 *            the relation and is located on the right side of the third
-	 *            INNER JOIN. The third one is located on the left side of the
-	 *            INNER JOINs. The fourth one is located on the right side of
-	 *            the second INNER JOIN.
-	 * @param classTableRows
-	 *            the list of table rows for the SQL query currently consists of
-	 *            5 items. The first one delivers the id(s) for the check that
-	 *            are located on the left side of the relation. The second one
-	 *            delivers the id(s) for the check that are located on the right
-	 *            side of the relation. The third one is the non-'id' row of the
-	 *            first INNER JOIN. The forth one is the non-'id' row of the
-	 *            second INNER JOIN. The fifth one is the non-'id' row of the
-	 *            third INNER JOIN.
-	 * @param classNames
-	 *            the list of class names for the SPARQL query currently
-	 *            consists of 2 items. The first one is the class name of the
-	 *            resource of the left side of the relation. The second one is
-	 *            the class name of the resource of the right side of the
-	 *            relation.
-	 * @param propertyName
-	 *            the property name of the relation.
-	 * @param valueNames
-	 *            the list of value names for the SPARQL query currently
-	 *            consists of 3 items. The first one is the value name for
-	 *            resources of the left side of the relation. The second one is
-	 *            the value name for resources of the right side of the
-	 *            relation. The third one is the value name for the resource IDs
-	 *            of the right side of the relation.
-	 * @param numberOfJoins
-	 *            indicates the number of joins of the SQL query
-	 * @param limit
-	 *            the result limit of the SQL query
-	 * @param proofID
-	 *            a hardcoded ID, since one could fetch instances that have no
-	 *            relations and then wondering about the results. This ID should
-	 *            usually deliver an appropriated result.
-	 * @param checkName
-	 *            the name of the specific check
-	 * @return the result of the test (incl. fail message)
-	 */
-	private TestResult checkURIInversePropertyViaGUIDAndOrID(
-			ArrayList<String> classTables, ArrayList<String> classTableRows,
-			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, boolean comparisonOnResource, String checkName)
-	{
-		switch (numberOfJoins)
-		{
-		case 1:
-			break;
-		case 2:
-			// TODO
-			/*
-			 * initSqlQuery =
-			 * "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, " +
-			 * "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id " +
-			 * "FROM musicbrainz.CLASS3 " +
-			 * "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-			 * +
-			 * "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
-			 * +
-			 * "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
-			 * + "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-			 */
-			break;
-		case 3:
-			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS3 "
-					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-					+ "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-			break;
-		case 4:
-			break;
-		default:
-			break;
-		}
-
-		return this.checkURIProperty(classTables, classTableRows, classNames,
-				propertyName, valueNames, limit, proofID, comparisonOnResource,
-				checkName);
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, false, true, true,
+				numberOfJoins, limit, proofID, false, checkName);
 	}
 
 	/**
@@ -1450,17 +1396,9 @@ public class Utils
 			String propertyName, ArrayList<String> valueNames,
 			int numberOfJoins, int limit, String proofID, String checkName)
 	{
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
-
-		return this.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, numberOfJoins, limit,
-				proofID, false, checkName);
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, true, true, false,
+				numberOfJoins, limit, proofID, false, checkName);
 	}
 
 	/**
@@ -1519,16 +1457,70 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
-		initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-				+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, true, false, false,
+				numberOfJoins, limit, proofID, true, checkName);
+	}
 
-		return this.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, numberOfJoins, limit,
-				proofID, true, checkName);
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaIDOnTheLeftAndGUIDOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, String checkName)
+	{
+		return checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
+				classNames, propertyName, valueNames, false, true, false,
+				numberOfJoins, limit, proofID, false, checkName);
 	}
 
 	/**
@@ -1569,6 +1561,17 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource
 	 *            GUIDs of the right side of the relation.
+	 * @param leftSideGUID
+	 *            indicates whether a GUID is used on the left side of the
+	 *            relation for the comparison or not; otherwise it is a simple
+	 *            (table) id
+	 * @param rightSideGUID
+	 *            indicates whether a GUID is used on the right side of the
+	 *            relation for the comparison or not; otherwise it is a simple
+	 *            (table) id
+	 * @param inverseProperty
+	 *            indicates whether the property of the relation is an inverse
+	 *            property or not; otherwise it is a 'normal' property
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1577,44 +1580,148 @@ public class Utils
 	 *            a hardcoded id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This id should
 	 *            usually deliver an appropriated result.
+	 * @param comparisonOnResource
+	 *            indicates whether the values for the comparison are RDF
+	 *            resources or RDF literals
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	private TestResult checkURIPropertyViaGUIDAndOrID(
+	public TestResult checkURIPropertyViaGUIDAndOrID(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, boolean comparisonOnResource, String checkName)
+			ArrayList<String> valueNames, boolean leftSideGUID,
+			boolean rightSideGUID, boolean inverseProperty, int numberOfJoins,
+			int limit, String proofID, boolean comparisonOnResource,
+			String checkName)
 	{
-		switch (numberOfJoins)
+		// to init the candidates SQL query and the SPARQL query
+		if (leftSideGUID)
 		{
-		case 2:
-			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS3 "
-					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-			break;
-		case 3:
-			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS3 "
-					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
-					+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS4.id = CLASS2.CLASS_ROW5 "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-			break;
-		case 4:
-			break;
-		default:
-			break;
+			initCandidatesSqlQuery(classTables.get(0), "gid", limit);
+
+			// left side = GUID + right side = GUID
+			if (rightSideGUID)
+			{
+				initSparqlQuery = Utils.DEFAULT_PREFIXES
+						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+						+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+						+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+						+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+			}
+			// left side = GUID + right side = ID
+			else
+			{
+				initSparqlQuery = Utils.DEFAULT_PREFIXES
+						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+						+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+						+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
+			}
+		} else
+		{
+			initCandidatesSqlQuery(classTables.get(0), "id", limit);
+
+			// left side = ID + right side = GUID
+			if (rightSideGUID)
+			{
+				initSparqlQuery = Utils.DEFAULT_PREFIXES
+						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+						+ "PROPERTY_NAME ?VALUE_NAME2 . "
+						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+						+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
+						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDER#_\") } ";
+			}
+			// left side = ID + right side = ID
+			else
+			{
+				// TODO
+			}
 		}
 
-		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
+		// to init the SQL query
+		if (inverseProperty)
+		{
+			// TODO:
+			switch (numberOfJoins)
+			{
+			case 1:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+					+ "FROM musicbrainz.CLASS1 "
+					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW3 = CLASS1.id "
+					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
+			case 2:
+				// TODO
+				/*
+				 * initSqlQuery =
+				 * "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, " +
+				 * "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id " +
+				 * "FROM musicbrainz.CLASS3 " +
+				 * "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+				 * +
+				 * "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
+				 * +
+				 * "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
+				 * + "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				 */
+				break;
+			case 3:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS3 "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+						+ "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
+			case 4:
+				break;
+			default:
+				break;
+			}
+		} else
+		{
+			// currently for normal properties (non-inverse properties)
+			switch (numberOfJoins)
+			{
+			case 1:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS1 "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS1.CLASS_ROW3 = CLASS2.id "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
+			case 2:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS3 "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
+			case 3:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS3 "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+						+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS4.id = CLASS2.CLASS_ROW5 "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
+			case 4:
+				break;
+			default:
+				break;
+			}
+		}
 
-		return this.checkURIProperty(classTables, classTableRows, classNames,
+		return checkURIProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
 				checkName);
 	}

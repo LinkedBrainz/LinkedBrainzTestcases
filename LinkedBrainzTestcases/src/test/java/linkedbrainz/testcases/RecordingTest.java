@@ -105,6 +105,45 @@ public class RecordingTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
+	/**
+	 * Fetches 5 (+1) recordings(s) and its tracks from the DB and resolves them
+	 * via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingTracksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("recording");
+		classTables.add("track");
+
+		classTableRows.add("gid");
+		classTableRows.add("id");
+		classTableRows.add("recording");
+
+		classNames.add("mo:Signal");
+		classNames.add("mo:Track");
+
+		valueNames.add("recordingURI");
+		valueNames.add("trackURI");
+		valueNames.add("trackURI");
+
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
+						classTableRows, classNames, "mo:published_as",
+						valueNames, 1, 5,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingsTracksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(RecordingTest.class);
