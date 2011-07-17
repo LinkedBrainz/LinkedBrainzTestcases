@@ -1198,6 +1198,8 @@ public class Utils
 	 *            GUIDs of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1209,8 +1211,8 @@ public class Utils
 	public TestResult checkURIInversePropertyViaGUIDs(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, String proofID,
-			String checkName)
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1220,13 +1222,11 @@ public class Utils
 				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
 				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
 
-		limit = 5;
-
-		initCandidatesSqlQuery(classTables.get(0), "gid", 5);
+		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
 		return this.checkURIInversePropertyViaGUIDAndOrID(classTables,
 				classTableRows, classNames, propertyName, valueNames,
-				numberOfJoins, proofID, false, checkName);
+				numberOfJoins, limit, proofID, false, checkName);
 	}
 
 	/**
@@ -1269,6 +1269,8 @@ public class Utils
 	 *            GUIDs of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1280,8 +1282,8 @@ public class Utils
 	public TestResult checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, String proofID,
-			String checkName)
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1291,13 +1293,11 @@ public class Utils
 				+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
 				+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDER#_\") } ";
 
-		limit = 1;
-
-		initCandidatesSqlQuery(classTables.get(0), "id", 1);
+		initCandidatesSqlQuery(classTables.get(0), "id", limit);
 
 		return this.checkURIInversePropertyViaGUIDAndOrID(classTables,
 				classTableRows, classNames, propertyName, valueNames,
-				numberOfJoins, proofID, true, checkName);
+				numberOfJoins, limit, proofID, true, checkName);
 	}
 
 	/**
@@ -1340,6 +1340,8 @@ public class Utils
 	 *            of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded ID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This ID should
@@ -1351,8 +1353,8 @@ public class Utils
 	private TestResult checkURIInversePropertyViaGUIDAndOrID(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, String proofID,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, boolean comparisonOnResource, String checkName)
 	{
 		switch (numberOfJoins)
 		{
@@ -1360,13 +1362,18 @@ public class Utils
 			break;
 		case 2:
 			// TODO
-			/*initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-				+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-				+ "FROM musicbrainz.CLASS3 "
-				+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-				+ "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
-				+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
-				+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";*/
+			/*
+			 * initSqlQuery =
+			 * "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, " +
+			 * "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id " +
+			 * "FROM musicbrainz.CLASS3 " +
+			 * "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+			 * +
+			 * "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
+			 * +
+			 * "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
+			 * + "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+			 */
 			break;
 		case 3:
 			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
@@ -1384,7 +1391,7 @@ public class Utils
 		}
 
 		return this.checkURIProperty(classTables, classTableRows, classNames,
-				propertyName, valueNames, proofID, comparisonOnResource,
+				propertyName, valueNames, limit, proofID, comparisonOnResource,
 				checkName);
 	}
 
@@ -1428,6 +1435,8 @@ public class Utils
 	 *            GUIDs of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1439,7 +1448,7 @@ public class Utils
 	public TestResult checkURIPropertyViaGUIDs(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames,
-			int numberOfJoins, String proofID, String checkName)
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1449,11 +1458,9 @@ public class Utils
 				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
 				+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
 
-		limit = 5;
-
 		return this.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, numberOfJoins, proofID,
-				false, checkName);
+				classNames, propertyName, valueNames, numberOfJoins, limit,
+				proofID, false, checkName);
 	}
 
 	/**
@@ -1496,6 +1503,8 @@ public class Utils
 	 *            of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1507,8 +1516,8 @@ public class Utils
 	public TestResult checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, String proofID,
-			String checkName)
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1517,11 +1526,9 @@ public class Utils
 				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
 				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 . } ";
 
-		limit = 1;
-
 		return this.checkURIPropertyViaGUIDAndOrID(classTables, classTableRows,
-				classNames, propertyName, valueNames, numberOfJoins, proofID,
-				true, checkName);
+				classNames, propertyName, valueNames, numberOfJoins, limit,
+				proofID, true, checkName);
 	}
 
 	/**
@@ -1564,6 +1571,8 @@ public class Utils
 	 *            GUIDs of the right side of the relation.
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This id should
@@ -1575,18 +1584,18 @@ public class Utils
 	private TestResult checkURIPropertyViaGUIDAndOrID(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, String proofID,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			String proofID, boolean comparisonOnResource, String checkName)
 	{
 		switch (numberOfJoins)
 		{
 		case 2:
 			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-				+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-				+ "FROM musicbrainz.CLASS3 "
-				+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
-				+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
-				+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+					+ "FROM musicbrainz.CLASS3 "
+					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
+					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 			break;
 		case 3:
 			initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
@@ -1606,7 +1615,7 @@ public class Utils
 		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
 		return this.checkURIProperty(classTables, classTableRows, classNames,
-				propertyName, valueNames, proofID, comparisonOnResource,
+				propertyName, valueNames, limit, proofID, comparisonOnResource,
 				checkName);
 	}
 
@@ -1648,6 +1657,8 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource ids
 	 *            of the right side of the relation.
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param proofID
 	 *            a hardcoded ID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This id should
@@ -1658,13 +1669,14 @@ public class Utils
 	 */
 	private TestResult checkURIProperty(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
-			String propertyName, ArrayList<String> valueNames, String proofID,
-			boolean comparisonOnResource, String checkName)
+			String propertyName, ArrayList<String> valueNames, int limit,
+			String proofID, boolean comparisonOnResource, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
 
 		String sqlQuery = null;
+		this.limit = limit;
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = replacePlaceholders(classNames, "CLASS_NAME",

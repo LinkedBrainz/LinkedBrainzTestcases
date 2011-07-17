@@ -93,7 +93,7 @@ public class TrackTest
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
 						classTables, classTableRows, classNames, "foaf:maker",
-						valueNames, 3, "11", "TracksArtistsRelationsCheck");
+						valueNames, 3, 1, "11", "TracksArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

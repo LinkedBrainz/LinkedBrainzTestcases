@@ -83,7 +83,7 @@ public class ReleaseGroupTest
 		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames, 3,
+						classNames, "foaf:maker", valueNames, 3, 5,
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
 						"ReleaseGroupsArtistsRelationsCheck");
 
