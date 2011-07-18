@@ -1591,7 +1591,7 @@ public class Utils
 	{
 		initCondition(condition.getConditionClass(), condition
 				.getConditionRow(), condition.getConditionValue());
-		
+
 		this.condition = condition;
 
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
@@ -1674,7 +1674,7 @@ public class Utils
 			boolean withCondition, String checkName)
 	{
 		boolean URIComparison = false;
-		boolean baseURIreplacement = false;
+		boolean URIreplacement = false;
 
 		// to init the candidates SQL query and the SPARQL query
 		if (leftSideGUID)
@@ -1856,13 +1856,13 @@ public class Utils
 
 			if (condition instanceof URICondition)
 			{
-				baseURIreplacement = true;
+				URIreplacement = true;
 			}
 		}
 
 		return checkURIProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
-				URIComparison, baseURIreplacement, checkName);
+				URIComparison, URIreplacement, checkName);
 	}
 
 	/**
@@ -1917,7 +1917,7 @@ public class Utils
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, int limit,
 			String proofID, boolean comparisonOnResource,
-			boolean URIComparison, boolean baseURIreplacement, String checkName)
+			boolean URIComparison, boolean URIreplacement, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -2063,21 +2063,64 @@ public class Utils
 							String resourceURI = sparqlRS.next().getResource(
 									valueNames.get(2)).getURI();
 
+							System.out.println("[EXEC]  resource URI: "
+									+ resourceURI);
+
 							if (URIComparison)
 							{
-								if (baseURIreplacement)
+								if (URIreplacement)
 								{
 									URICondition uriCondition = (URICondition) condition;
 
-									String resourceURI2 = resourceURI
-											.replace(
-													uriCondition
-															.getLinkedDataBaseURI(),
-													uriCondition
-															.getOriginalBaseURI());
-									resourceURI = resourceURI2;
-									
-									System.out.println("[EXEC]  replaced URI: " + resourceURI);
+									String resourceURI2 = null;
+
+									// replace base URI
+									if (!uriCondition.getLinkedDataBaseURI()
+											.equals(""))
+									{
+										resourceURI2 = resourceURI
+												.replace(
+														uriCondition
+																.getLinkedDataBaseURI(),
+														uriCondition
+																.getOriginalBaseURI());
+									} else
+									{
+										resourceURI2 = resourceURI;
+									}
+									String resourceURI3 = null;
+
+									// replace fragment ID
+									if (uriCondition.getLinkedDataFragmentId()
+											.equals(""))
+									{
+										resourceURI3 = resourceURI2
+												+ uriCondition
+														.getOriginalFragementId();
+									} else
+									{
+										resourceURI3 = resourceURI2
+												.replace(
+														uriCondition
+																.getLinkedDataFragmentId(),
+														uriCondition
+																.getOriginalFragementId());
+									}
+									resourceURI = resourceURI3;
+
+									System.out.println("[EXEC]  replaced URI: "
+											+ resourceURI
+											+ " :: originalBaseURI: "
+											+ uriCondition.getOriginalBaseURI()
+											+ " :: linkedDataBaseURI: "
+											+ uriCondition
+													.getLinkedDataBaseURI()
+											+ " :: originalFragementId: "
+											+ uriCondition
+													.getOriginalFragementId()
+											+ " :: linkedDataFragmentId: "
+											+ uriCondition
+													.getOriginalFragementId());
 								}
 
 								// check the URI against the URI from SQL query

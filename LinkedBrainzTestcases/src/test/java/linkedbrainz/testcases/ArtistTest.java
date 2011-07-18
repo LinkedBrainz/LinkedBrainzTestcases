@@ -392,6 +392,108 @@ public class ArtistTest
 								"http://en.wikipedia.org/wiki/",
 								"http://dbpedia.org/resource/"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsWikilinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) music artists and their Discogs links from the DB and
+	 * resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsDiscogslinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("discogsURI");
+		valueNames.add("discogsURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "id", "180",
+								"http://www.discogs.com/artist/",
+								"http://discogs.dataincubator.org/artist/"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsTracksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) music artists and their BBC links from the DB and
+	 * resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsBBClinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("bbcURI");
+		valueNames.add("bbcURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "id", "190",
+								"",
+								"", "", "#artist"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
