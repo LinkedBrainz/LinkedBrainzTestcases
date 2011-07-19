@@ -389,7 +389,8 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new URICondition("link_type", "id", "179",
+						new URICondition("link_type", "gid",
+								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
 								"http://en.wikipedia.org/wiki/",
 								"http://dbpedia.org/resource/", "", "",
 								"is:info_service", "isi:dbpedia"),
@@ -441,7 +442,8 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new URICondition("link_type", "id", "180",
+						new URICondition("link_type", "gid",
+								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
 								"http://www.discogs.com/artist/",
 								"http://discogs.dataincubator.org/artist/", "",
 								"", "is:info_service",
@@ -485,7 +487,8 @@ public class ArtistTest
 		valueNames.add("bbcURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -494,8 +497,9 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new URICondition("link_type", "id", "190", "", "", "",
-								"#artist", "is:info_service", "isi:bbc"),
+						new URICondition("link_type", "gid",
+								"'d028a975-000c-4525-9333-d3c8425e4b5'", "",
+								"", "", "#artist", "is:info_service", "isi:bbc"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsBBClinksRelationsCheck");
 
@@ -536,10 +540,16 @@ public class ArtistTest
 
 		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(classTables,
-						classTableRows, classNames, "foaf:homepage",
-						valueNames, 4, 5,
-						new Condition("link_type", "id", "183"),
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"foaf:homepage",
+						valueNames,
+						4,
+						5,
+						new Condition("link_type", "gid",
+								"'fe33d22f-c3b0-4d68-bd53-a856badf2b15'"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsHomepagesReleationsCheck");
 
@@ -588,7 +598,8 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new URICondition("link_type", "id", "189",
+						new URICondition("link_type", "gid",
+								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
 								"http://www.myspace.com/",
 								"http://dbtune.org/myspace/", "", "",
 								"is:info_service", "isi:dbtunemyspace"),
