@@ -13,6 +13,8 @@ public class URICondition extends Condition
 	private String linkedDataBaseURI = "";
 	private String originalFragementId = "";
 	private String linkedDataFragmentId = "";
+	private String conditionProperty = "";
+	private String conditionPropertyValue = "";
 
 	public URICondition(String conditionClass, String conditionRow,
 			String conditionValue, String originalBaseURI,
@@ -33,6 +35,21 @@ public class URICondition extends Condition
 		this.linkedDataBaseURI = linkedDataBaseURI;
 		this.originalFragementId = originalFragmentId;
 		this.linkedDataFragmentId = linkedDataFragmentId;
+	}
+
+	public URICondition(String conditionClass, String conditionRow,
+			String conditionValue, String originalBaseURI,
+			String linkedDataBaseURI, String originalFragmentId,
+			String linkedDataFragmentId, String conditionProperty,
+			String conditionPropertyValue)
+	{
+		super(conditionClass, conditionRow, conditionValue);
+		this.originalBaseURI = originalBaseURI;
+		this.linkedDataBaseURI = linkedDataBaseURI;
+		this.originalFragementId = originalFragmentId;
+		this.linkedDataFragmentId = linkedDataFragmentId;
+		this.conditionProperty = conditionProperty;
+		this.conditionPropertyValue = conditionPropertyValue;
 	}
 
 	public String getOriginalBaseURI()
@@ -73,6 +90,26 @@ public class URICondition extends Condition
 	public void setLinkedDataFragmentId(String linkedDataFragmentId)
 	{
 		this.linkedDataFragmentId = linkedDataFragmentId;
+	}
+
+	public String getConditionProperty()
+	{
+		return conditionProperty;
+	}
+
+	public void setConditionProperty(String conditionProperty)
+	{
+		this.conditionProperty = conditionProperty;
+	}
+
+	public String getConditionPropertyValue()
+	{
+		return conditionPropertyValue;
+	}
+
+	public void setConditionPropertyValue(String conditionPropertyValue)
+	{
+		this.conditionPropertyValue = conditionPropertyValue;
 	}
 
 }

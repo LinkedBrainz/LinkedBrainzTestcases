@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -390,13 +391,14 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "id", "179",
 								"http://en.wikipedia.org/wiki/",
-								"http://dbpedia.org/resource/"),
+								"http://dbpedia.org/resource/", "", "",
+								"is:info_service", "isi:dbpedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsWikilinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) music artists and their Discogs links from the DB and
 	 * resolves them via a SPARQL query.
@@ -441,16 +443,18 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "id", "180",
 								"http://www.discogs.com/artist/",
-								"http://discogs.dataincubator.org/artist/"),
+								"http://discogs.dataincubator.org/artist/", "",
+								"", "is:info_service",
+								"isi:dataincubatordiscogs"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-						"ArtistsTracksRelationsCheck");
+						"ArtistsDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their BBC links from the DB and
-	 * resolves them via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their BBC links from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -490,11 +494,106 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new URICondition("link_type", "id", "190",
-								"",
-								"", "", "#artist"),
+						new URICondition("link_type", "id", "190", "", "", "",
+								"#artist", "is:info_service", "isi:bbc"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-						"ArtistsTracksRelationsCheck");
+						"ArtistsBBClinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) music artists and their homepages from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsHomepagesRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("homepageURI");
+		valueNames.add("homepageURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(classTables,
+						classTableRows, classNames, "foaf:homepage",
+						valueNames, 4, 5,
+						new Condition("link_type", "id", "183"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsHomepagesReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) music artists and their MySpace links from the DB and
+	 * resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsMySpacelinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("myspaceURI");
+		valueNames.add("myspaceURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "id", "189",
+								"http://www.myspace.com/",
+								"http://dbtune.org/myspace/", "", "",
+								"is:info_service", "isi:dbtunemyspace"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsMyspacelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

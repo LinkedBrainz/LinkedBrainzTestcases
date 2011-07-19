@@ -51,7 +51,9 @@ public class Utils
 			+ "PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>"
 			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
 			+ "PREFIX vocab: <http://localhost:2020/vocab/resource/>"
-			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>";
+			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>"
+			+ "PREFIX is: <http://purl.org/ontology/is/core#>"
+			+ "PREFIX isi: <http://purl.org/ontology/is/inst/>";
 	public static final long TIMEOUT = 100000;
 	private PrefixMapping prefixMapping = null;
 
@@ -71,7 +73,8 @@ public class Utils
 	private int queryCounter = 0;
 	private String candidatesSqlQuery = null;
 	private String initSqlQuery = null;
-	private String queryCondition = null;
+	private String sqlQueryCondition = null;
+	private String sparqlQueryCondition = null;
 	private Condition condition = null;
 	private String initSparqlQuery = null;
 	private int limit = 0;
@@ -142,6 +145,10 @@ public class Utils
 					"http://localhost:2020/vocab/resource/");
 			prefixMapping.setNsPrefix("skos",
 					"http://www.w3.org/2004/02/skos/core#");
+			prefixMapping
+					.setNsPrefix("is", "http://purl.org/ontology/is/core#");
+			prefixMapping.setNsPrefix("isi",
+					"http://purl.org/ontology/is/inst/");
 
 			prefixMapping.lock();
 		} else
@@ -1589,10 +1596,7 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			Condition condition, String proofID, String checkName)
 	{
-		initCondition(condition.getConditionClass(), condition
-				.getConditionRow(), condition.getConditionValue());
-
-		this.condition = condition;
+		initCondition(condition);
 
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
@@ -1708,18 +1712,13 @@ public class Utils
 				// left side = GUID + right side = URI
 				else if (rightSideURI)
 				{
-					// TODO: should be quite similar to the query above
-					// (!rightSideGUID);
-					// however, the handling of the comparison is different - a
-					// comparison on the whole string instead of a containing ID
-					// value
-
 					// VALUE_NAME2 == VALUE_NAME3 in this case
 					initSparqlQuery = Utils.DEFAULT_PREFIXES
 							+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
 							+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
 							+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-							+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . } ";
+							+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+							+ "CONDITION} ";
 
 					URIComparison = true;
 				}
@@ -1848,16 +1847,34 @@ public class Utils
 			}
 		}
 
+		String initSqlQuery2 = null;
+		String initSparqlQuery2 = null;
+
 		if (withCondition)
 		{
-			String initSqlQuery2 = initSqlQuery.replace("CONDITION",
-					queryCondition);
+			initSqlQuery2 = initSqlQuery
+					.replace("CONDITION", sqlQueryCondition);
 			initSqlQuery = initSqlQuery2;
 
 			if (condition instanceof URICondition)
 			{
 				URIreplacement = true;
+
+				initSparqlQuery2 = initSparqlQuery.replace("CONDITION",
+						sparqlQueryCondition);
+				initSparqlQuery = initSparqlQuery2;
+			} else
+			{
+				initSparqlQuery2 = initSparqlQuery.replace("CONDITION", "");
+				initSparqlQuery = initSparqlQuery2;
 			}
+		} else
+		{
+			initSqlQuery2 = initSqlQuery.replace("CONDITION", "");
+			initSqlQuery = initSqlQuery2;
+
+			initSparqlQuery2 = initSparqlQuery.replace("CONDITION", "");
+			initSparqlQuery = initSparqlQuery2;
 		}
 
 		return checkURIProperty(classTables, classTableRows, classNames,
@@ -2296,7 +2313,30 @@ public class Utils
 	}
 
 	/**
-	 * Initialises an condition of an SQL query
+	 * Initialises an optional condition for a SQL and/or a SPARQL of a test
+	 * 
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
+	 */
+	private void initCondition(Condition condition)
+	{
+		initSQLCondition(condition.getConditionClass(), condition
+				.getConditionRow(), condition.getConditionValue());
+
+		if (condition instanceof URICondition)
+		{
+			URICondition uriCondition = (URICondition) condition;
+
+			initSPAQLCondition(uriCondition.getConditionProperty(),
+					uriCondition.getConditionPropertyValue());
+		}
+
+		this.condition = condition;
+	}
+
+	/**
+	 * Initialises a condition of an SQL query
 	 * 
 	 * @param conditionClass
 	 *            the specific table of the condition for the SQL query
@@ -2306,15 +2346,42 @@ public class Utils
 	 *            the specific value (static (!)) of the condition for the SQL
 	 *            query
 	 */
-	private void initCondition(String conditionClass, String conditionRow,
+	private void initSQLCondition(String conditionClass, String conditionRow,
 			String conditionValue)
 	{
-		String initCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
-		String initCondition2 = initCondition.replace("CONDITION_CLASS",
-				conditionClass);
-		String initCondition3 = initCondition2.replace("CONDITION_ROW",
-				conditionRow);
-		queryCondition = initCondition3.replace("CONDITION_VALUE",
+		String initSQLQueryCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
+		String initSQLQueryCondition2 = initSQLQueryCondition.replace(
+				"CONDITION_CLASS", conditionClass);
+		String initSQLQueryCondition3 = initSQLQueryCondition2.replace(
+				"CONDITION_ROW", conditionRow);
+		sqlQueryCondition = initSQLQueryCondition3.replace("CONDITION_VALUE",
 				conditionValue);
+	}
+
+	/**
+	 * Initialises a condition of an SPAQL query
+	 * 
+	 * @param conditionProperty
+	 *            the property resource of the condition relation
+	 * @param conditionPropertyValue
+	 *            the value of the condition relation
+	 */
+	private void initSPAQLCondition(String conditionProperty,
+			String conditionPropertyValue)
+	{
+		System.out.println("[EXEC]  conditionProperty: " + conditionProperty
+				+ " :: conditionPropertyValue: " + conditionPropertyValue);
+
+		if (!conditionProperty.equals(""))
+		{
+			String initSPAQLQueryCondition = "?VALUE_NAME2 CONDITION_PROPERTY CONDITION_PROPERTY_VALUE . ";
+			String initSPAQLQueryCondition2 = initSPAQLQueryCondition.replace(
+					"CONDITION_PROPERTY_VALUE", conditionPropertyValue);
+			sparqlQueryCondition = initSPAQLQueryCondition2.replace(
+					"CONDITION_PROPERTY", conditionProperty);
+		} else
+		{
+			sparqlQueryCondition = "";
+		}
 	}
 }
