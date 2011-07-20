@@ -92,7 +92,7 @@ public class ReleaseGroupTest
 	}
 
 	/**
-	 * Fetches 5 (+1) release Groups and their Wikipedia links from the DB and
+	 * Fetches 5 (+1) release groups and their Wikipedia links from the DB and
 	 * resolves them via a SPARQL query.
 	 * 
 	 */
