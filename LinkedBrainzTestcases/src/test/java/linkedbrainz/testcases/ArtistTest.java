@@ -376,8 +376,8 @@ public class ArtistTest
 		classNames.add("mo:MusicArtist");
 
 		valueNames.add("artistURI");
-		valueNames.add("wikiURI");
-		valueNames.add("wikiURI");
+		valueNames.add("dbpediaURI");
+		valueNames.add("dbpediaURI");
 
 		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
@@ -396,6 +396,59 @@ public class ArtistTest
 								"is:info_service", "isi:dbpedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBPedialinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) music artists and their Wikipedia links from the DB and
+	 * resolves them via a SPARQL query to cleaned up Wikipedia URLs.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsWikipedialinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("wikiURI");
+		valueNames.add("wikiURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
+								"http://wikipedia.org/wiki/",
+								"http://wikipedia.org/wiki/", "", "",
+								"is:info_service", "isi:wikipedia"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsWikipedialinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -429,8 +482,8 @@ public class ArtistTest
 		classNames.add("mo:MusicArtist");
 
 		valueNames.add("artistURI");
-		valueNames.add("discogsURI");
-		valueNames.add("discogsURI");
+		valueNames.add("dataIncubatorDiscogsURI");
+		valueNames.add("dataIncubatorDiscogsURI");
 
 		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
@@ -585,8 +638,8 @@ public class ArtistTest
 		classNames.add("mo:MusicArtist");
 
 		valueNames.add("artistURI");
-		valueNames.add("myspaceURI");
-		valueNames.add("myspaceURI");
+		valueNames.add("dbtuneMyspaceURI");
+		valueNames.add("dbtuneMyspaceURI");
 
 		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
@@ -647,7 +700,7 @@ public class ArtistTest
 						classTables,
 						classTableRows,
 						classNames,
-						"rdf:seeAlso",
+						"rdfs:seeAlso",
 						valueNames,
 						4,
 						5,

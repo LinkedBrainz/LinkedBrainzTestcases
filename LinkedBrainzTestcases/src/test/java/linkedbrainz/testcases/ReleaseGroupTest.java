@@ -120,8 +120,8 @@ public class ReleaseGroupTest
 		classNames.add("mo:SignalGroup");
 
 		valueNames.add("releaseGroupURI");
-		valueNames.add("wikiURI");
-		valueNames.add("wikiURI");
+		valueNames.add("dbpediaURI");
+		valueNames.add("dbpediaURI");
 
 		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
 		// GUID

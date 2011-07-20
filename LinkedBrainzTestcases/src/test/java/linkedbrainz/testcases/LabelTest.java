@@ -108,8 +108,8 @@ public class LabelTest
 		classNames.add("mo:Label");
 
 		valueNames.add("labelURI");
-		valueNames.add("myspaceURI");
-		valueNames.add("myspaceURI");
+		valueNames.add("dbtuneMyspaceURI");
+		valueNames.add("dbtuneMyspaceURI");
 
 		// add Universal Music as proof GUID
 		TestResult testResult = Utils.getInstance()
@@ -161,8 +161,8 @@ public class LabelTest
 		classNames.add("mo:Label");
 
 		valueNames.add("labelURI");
-		valueNames.add("wikiURI");
-		valueNames.add("wikiURI");
+		valueNames.add("dbpediaURI");
+		valueNames.add("dbpediaURI");
 
 		// add Columbia Records as proof GUID
 		TestResult testResult = Utils.getInstance()
@@ -223,7 +223,7 @@ public class LabelTest
 						classTables,
 						classTableRows,
 						classNames,
-						"rdf:seeAlso",
+						"rdfs:seeAlso",
 						valueNames,
 						4,
 						5,
