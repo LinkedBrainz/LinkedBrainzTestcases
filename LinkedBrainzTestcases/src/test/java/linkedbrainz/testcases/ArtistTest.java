@@ -653,11 +653,63 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
-								"http://www.myspace.com/",
+								"http://myspace.com/",
 								"http://dbtune.org/myspace/", "", "",
 								"is:info_service", "isi:dbtunemyspace"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBTuneMyspacelinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) music artists and their MySpace links from the DB and
+	 * resolves them via a SPARQL query to cleaned up MySpace page URLs.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsMySpacelinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("myspaceURI");
+		valueNames.add("myspaceURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
+								"http://myspace.com/", "http://myspace.com/",
+								"", "", "is:info_service", "isi:myspace"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsMyspacelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -705,8 +757,9 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'", "",
-								"", "", "", "is:info_service", "isi:youtube"),
+								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'",
+								"http://youtube.com", "http://youtube.com", "",
+								"", "is:info_service", "isi:youtube"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsYouTubeChannelsReleationsCheck");
 

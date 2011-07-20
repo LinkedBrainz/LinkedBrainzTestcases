@@ -281,8 +281,9 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'d9c71059-ba9d-4135-b909-481d12cf84e3'", "",
-								"", "", "", "is:info_service", "isi:youtube"),
+								"'d9c71059-ba9d-4135-b909-481d12cf84e3'",
+								"http://youtube.com", "http://youtube.com", "",
+								"", "is:info_service", "isi:youtube"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsYouTubeChannelsReleationsCheck");
 
