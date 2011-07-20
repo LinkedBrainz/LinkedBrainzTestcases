@@ -498,7 +498,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'d028a975-000c-4525-9333-d3c8425e4b5'", "",
+								"'d028a975-000c-4525-9333-d3c8425e4b54'", "",
 								"", "", "#artist", "is:info_service", "isi:bbc"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsBBClinksRelationsCheck");
@@ -605,6 +605,56 @@ public class ArtistTest
 								"is:info_service", "isi:dbtunemyspace"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsMyspacelinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) music artists and their YouTube channels from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsYouTubeChannelsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("youTubeChannelURI");
+		valueNames.add("youTubeChannelURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdf:seeAlso",
+						valueNames,
+						4,
+						5,
+						new Condition("link_type", "gid",
+								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsYouTubeChannelsReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
