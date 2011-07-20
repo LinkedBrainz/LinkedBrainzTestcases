@@ -2143,7 +2143,47 @@ public class Utils
 								// check the URI against the URI from SQL query
 								for (int k = 0; k < resources.size(); k++)
 								{
-									if (resourceURI.equals(resources.get(k)))
+									String uriFromSqlQuery = resources.get(k);
+
+									if (URIreplacement)
+									{
+										// TODO: requires probably further
+										// investigation, e.g., fragment
+										// replacement etc.
+
+										URICondition uriCondition = (URICondition) condition;
+
+										// replace base URI
+										if (!uriCondition
+												.getLinkedDataBaseURI().equals(
+														""))
+										{
+											// clean up the base URI like it
+											// will be
+											// done on the Translator classes as
+											// well
+											String cleanedUpOrginialBaseUri = null;
+											if (translators.util.Utils
+													.cleanUpBaseURI(
+															uriFromSqlQuery,
+															uriCondition
+																	.getOriginalBaseURI()) != null)
+											{
+												cleanedUpOrginialBaseUri = translators.util.Utils
+														.cleanUpBaseURI(
+																uriFromSqlQuery,
+																uriCondition
+																		.getOriginalBaseURI());
+											}
+
+											if (cleanedUpOrginialBaseUri != null)
+											{
+												uriFromSqlQuery = cleanedUpOrginialBaseUri;
+											}
+										}
+									}
+
+									if (resourceURI.equals(uriFromSqlQuery))
 
 									{
 										queryCounter++;

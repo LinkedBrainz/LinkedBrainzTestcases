@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.testcases.model.TestResult;
+import linkedbrainz.testcases.model.URICondition;
 
 import org.junit.Test;
 
@@ -86,6 +87,60 @@ public class ReleaseGroupTest
 						classNames, "foaf:maker", valueNames, 3, 5,
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
 						"ReleaseGroupsArtistsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) release Groups and their Wikipedia links from the DB and
+	 * resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsWikilinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("wikiURI");
+		valueNames.add("wikiURI");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'6578f0e9-1ace-4095-9de8-6e517ddb1ceb'",
+								"http://wikipedia.org/wiki/",
+								"http://dbpedia.org/resource/", "", "",
+								"is:info_service", "isi:dbpedia"),
+						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
+						"ReleaseGroupsWikilinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

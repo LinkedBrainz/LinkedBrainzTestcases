@@ -391,7 +391,7 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
-								"http://en.wikipedia.org/wiki/",
+								"http://wikipedia.org/wiki/",
 								"http://dbpedia.org/resource/", "", "",
 								"is:info_service", "isi:dbpedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
