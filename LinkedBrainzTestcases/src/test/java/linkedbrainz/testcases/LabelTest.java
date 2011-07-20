@@ -81,11 +81,11 @@ public class LabelTest
 	
 	/**
 	 * Fetches 5 (+1) labels and their MySpace links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DBTune MySpace resource URIs.
 	 * 
 	 */
 	@Test
-	public void checkLabelsMySpacelinksRelations()
+	public void checkLabelsDBTuneMySpacelinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -127,18 +127,18 @@ public class LabelTest
 								"http://dbtune.org/myspace/", "", "",
 								"is:info_service", "isi:dbtunemyspace"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
-						"LabelsMyspacelinksReleationsCheck");
+						"LabelsDBTuneMyspacelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 	
 	/**
 	 * Fetches 5 (+1) labels and their Wikipedia links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DBPedia resource URIs.
 	 * 
 	 */
 	@Test
-	public void checkLabelsWikilinksRelations()
+	public void checkLabelsDBPedialinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -180,7 +180,7 @@ public class LabelTest
 								"http://dbpedia.org/resource/", "", "",
 								"is:info_service", "isi:dbpedia"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
-						"LabelsWikilinksRelationsCheck");
+						"LabelsDBPedialinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

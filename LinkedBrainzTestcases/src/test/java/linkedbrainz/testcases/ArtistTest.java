@@ -349,11 +349,11 @@ public class ArtistTest
 
 	/**
 	 * Fetches 5 (+1) music artists and their Wikipedia links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DBPedia resource URIs.
 	 * 
 	 */
 	@Test
-	public void checkMusicArtistsWikilinksRelations()
+	public void checkMusicArtistsDBPedialinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -395,18 +395,18 @@ public class ArtistTest
 								"http://dbpedia.org/resource/", "", "",
 								"is:info_service", "isi:dbpedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-						"ArtistsWikilinksRelationsCheck");
+						"ArtistsDBPedialinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
 	/**
 	 * Fetches 5 (+1) music artists and their Discogs links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DataIncubator Discogs resource URIs.
 	 * 
 	 */
 	@Test
-	public void checkMusicArtistsDiscogslinksRelations()
+	public void checkMusicArtistsDataIncubatorDiscogslinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -449,14 +449,14 @@ public class ArtistTest
 								"", "is:info_service",
 								"isi:dataincubatordiscogs"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-						"ArtistsDiscogslinksReleationsCheck");
+						"ArtistsDataIncubatorDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
 	/**
 	 * Fetches 5 (+1) music artists and their BBC links from the DB and resolves
-	 * them via a SPARQL query.
+	 * them via a SPARQL query to BBC resource URIs.
 	 * 
 	 */
 	@Test
@@ -558,11 +558,11 @@ public class ArtistTest
 
 	/**
 	 * Fetches 5 (+1) music artists and their MySpace links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DBTune MySpace URIs.
 	 * 
 	 */
 	@Test
-	public void checkMusicArtistsMySpacelinksRelations()
+	public void checkMusicArtistsDBTuneMySpacelinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -604,7 +604,7 @@ public class ArtistTest
 								"http://dbtune.org/myspace/", "", "",
 								"is:info_service", "isi:dbtunemyspace"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
-						"ArtistsMyspacelinksReleationsCheck");
+						"ArtistsDBTuneMyspacelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

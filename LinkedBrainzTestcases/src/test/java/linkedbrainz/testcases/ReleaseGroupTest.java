@@ -93,11 +93,11 @@ public class ReleaseGroupTest
 
 	/**
 	 * Fetches 5 (+1) release groups and their Wikipedia links from the DB and
-	 * resolves them via a SPARQL query.
+	 * resolves them via a SPARQL query to DBPedia resource URIs.
 	 * 
 	 */
 	@Test
-	public void checkReleaseGroupsWikilinksRelations()
+	public void checkReleaseGroupsDBPedialinksRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -140,7 +140,7 @@ public class ReleaseGroupTest
 								"http://dbpedia.org/resource/", "", "",
 								"is:info_service", "isi:dbpedia"),
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
-						"ReleaseGroupsWikilinksRelationsCheck");
+						"ReleaseGroupsDBPedialinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
