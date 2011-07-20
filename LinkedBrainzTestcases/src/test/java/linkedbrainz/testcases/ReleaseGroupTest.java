@@ -144,6 +144,60 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 (+1) release groups and their Wikipedia links from the DB and
+	 * resolves them via a SPARQL query to cleaned up Wikipedia page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsWikipedialinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("wikiURI");
+		valueNames.add("wikiURI");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'6578f0e9-1ace-4095-9de8-6e517ddb1ceb'",
+								"http://wikipedia.org/wiki/",
+								"http://wikipedia.org/wiki/", "", "",
+								"is:info_service", "isi:wikipedia"),
+						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
+						"ReleaseGroupsWikipedialinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{
