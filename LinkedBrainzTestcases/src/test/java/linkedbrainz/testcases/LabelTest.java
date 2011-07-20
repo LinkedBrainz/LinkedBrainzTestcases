@@ -78,10 +78,10 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels and their MySpace links from the DB and
-	 * resolves them via a SPARQL query to DBTune MySpace resource URIs.
+	 * Fetches 5 (+1) labels and their MySpace links from the DB and resolves
+	 * them via a SPARQL query to DBTune MySpace resource URIs.
 	 * 
 	 */
 	@Test
@@ -131,10 +131,10 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels and their Wikipedia links from the DB and
-	 * resolves them via a SPARQL query to DBPedia resource URIs.
+	 * Fetches 5 (+1) labels and their Wikipedia links from the DB and resolves
+	 * them via a SPARQL query to DBPedia resource URIs.
 	 * 
 	 */
 	@Test
@@ -184,7 +184,60 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
+	/**
+	 * Fetches 5 (+1) labels and their Wikipedia links from the DB and resolves
+	 * them via a SPARQL query to cleaned up Wikipedia page URLs.
+	 * 
+	 */
+	@Test
+	public void checkLabelsWikipedialinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("wikiURI");
+		valueNames.add("wikiURI");
+
+		// add Columbia Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
+								"http://wikipedia.org/wiki/",
+								"http://wikipedia.org/wiki/", "", "",
+								"is:info_service", "isi:wikipedia"),
+						"011d1192-6f65-45bd-85c4-0400dd45693e",
+						"LabelsWikipedialinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	/**
 	 * Fetches 5 (+1) labels and their YouTube channels from the DB and resolves
 	 * them via a SPARQL query.
@@ -227,8 +280,9 @@ public class LabelTest
 						valueNames,
 						4,
 						5,
-						new Condition("link_type", "gid",
-								"'d9c71059-ba9d-4135-b909-481d12cf84e3'"),
+						new URICondition("link_type", "gid",
+								"'d9c71059-ba9d-4135-b909-481d12cf84e3'", "",
+								"", "", "", "is:info_service", "isi:youtube"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsYouTubeChannelsReleationsCheck");
 

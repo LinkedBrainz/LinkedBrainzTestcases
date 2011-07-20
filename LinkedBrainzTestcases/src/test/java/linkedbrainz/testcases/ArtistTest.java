@@ -399,7 +399,7 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) music artists and their Wikipedia links from the DB and
 	 * resolves them via a SPARQL query to cleaned up Wikipedia URLs.
@@ -661,10 +661,10 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) music artists and their YouTube channels from the DB and resolves
-	 * them via a SPARQL query.
+	 * Fetches 5 (+1) music artists and their YouTube channels from the DB and
+	 * resolves them via a SPARQL query.
 	 * 
 	 */
 	@Test
@@ -704,8 +704,9 @@ public class ArtistTest
 						valueNames,
 						4,
 						5,
-						new Condition("link_type", "gid",
-								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'"),
+						new URICondition("link_type", "gid",
+								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'", "",
+								"", "", "", "is:info_service", "isi:youtube"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsYouTubeChannelsReleationsCheck");
 
