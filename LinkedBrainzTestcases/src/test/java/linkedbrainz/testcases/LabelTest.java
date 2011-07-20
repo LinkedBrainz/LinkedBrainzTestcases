@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -180,6 +181,56 @@ public class LabelTest
 								"is:info_service", "isi:dbpedia"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsWikilinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) labels and their YouTube channels from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelsYouTubeChannelsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("youTubeChannelURI");
+		valueNames.add("youTubeChannelURI");
+
+		// add Mute Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdf:seeAlso",
+						valueNames,
+						4,
+						5,
+						new Condition("link_type", "gid",
+								"'d9c71059-ba9d-4135-b909-481d12cf84e3'"),
+						"e0b106a5-4add-4839-9e40-c192457e1bf8",
+						"LabelsYouTubeChannelsReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
