@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -195,6 +196,60 @@ public class ReleaseGroupTest
 								"is:info_service", "isi:wikipedia"),
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
 						"ReleaseGroupsWikipedialinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) release groups and their Discogs links from the DB and resolves
+	 * them via a SPARQL query to cleaned up Discogs page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsDiscogslinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("discogsURI");
+		valueNames.add("discogsURI");
+
+		// add "Chances Are" from Bob Marley as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'99e550f3-5ab4-3110-b5b9-fe01d970b126'",
+								DiscogsTranslator.ORIGINAL_BASE_URI,
+								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:discogs"),
+						"5600398c-c9fa-398a-84df-d8b13b009853",
+						"ReleaseGroupsDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
