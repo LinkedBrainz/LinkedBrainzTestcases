@@ -5,6 +5,11 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.d2rs.translator.DBPediaTranslator;
+import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
+import linkedbrainz.d2rs.translator.MySpaceTranslator;
+import linkedbrainz.d2rs.translator.WikipediaTranslator;
+import linkedbrainz.d2rs.translator.YouTubeTranslator;
 import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
@@ -112,7 +117,8 @@ public class LabelTest
 		valueNames.add("dbtuneMyspaceURI");
 
 		// add Universal Music as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -123,11 +129,64 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
-								"http://www.myspace.com/",
-								"http://dbtune.org/myspace/", "", "",
-								"is:info_service", "isi:dbtunemyspace"),
+								DBTuneMySpaceTranslator.ORIGINAL_BASE_URI,
+								DBTuneMySpaceTranslator.LINKED_DATA_BASE_URI,
+								"", "", "is:info_service", "isi:dbtunemyspace"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
 						"LabelsDBTuneMyspacelinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) labels and their MySpace links from the DB and resolves
+	 * them via a SPARQL query to cleaned up MySpace page URLs.
+	 * 
+	 */
+	@Test
+	public void checkLabelsMySpacelinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("myspaceURI");
+		valueNames.add("myspaceURI");
+
+		// add Universal Music as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
+								MySpaceTranslator.ORIGINAL_BASE_URI,
+								MySpaceTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:myspace"),
+						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
+						"LabelsMyspacelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -176,8 +235,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
-								"http://wikipedia.org/wiki/",
-								"http://dbpedia.org/resource/", "", "",
+								DBPediaTranslator.ORIGINAL_BASE_URI,
+								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
 								"is:info_service", "isi:dbpedia"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsDBPedialinksRelationsCheck");
@@ -229,8 +288,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
-								"http://wikipedia.org/wiki/",
-								"http://wikipedia.org/wiki/", "", "",
+								WikipediaTranslator.ORIGINAL_BASE_URI,
+								WikipediaTranslator.ORIGINAL_BASE_URI, "", "",
 								"is:info_service", "isi:wikipedia"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsWikipedialinksRelationsCheck");
@@ -282,8 +341,9 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'d9c71059-ba9d-4135-b909-481d12cf84e3'",
-								"http://youtube.com", "http://youtube.com", "",
-								"", "is:info_service", "isi:youtube"),
+								YouTubeTranslator.ORIGINAL_BASE_URI,
+								YouTubeTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:youtube"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsYouTubeChannelsReleationsCheck");
 
