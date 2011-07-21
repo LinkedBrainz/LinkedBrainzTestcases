@@ -5,7 +5,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.testcases.model.TestResult;
+import linkedbrainz.testcases.model.URICondition;
 
 import org.junit.Test;
 
@@ -178,10 +180,66 @@ public class ReleaseTest
 		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
 		// Beatles as proof
 		// GUID
-		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
-				classTables, classTableRows, classNames, "mo:record",
-				valueNames, 2, 1, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
-				"ReleasesTracklistsRelationsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
+						classTableRows, classNames, "mo:record", valueNames, 2,
+						1, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesTracklistsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) releases and their Discogs links from the DB and resolves
+	 * them via a SPARQL query to cleaned up Discogs page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleasesDiscogslinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("url");
+		classTables.add("l_release_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Release");
+
+		valueNames.add("releaseURI");
+		valueNames.add("discogsURI");
+		valueNames.add("discogsURI");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'4a78823c-1c53-4176-a5f3-58026c76f2bc'",
+								DiscogsTranslator.ORIGINAL_BASE_URI,
+								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:discogs"),
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
