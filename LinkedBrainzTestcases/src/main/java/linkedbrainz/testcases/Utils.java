@@ -2163,13 +2163,13 @@ public class Utils
 											// done on the Translator classes as
 											// well
 											String cleanedUpOrginialBaseUri = null;
-											if (translators.util.Utils
+											if (linkedbrainz.d2rs.translator.util.Utils
 													.cleanUpBaseURI(
 															uriFromSqlQuery,
 															uriCondition
 																	.getOriginalBaseURI()) != null)
 											{
-												cleanedUpOrginialBaseUri = translators.util.Utils
+												cleanedUpOrginialBaseUri = linkedbrainz.d2rs.translator.util.Utils
 														.cleanUpBaseURI(
 																uriFromSqlQuery,
 																uriCondition
