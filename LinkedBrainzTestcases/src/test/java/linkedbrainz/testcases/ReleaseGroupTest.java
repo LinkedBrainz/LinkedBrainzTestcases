@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
+import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -250,6 +251,60 @@ public class ReleaseGroupTest
 								"is:info_service", "isi:discogs"),
 						"5600398c-c9fa-398a-84df-d8b13b009853",
 						"ReleaseGroupsDiscogslinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) release groups and their IBDb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up IBDb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsIBDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("ibdbURI");
+		valueNames.add("ibdbURI");
+
+		// add "Chicago - A Musical Vaudeville" (a musical) as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'a7f96734-716e-48b8-9040-adc5b3256836'",
+								IBDBTranslator.ORIGINAL_BASE_URI,
+								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:ibdb"),
+						"5d192683-17da-34c6-ad6b-6e37e8bd449d",
+						"ReleaseGroupsIBDblinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
