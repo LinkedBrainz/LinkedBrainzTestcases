@@ -104,12 +104,5 @@
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
-    <dependency>
-    	<groupId>linkedbrainz.d2rs</groupId>
-    	<artifactId>translator</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    	<type>jar</type>
-    	<scope>compile</scope>
-    </dependency>
   </dependencies>
 </project>

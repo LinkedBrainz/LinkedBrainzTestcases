@@ -5,6 +5,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.d2rs.translator.DBPediaTranslator;
+import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
+import linkedbrainz.d2rs.translator.DiscogsTranslator;
+import linkedbrainz.d2rs.translator.MySpaceTranslator;
+import linkedbrainz.d2rs.translator.WikipediaTranslator;
+import linkedbrainz.d2rs.translator.YouTubeTranslator;
 import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
@@ -391,8 +397,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
-								"http://wikipedia.org/wiki/",
-								"http://dbpedia.org/resource/", "", "",
+								DBPediaTranslator.ORIGINAL_BASE_URI,
+								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
 								"is:info_service", "isi:dbpedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBPedialinksRelationsCheck");
@@ -444,8 +450,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
-								"http://wikipedia.org/wiki/",
-								"http://wikipedia.org/wiki/", "", "",
+								WikipediaTranslator.ORIGINAL_BASE_URI,
+								WikipediaTranslator.ORIGINAL_BASE_URI, "", "",
 								"is:info_service", "isi:wikipedia"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsWikipedialinksRelationsCheck");
@@ -503,6 +509,59 @@ public class ArtistTest
 								"isi:dataincubatordiscogs"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDataIncubatorDiscogslinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) music artists and their Discogs links from the DB and
+	 * resolves them via a SPARQL query to cleaned up Discogs page URLs.
+	 * 
+	 */
+	@Test
+	public void checkMusicArtistsDiscogslinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("discogsURI");
+		valueNames.add("discogsURI");
+
+		// add The Beatles as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
+								DiscogsTranslator.ORIGINAL_BASE_URI,
+								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:discogs"),
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -642,7 +701,8 @@ public class ArtistTest
 		valueNames.add("dbtuneMyspaceURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -653,9 +713,9 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
-								"http://myspace.com/",
-								"http://dbtune.org/myspace/", "", "",
-								"is:info_service", "isi:dbtunemyspace"),
+								DBTuneMySpaceTranslator.ORIGINAL_BASE_URI,
+								DBTuneMySpaceTranslator.LINKED_DATA_BASE_URI,
+								"", "", "is:info_service", "isi:dbtunemyspace"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBTuneMyspacelinksReleationsCheck");
 
@@ -706,8 +766,9 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
-								"http://myspace.com/", "http://myspace.com/",
-								"", "", "is:info_service", "isi:myspace"),
+								MySpaceTranslator.ORIGINAL_BASE_URI,
+								MySpaceTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:myspace"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsMyspacelinksReleationsCheck");
 
@@ -758,8 +819,9 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'",
-								"http://youtube.com", "http://youtube.com", "",
-								"", "is:info_service", "isi:youtube"),
+								YouTubeTranslator.ORIGINAL_BASE_URI,
+								YouTubeTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:youtube"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsYouTubeChannelsReleationsCheck");
 
