@@ -1,5 +1,5 @@
 This is a set of test cases that are written as part of the LinkedBrainz project [6] to test 
-the Music Brainz NGS [1] to Music Ontology [2] (etc. [3]) mapping [11]*. See also [5].
+the Music Brainz NGS [1] to Music Ontology [2] (etc. [3]) mapping [11]*. See also [5]. The LinkedBrainz related D2RS Translator classes can be found at [18].
 
 Install instruction:
 
@@ -14,7 +14,7 @@ Running instructions:
 1. Please keep attention that some of the tests are heavy memory consuming. So you may run into Java heap space errors. 
 
 
-*) The proposed mapping is a D2RQ [14] mapping and can be executed with a slighty modified version [12,13] of the D2R server [15].
+*) The proposed mapping is a D2RQ [14,16,17] mapping and can be executed with a slighty modified version [12,13] of the D2R server [15].
 
 
 [1] http://wiki.musicbrainz.org/NGS
@@ -29,6 +29,9 @@ Running instructions:
 [10] http://maven.apache.org/
 [11] https://github.com/BarryNorton/D2R-LinkedBrainz-Fork/blob/master/musicbrainz_mapping.n3
 [12] https://github.com/BarryNorton/D2R-LinkedBrainz-Fork
-[13] https://github.com/zazi/D2RS-LinkedBrainz
+[13] https://github.com/zazi/D2RS-LinkedBrainz (maven project)
 [14] http://www4.wiwiss.fu-berlin.de/bizer/d2rq/
 [15] http://www4.wiwiss.fu-berlin.de/bizer/d2r-server/
+[16] https://github.com/cygri/d2rq
+[17] https://github.com/zazi/D2RQ-maven (maven project)
+[18] https://github.com/zazi/linkedbrainz-d2rs-translators (maven project)
