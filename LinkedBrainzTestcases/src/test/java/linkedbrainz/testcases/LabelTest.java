@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DBPediaTranslator;
 import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
+import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.d2rs.translator.MySpaceTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
@@ -346,6 +347,59 @@ public class LabelTest
 								"is:info_service", "isi:youtube"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsYouTubeChannelsReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) labels and their Discogs links from the DB and
+	 * resolves them via a SPARQL query to cleaned up Discogs page URLs.
+	 * 
+	 */
+	@Test
+	public void checkLabelsDiscogslinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("discogsURI");
+		valueNames.add("discogsURI");
+
+		// add Mute Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'5b987f87-25bc-4a2d-b3f1-3618795b8207'",
+								DiscogsTranslator.ORIGINAL_BASE_URI,
+								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:discogs"),
+						"e0b106a5-4add-4839-9e40-c192457e1bf8",
+						"LabelsDiscogslinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
