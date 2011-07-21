@@ -8,6 +8,7 @@ import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DBPediaTranslator;
 import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
+import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.d2rs.translator.MySpaceTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
@@ -824,6 +825,60 @@ public class ArtistTest
 								"is:info_service", "isi:youtube"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsYouTubeChannelsReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) artists and their IBDb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up IBDb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkArtistsIBDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("ibdbURI");
+		valueNames.add("ibdbURI");
+
+		// add Stephen Sondheim as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'5728c659-56b2-4e23-97d1-80e1f229c7d3'",
+								IBDBTranslator.ORIGINAL_BASE_URI,
+								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:ibdb"),
+						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
+						"ArtistsIBDblinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
