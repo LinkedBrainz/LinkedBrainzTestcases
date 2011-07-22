@@ -1354,6 +1354,70 @@ public class Utils
 				true, false, false, true, numberOfJoins, limit, proofID, false,
 				false, checkName);
 	}
+	
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded GUID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			Condition condition, String proofID, String checkName)
+	{
+		initCondition(condition);
+
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, true,
+				false, false, true, true, numberOfJoins, limit, proofID, true,
+				true, checkName);
+	}
 
 	/**
 	 * Fetches some instances from the DB and resolves the values of a specific
@@ -1795,6 +1859,15 @@ public class Utils
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 4:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS2 "
+						+ "INNER JOIN musicbrainz.CLASS3 ON CLASS3.CLASS_ROW3 = CLASS2.id "
+						+ "INNER JOIN musicbrainz.CLASS4 ON CLASS3.CLASS_ROW4 = CLASS4.id "
+						+ "INNER JOIN musicbrainz.CLASS5 ON CLASS4.CLASS_ROW5 = CLASS5.id "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW6 = CLASS1.id "
+						+ "WHERE CONDITION "
+						+ "musicbrainz.CLASS2.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			default:
 				break;

@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.d2rs.translator.DBPediaTranslator;
 import linkedbrainz.testcases.model.TestResult;
+import linkedbrainz.testcases.model.URICondition;
 
 import org.junit.Test;
 
@@ -106,6 +108,59 @@ public class WorkTest
 						classNames, "foaf:maker", valueNames, 3, 5,
 						"00955628-ace0-3873-9ef2-e0e66b203fc3",
 						"WorksArtistsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) works and their Wikipedia links from the DB and
+	 * resolves them via a SPARQL query to DBPedia resource URIs.
+	 * 
+	 */
+	@Test
+	public void checkWorksDBPedialinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("url");
+		classTables.add("l_url_work");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity1");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity0");
+
+		classNames.add("mo:MusicalWork");
+
+		valueNames.add("workURI");
+		valueNames.add("dbpediaURI");
+		valueNames.add("dbpediaURI");
+
+		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"owl:sameAs",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'",
+								DBPediaTranslator.ORIGINAL_BASE_URI,
+								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
+								"is:info_service", "isi:dbpedia"),
+						"aacb1ab0-c740-436a-a782-ed60026cf82b",
+						"WorksDBPedialinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
