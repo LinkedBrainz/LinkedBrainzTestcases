@@ -1080,7 +1080,7 @@ public class ArtistTest
 		valueNames.add("pureVolumeURI");
 		valueNames.add("pureVolumeURI");
 
-		// add De La Soul  proof
+		// add De La Soul proof
 		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
@@ -1098,6 +1098,60 @@ public class ArtistTest
 								"is:info_service", "isi:purevolume"),
 						"a8ebde98-7e91-46c7-992c-90039ba42017",
 						"ArtistsPureVolumelinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) artists and their VGMdb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up VGMdb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkArtistsVGMDBlinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("vgmdbURI");
+		valueNames.add("vgmdbURI");
+
+		// add Davy Spillane proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'",
+								PureVolumeTranslator.ORIGINAL_BASE_URI,
+								PureVolumeTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:vgmdb"),
+						"135b658e-4409-404f-a64e-f1f8e5c2866d",
+						"ArtistsVGMDBlinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
