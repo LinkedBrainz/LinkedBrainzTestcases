@@ -10,6 +10,7 @@ import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.d2rs.translator.IMDBTranslator;
+import linkedbrainz.d2rs.translator.IOBDBTranslator;
 import linkedbrainz.d2rs.translator.MySpaceTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
@@ -934,6 +935,60 @@ public class ArtistTest
 								"is:info_service", "isi:imdb"),
 						"1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
 						"ArtistsIMDblinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) artists and their IOBDb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up IOBDb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkArtistsIOBDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("iobdbURI");
+		valueNames.add("iobdbURI");
+
+		// add Stephen Sondheim proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'689043e3-2b9e-47ba-ad86-2742589e0743'",
+								IOBDBTranslator.ORIGINAL_BASE_URI,
+								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:iobdb"),
+						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
+						"ArtistsIOBDblinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
