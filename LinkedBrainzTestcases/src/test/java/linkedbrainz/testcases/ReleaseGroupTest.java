@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.d2rs.translator.IBDBTranslator;
+import linkedbrainz.d2rs.translator.IMDBTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -305,6 +306,60 @@ public class ReleaseGroupTest
 								"is:info_service", "isi:ibdb"),
 						"5d192683-17da-34c6-ad6b-6e37e8bd449d",
 						"ReleaseGroupsIBDblinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) release groups and their IMDb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up IMDb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsIMDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("imdbURI");
+		valueNames.add("imdbURI");
+
+		// add "Forrest Gump" (the sound track of Forrest Gump) as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'85b0a010-3237-47c7-8476-6fcefd4761af'",
+								IMDBTranslator.ORIGINAL_BASE_URI,
+								IMDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:imdb"),
+						"6d79d579-213d-3172-a860-1cd9bde0ecd5",
+						"ReleaseGroupsIMDblinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
