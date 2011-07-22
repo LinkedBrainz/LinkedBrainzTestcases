@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DBPediaTranslator;
+import linkedbrainz.d2rs.translator.IBDBTranslator;
+import linkedbrainz.d2rs.translator.IOBDBTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
@@ -223,6 +225,118 @@ public class WorkTest
 								"is:info_service", "isi:wikipedia"),
 						"aacb1ab0-c740-436a-a782-ed60026cf82b",
 						"WorksWikipedialinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) works and their IBDb links from the DB and resolves them
+	 * via a SPARQL query to IBDb page URLs.
+	 * 
+	 * ATTENTION: this test fails currently for some reason. The proof id should
+	 * deliver one result. However, the SPARQL query delivers no result. The
+	 * description of the related resource shows the correct mapping via the
+	 * SNORQL interface, see
+	 * http://localhost:2020/snorql/?describe=http%3A%2F%2F
+	 * localhost%3A2020%2Fwork%2Faa8b1e50-d265-301a-8bd9-3336ac4f779c%23_
+	 */
+	@Test
+	public void checkWorksIBDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("url");
+		classTables.add("l_url_work");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicalWork");
+
+		valueNames.add("workURI");
+		valueNames.add("ibdbURI");
+		valueNames.add("ibdbURI");
+
+		// add "West Side Story" (a musical) as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'",
+								IBDBTranslator.ORIGINAL_BASE_URI,
+								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:ibdb"),
+						"aa8b1e50-d265-301a-8bd9-3336ac4f779c",
+						"WorksIBDblinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) works and their IOBDb links from the DB and resolves them
+	 * via a SPARQL query to IOBDb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkWorksIOBDblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("url");
+		classTables.add("l_url_work");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicalWork");
+
+		valueNames.add("workURI");
+		valueNames.add("iobdbURI");
+		valueNames.add("iobdbURI");
+
+		// add "Sweeney Todd, The Demon Barber of Fleet Street" (a musical) as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'8845d830-fe9b-4ed6-a084-b1a3f193167a'",
+								IOBDBTranslator.ORIGINAL_BASE_URI,
+								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:iobdb"),
+						"8fce3022-510f-3e21-bab6-5304595e2c5b",
+						"WorksIOBDblinksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
