@@ -9,6 +9,7 @@ import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.d2rs.translator.IMDBTranslator;
 import linkedbrainz.d2rs.translator.IOBDBTranslator;
+import linkedbrainz.d2rs.translator.MusicMozTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -415,6 +416,60 @@ public class ReleaseGroupTest
 								"is:info_service", "isi:iobdb"),
 						"0e888dba-0b67-45a5-a1bf-58598ff90156",
 						"ReleaseGroupsIOBDblinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) release groups and their MusicMoz links from the DB and resolves
+	 * them via a SPARQL query to cleaned up MusicMoz page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleaseGroupsMusicMozlinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("url");
+		classTables.add("l_release_group_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:SignalGroup");
+
+		valueNames.add("releaseGroupURI");
+		valueNames.add("musicMozURI");
+		valueNames.add("musicMozURI");
+
+		// add "Use Your Illusion II " by Guns N' Roses as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'d111c58d-0d9b-4675-99c1-ddc5a8e01847'",
+								MusicMozTranslator.ORIGINAL_BASE_URI,
+								MusicMozTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:musicmoz"),
+						"617c9f00-9488-3a70-a994-9de312541617",
+						"ReleaseGroupsMusicMozlinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
