@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
+import linkedbrainz.d2rs.translator.VGMDBTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -240,6 +241,60 @@ public class ReleaseTest
 								"is:info_service", "isi:discogs"),
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleasesDiscogslinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) releases and their VGMdb links from the DB and resolves
+	 * them via a SPARQL query to cleaned up VGMdb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkReleasesVGMdblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("url");
+		classTables.add("l_release_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Release");
+
+		valueNames.add("releaseURI");
+		valueNames.add("vgmdbURI");
+		valueNames.add("vgmdbURI");
+
+		// add "THE END OF EVANGELION" (a soundtrack) as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'6af0134a-df6a-425a-96e2-895f9cd342ba'",
+								VGMDBTranslator.ORIGINAL_BASE_URI,
+								VGMDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:vgmdb"),
+						"2f6dfc7c-5ead-45aa-ae71-44e830de88da",
+						"ReleasesVGMDBlinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
