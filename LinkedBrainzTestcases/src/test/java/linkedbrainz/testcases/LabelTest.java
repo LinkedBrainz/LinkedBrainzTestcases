@@ -12,6 +12,7 @@ import linkedbrainz.d2rs.translator.MySpaceTranslator;
 import linkedbrainz.d2rs.translator.VGMDBTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -453,6 +454,56 @@ public class LabelTest
 								"is:info_service", "isi:vgmdb"),
 						"5f7aa61d-cf77-4c2a-9a43-41682508dccd",
 						"LabelsVGMDBlinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) labels and their homepages from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelsHomepagesRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("homepageURI");
+		valueNames.add("homepageURI");
+
+		// add Warp Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"foaf:homepage",
+						valueNames,
+						4,
+						5,
+						new Condition("link_type", "gid",
+								"'fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'"),
+						"46f0f4cd-8aab-4b33-b698-f459faf64190",
+						"LabelsHomepagesReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
