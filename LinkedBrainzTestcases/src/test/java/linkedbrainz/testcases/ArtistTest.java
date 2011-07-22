@@ -12,6 +12,7 @@ import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.d2rs.translator.IMDBTranslator;
 import linkedbrainz.d2rs.translator.IOBDBTranslator;
 import linkedbrainz.d2rs.translator.MySpaceTranslator;
+import linkedbrainz.d2rs.translator.PureVolumeTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
 import linkedbrainz.testcases.model.Condition;
@@ -1043,6 +1044,60 @@ public class ArtistTest
 								"is:info_service", "isi:musicmoz"),
 						"10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8",
 						"ArtistsMusicMozlinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) artists and their PureVolume links from the DB and resolves
+	 * them via a SPARQL query to cleaned up PureVolume page URLs.
+	 * 
+	 */
+	@Test
+	public void checkArtistsPureVolumelinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("pureVolumeURI");
+		valueNames.add("pureVolumeURI");
+
+		// add De La Soul  proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'b6f02157-a9d3-4f24-9057-0675b2dbc581'",
+								PureVolumeTranslator.ORIGINAL_BASE_URI,
+								PureVolumeTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:purevolume"),
+						"a8ebde98-7e91-46c7-992c-90039ba42017",
+						"ArtistsPureVolumelinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
