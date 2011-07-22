@@ -992,6 +992,60 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 (+1) artists and their MusicMoz links from the DB and resolves
+	 * them via a SPARQL query to cleaned up MusicMoz page URLs.
+	 * 
+	 */
+	@Test
+	public void checkArtistsMusicMozlinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("url");
+		classTables.add("l_artist_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("artistURI");
+		valueNames.add("musicMozURI");
+		valueNames.add("musicMozURI");
+
+		// add Massive Attack proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'ded9a80a-e6de-4831-880c-c78b9981b54b'",
+								IOBDBTranslator.ORIGINAL_BASE_URI,
+								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:musicmoz"),
+						"10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8",
+						"ArtistsMusicMozlinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{
