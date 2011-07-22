@@ -1354,7 +1354,7 @@ public class Utils
 				true, false, false, true, numberOfJoins, limit, proofID, false,
 				false, checkName);
 	}
-	
+
 	/**
 	 * Fetches some instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
@@ -1867,7 +1867,7 @@ public class Utils
 						+ "INNER JOIN musicbrainz.CLASS5 ON CLASS4.CLASS_ROW5 = CLASS5.id "
 						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW6 = CLASS1.id "
 						+ "WHERE CONDITION "
-						+ "musicbrainz.CLASS2.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+						+ "musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			default:
 				break;
@@ -2027,6 +2027,7 @@ public class Utils
 		String relationsKey = null;
 
 		int overallRelationsCounter = 0;
+		int currentRelationsCounter = 0;
 		int relationsCounter = 0;
 
 		try
@@ -2131,7 +2132,7 @@ public class Utils
 			for (int i = 0; i < relations.size(); i++)
 			{
 				sparqlRS = null;
-				relationsCounter = 0;
+				currentRelationsCounter = 0;
 				relationsKey = iter.next();
 
 				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
@@ -2260,7 +2261,7 @@ public class Utils
 
 									{
 										queryCounter++;
-										relationsCounter++;
+										currentRelationsCounter++;
 										break;
 									}
 								}
@@ -2275,7 +2276,7 @@ public class Utils
 
 									{
 										queryCounter++;
-										relationsCounter++;
+										currentRelationsCounter++;
 										break;
 									}
 								}
@@ -2287,14 +2288,28 @@ public class Utils
 											valueNames.get(2)).getString()))
 							{
 								queryCounter++;
-								relationsCounter++;
+								currentRelationsCounter++;
 							}
 						}
+
+						relationsCounter++;
 					}
 
-					if (relationsCounter != relations.get(relationsKey).size())
+					if (currentRelationsCounter != relations.get(relationsKey)
+							.size())
 					{
-						return new TestResult(false, sparqlFailMsg);
+						return new TestResult(
+								false,
+								sparqlFailMsg
+										+ ".\n The comparision of the values for the key \""
+										+ relationsKey
+										+ "\" between the SQL query and the SPARQL are showing a difference.\n"
+										+ " Number of values from the SQL query result = "
+										+ relations.get(relationsKey).size()
+										+ ".\n Number of the values from the SPARQL query result: "
+										+ currentRelationsCounter
+										+ ".\n Relations counter of the SPARQL result set: "
+										+ relationsCounter + ".");
 					}
 				} catch (Exception e)
 				{
