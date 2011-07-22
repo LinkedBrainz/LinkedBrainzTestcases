@@ -1,6 +1,6 @@
 package linkedbrainz.testcases;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
@@ -9,9 +9,9 @@ import linkedbrainz.d2rs.translator.DBPediaTranslator;
 import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
 import linkedbrainz.d2rs.translator.DiscogsTranslator;
 import linkedbrainz.d2rs.translator.MySpaceTranslator;
+import linkedbrainz.d2rs.translator.VGMDBTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.d2rs.translator.YouTubeTranslator;
-import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -400,6 +400,59 @@ public class LabelTest
 								"is:info_service", "isi:discogs"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsDiscogslinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) labels and their VGMdb links from the DB and
+	 * resolves them via a SPARQL query to cleaned up VGMdb page URLs.
+	 * 
+	 */
+	@Test
+	public void checkLabelsVGMdblinksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("url");
+		classTables.add("l_label_url");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("url");
+		classTableRows.add("entity0");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity1");
+
+		classNames.add("mo:Label");
+
+		valueNames.add("labelURI");
+		valueNames.add("vgmdbURI");
+		valueNames.add("vgmdbURI");
+
+		// add TOY'S FACTORY as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"rdfs:seeAlso",
+						valueNames,
+						4,
+						5,
+						new URICondition("link_type", "gid",
+								"'8a2d3e55-d291-4b99-87a0-c59c6b121762'",
+								VGMDBTranslator.ORIGINAL_BASE_URI,
+								VGMDBTranslator.ORIGINAL_BASE_URI, "", "",
+								"is:info_service", "isi:vgmdb"),
+						"5f7aa61d-cf77-4c2a-9a43-41682508dccd",
+						"LabelsVGMDBlinksReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
