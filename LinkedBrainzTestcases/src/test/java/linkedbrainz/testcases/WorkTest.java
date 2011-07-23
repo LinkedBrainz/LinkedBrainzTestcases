@@ -144,10 +144,10 @@ public class WorkTest
 
 		classTableRows.add("gid");
 		classTableRows.add("url");
-		classTableRows.add("entity0");
+		classTableRows.add("entity1");
 		classTableRows.add("link");
 		classTableRows.add("link_type");
-		classTableRows.add("entity1");
+		classTableRows.add("entity0");
 
 		classNames.add("mo:MusicalWork");
 
@@ -157,7 +157,7 @@ public class WorkTest
 
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
 						classNames,
@@ -197,10 +197,10 @@ public class WorkTest
 
 		classTableRows.add("gid");
 		classTableRows.add("url");
-		classTableRows.add("entity0");
+		classTableRows.add("entity1");
 		classTableRows.add("link");
 		classTableRows.add("link_type");
-		classTableRows.add("entity1");
+		classTableRows.add("entity0");
 
 		classNames.add("mo:MusicalWork");
 
@@ -210,7 +210,7 @@ public class WorkTest
 
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
 						classNames,
@@ -256,10 +256,10 @@ public class WorkTest
 
 		classTableRows.add("gid");
 		classTableRows.add("url");
-		classTableRows.add("entity0");
+		classTableRows.add("entity1");
 		classTableRows.add("link");
 		classTableRows.add("link_type");
-		classTableRows.add("entity1");
+		classTableRows.add("entity0");
 
 		classNames.add("mo:MusicalWork");
 
@@ -269,7 +269,7 @@ public class WorkTest
 
 		// add "West Side Story" (a musical) as proof GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
 						classNames,
@@ -309,10 +309,10 @@ public class WorkTest
 
 		classTableRows.add("gid");
 		classTableRows.add("url");
-		classTableRows.add("entity0");
+		classTableRows.add("entity1");
 		classTableRows.add("link");
 		classTableRows.add("link_type");
-		classTableRows.add("entity1");
+		classTableRows.add("entity0");
 
 		classNames.add("mo:MusicalWork");
 
@@ -322,7 +322,7 @@ public class WorkTest
 
 		// add "Sweeney Todd, The Demon Barber of Fleet Street" (a musical) as proof GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
 						classNames,
