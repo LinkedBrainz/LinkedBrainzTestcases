@@ -1228,7 +1228,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, true, numberOfJoins, limit, proofID, false,
-				false, checkName);
+				false, null, checkName);
 	}
 
 	/**
@@ -1285,12 +1285,12 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			String proofID, String rightSideFragmentId, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, false, true, numberOfJoins, limit, proofID, true,
-				false, checkName);
+				false, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1352,7 +1352,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, false,
 				true, false, false, true, numberOfJoins, limit, proofID, false,
-				false, checkName);
+				false, null, checkName);
 	}
 
 	/**
@@ -1416,7 +1416,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, true, true, numberOfJoins, limit, proofID, true,
-				true, checkName);
+				true, null, checkName);
 	}
 
 	/**
@@ -1477,7 +1477,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, checkName);
+				false, false, null, checkName);
 	}
 
 	/**
@@ -1526,6 +1526,9 @@ public class Utils
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
 	 *            should usually deliver an appropriated result.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1534,12 +1537,12 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			String proofID, String rightSideFragmentId, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, false, false, numberOfJoins, limit, proofID,
-				true, false, checkName);
+				true, false, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1601,7 +1604,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, false,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, checkName);
+				false, false, null, checkName);
 	}
 
 	/**
@@ -1665,7 +1668,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, true, false, numberOfJoins, limit, proofID, true,
-				true, checkName);
+				true, null, checkName);
 	}
 
 	/**
@@ -1728,6 +1731,9 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            indicates whether the values for the comparison are RDF
 	 *            resources or RDF literals
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1739,7 +1745,7 @@ public class Utils
 			boolean rightSideGUID, boolean leftSideURI, boolean rightSideURI,
 			boolean inverseProperty, int numberOfJoins, int limit,
 			String proofID, boolean comparisonOnResource,
-			boolean withCondition, String checkName)
+			boolean withCondition, String rightSideFragmentId, String checkName)
 	{
 		boolean URIComparison = false;
 		boolean URIreplacement = false;
@@ -1952,7 +1958,7 @@ public class Utils
 
 		return checkURIProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
-				URIComparison, URIreplacement, checkName);
+				URIComparison, URIreplacement, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1999,6 +2005,9 @@ public class Utils
 	 *            a hardcoded ID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This id should
 	 *            usually deliver an appropriated result.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -2007,7 +2016,8 @@ public class Utils
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, int limit,
 			String proofID, boolean comparisonOnResource,
-			boolean URIComparison, boolean URIreplacement, String checkName)
+			boolean URIComparison, boolean URIreplacement,
+			String rightSideFragmentId, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -2267,12 +2277,20 @@ public class Utils
 								}
 							} else
 							{
+								if (rightSideFragmentId == null)
+								{
+									// init right side fragment id with a
+									// default value
+									rightSideFragmentId = "#_";
+								}
+
 								// check the URI against the id it should
 								// contain
 								for (int k = 0; k < resources.size(); k++)
 								{
 									if (resourceURI.contains("/"
-											+ resources.get(k) + "#_"))
+											+ resources.get(k)
+											+ rightSideFragmentId))
 
 									{
 										queryCounter++;

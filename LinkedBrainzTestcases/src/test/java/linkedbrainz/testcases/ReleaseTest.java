@@ -184,7 +184,7 @@ public class ReleaseTest
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
 						classTableRows, classNames, "mo:record", valueNames, 2,
-						1, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						1, "44b7cab1-0ce1-404e-9089-b458eb3fa530", "#_",
 						"ReleasesTracklistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

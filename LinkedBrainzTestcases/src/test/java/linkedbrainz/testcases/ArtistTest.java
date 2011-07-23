@@ -334,7 +334,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
 						classTableRows, classNames, "foaf:made", valueNames, 3,
-						1, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+						1, "c0b2500e-0cef-4130-869d-732b23ed9df5", "#_",
 						"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
