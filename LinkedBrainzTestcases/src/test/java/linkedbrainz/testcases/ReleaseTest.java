@@ -85,7 +85,7 @@ public class ReleaseTest
 		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames, 3, 5,
+						classNames, "foaf:maker", valueNames, null, 3, 5,
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleasesArtistsRelationsCheck");
 
@@ -143,7 +143,7 @@ public class ReleaseTest
 		// GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:label",
-				valueNames, 2, 5, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+				valueNames, null, 2, 5, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
 				"ReleasesLabelsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

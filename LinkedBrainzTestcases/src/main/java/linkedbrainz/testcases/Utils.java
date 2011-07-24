@@ -1222,13 +1222,13 @@ public class Utils
 	public TestResult checkURIInversePropertyViaGUIDs(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
+			ArrayList<String> valueNames, String rightSideFragmentId, int numberOfJoins, int limit,
 			String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, true, numberOfJoins, limit, proofID, false,
-				false, null, checkName);
+				false, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1471,13 +1471,13 @@ public class Utils
 	 */
 	public TestResult checkURIPropertyViaGUIDs(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
-			String propertyName, ArrayList<String> valueNames,
+			String propertyName, ArrayList<String> valueNames, String rightSideFragmentId,
 			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, null, checkName);
+				false, false, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1755,8 +1755,9 @@ public class Utils
 		{
 			initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
-			// left side = GUID + right side = GUID
-			if (rightSideGUID && !rightSideURI)
+			// left side = GUID + right side = GUID +
+			// GUID property seems to be available
+			if (rightSideGUID && !rightSideURI && rightSideFragmentId == null)
 			{
 				initSparqlQuery = Utils.DEFAULT_PREFIXES
 						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -1768,7 +1769,12 @@ public class Utils
 			} else
 			{
 				// left side = GUID + right side = ID
-				if (!rightSideGUID && !rightSideURI)
+				// or
+				// left side = GUID + right side = GUID +
+				// GUID property doesn't seem to be available, check has to be
+				// done via extracting the GUID from the URI
+				if ((!rightSideGUID && !rightSideURI)
+						|| (rightSideGUID && !rightSideURI && rightSideFragmentId != null))
 				{
 					// VALUE_NAME2 == VALUE_NAME3 in this case
 					initSparqlQuery = Utils.DEFAULT_PREFIXES

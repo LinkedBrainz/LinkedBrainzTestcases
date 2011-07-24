@@ -98,7 +98,7 @@ public class RecordingTest
 		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames, 3, 5,
+						classNames, "foaf:maker", valueNames, null, 3, 5,
 						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingsArtistsRelationsCheck");
 

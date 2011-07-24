@@ -108,7 +108,7 @@ public class WorkTest
 		// che fate all'amore" (Zerlina, Coro)" as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDs(classTables, classTableRows,
-						classNames, "foaf:maker", valueNames, 3, 5,
+						classNames, "foaf:maker", valueNames, null, 3, 5,
 						"00955628-ace0-3873-9ef2-e0e66b203fc3",
 						"WorksArtistsRelationsCheck");
 
