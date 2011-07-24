@@ -137,8 +137,8 @@ public class RecordingTest
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
 						classTableRows, classNames, "mo:published_as",
-						valueNames, 1, 5,
-						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6", "#_",
+						valueNames, "#_", 1, 5,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

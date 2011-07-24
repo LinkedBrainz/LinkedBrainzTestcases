@@ -333,8 +333,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
-						classTableRows, classNames, "foaf:made", valueNames, 3,
-						1, "c0b2500e-0cef-4130-869d-732b23ed9df5", "#_",
+						classTableRows, classNames, "foaf:made", valueNames,
+						"#_", 3, 1, "c0b2500e-0cef-4130-869d-732b23ed9df5",
 						"ArtistsTracksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -831,10 +831,10 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) artists and their IBDb links from the DB and resolves
-	 * them via a SPARQL query to cleaned up IBDb page URLs.
+	 * Fetches 5 (+1) artists and their IBDb links from the DB and resolves them
+	 * via a SPARQL query to cleaned up IBDb page URLs.
 	 * 
 	 */
 	@Test
@@ -885,10 +885,10 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) artists and their IMDb links from the DB and resolves
-	 * them via a SPARQL query to cleaned up IMDb page URLs.
+	 * Fetches 5 (+1) artists and their IMDb links from the DB and resolves them
+	 * via a SPARQL query to cleaned up IMDb page URLs.
 	 * 
 	 */
 	@Test
@@ -939,7 +939,7 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) artists and their IOBDb links from the DB and resolves
 	 * them via a SPARQL query to cleaned up IOBDb page URLs.
@@ -993,7 +993,7 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) artists and their MusicMoz links from the DB and resolves
 	 * them via a SPARQL query to cleaned up MusicMoz page URLs.
@@ -1047,10 +1047,10 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) artists and their PureVolume links from the DB and resolves
-	 * them via a SPARQL query to cleaned up PureVolume page URLs.
+	 * Fetches 5 (+1) artists and their PureVolume links from the DB and
+	 * resolves them via a SPARQL query to cleaned up PureVolume page URLs.
 	 * 
 	 */
 	@Test
@@ -1101,7 +1101,7 @@ public class ArtistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) artists and their VGMdb links from the DB and resolves
 	 * them via a SPARQL query to cleaned up VGMdb page URLs.

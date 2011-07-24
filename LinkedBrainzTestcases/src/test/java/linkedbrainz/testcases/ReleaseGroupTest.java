@@ -149,7 +149,7 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) release groups and their Wikipedia links from the DB and
 	 * resolves them via a SPARQL query to cleaned up Wikipedia page URLs.
@@ -203,10 +203,10 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) release groups and their Discogs links from the DB and resolves
-	 * them via a SPARQL query to cleaned up Discogs page URLs.
+	 * Fetches 5 (+1) release groups and their Discogs links from the DB and
+	 * resolves them via a SPARQL query to cleaned up Discogs page URLs.
 	 * 
 	 */
 	@Test
@@ -257,10 +257,10 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) release groups and their IBDb links from the DB and resolves
-	 * them via a SPARQL query to cleaned up IBDb page URLs.
+	 * Fetches 5 (+1) release groups and their IBDb links from the DB and
+	 * resolves them via a SPARQL query to cleaned up IBDb page URLs.
 	 * 
 	 */
 	@Test
@@ -311,10 +311,10 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) release groups and their IMDb links from the DB and resolves
-	 * them via a SPARQL query to cleaned up IMDb page URLs.
+	 * Fetches 5 (+1) release groups and their IMDb links from the DB and
+	 * resolves them via a SPARQL query to cleaned up IMDb page URLs.
 	 * 
 	 */
 	@Test
@@ -365,10 +365,10 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) release groups and their IOBDb links from the DB and resolves
-	 * them via a SPARQL query to cleaned up IOBDb page URLs.
+	 * Fetches 5 (+1) release groups and their IOBDb links from the DB and
+	 * resolves them via a SPARQL query to cleaned up IOBDb page URLs.
 	 * 
 	 */
 	@Test
@@ -419,10 +419,10 @@ public class ReleaseGroupTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) release groups and their MusicMoz links from the DB and resolves
-	 * them via a SPARQL query to cleaned up MusicMoz page URLs.
+	 * Fetches 5 (+1) release groups and their MusicMoz links from the DB and
+	 * resolves them via a SPARQL query to cleaned up MusicMoz page URLs.
 	 * 
 	 */
 	@Test

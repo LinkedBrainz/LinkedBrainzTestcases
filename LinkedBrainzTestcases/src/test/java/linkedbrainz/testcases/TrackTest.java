@@ -26,7 +26,7 @@ public class TrackTest
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
-	 *//*
+	 */
 	@Test
 	public void checkTracks()
 	{
@@ -37,13 +37,13 @@ public class TrackTest
 
 	}
 
-	*//**
+	/**
 	 * Fetches 1 track from the DB and resolves its names against the result of
 	 * the related SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
-	 *//*
+	 */
 	@Test
 	public void checkTrackNames()
 	{
@@ -55,14 +55,14 @@ public class TrackTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
-	*//**
+	/**
 	 * Fetches 1 (+1) track(s) and their music artists from the DB and resolves
 	 * them via a SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit causes Java heap
 	 * space error ATM :\
 	 * 
-	 *//*
+	 */
 	@Test
 	public void checkTracksMusicArtistsRelations()
 	{
@@ -89,18 +89,19 @@ public class TrackTest
 		valueNames.add("artistURI");
 		valueNames.add("artistGUID");
 
-		// add ""Five Man Army" from Massive Attack as proof id
+		// add ""Five Man Army" from Massive Attack as proof id TestResult
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
 						classTables, classTableRows, classNames, "foaf:maker",
-						valueNames, 3, 1, "11", "TracksArtistsRelationsCheck");
+						valueNames, "#_", 3, 1, "11",
+						"TracksArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
-	}*/
-	
+	}
+
 	/**
-	 * Fetches 1 (+1) track(s) and its recordings from the DB and
-	 * resolves them via a SPARQL query.
+	 * Fetches 1 (+1) track(s) and its recordings from the DB and resolves them
+	 * via a SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit causes Java heap
 	 * space error ATM :\
@@ -129,10 +130,11 @@ public class TrackTest
 		valueNames.add("recordingGUID");
 
 		// add ""Five Man Army" from Massive Attack as proof id
-		TestResult testResult = Utils.getInstance().checkURIPropertyViaIDOnTheLeftAndGUIDOnTheRight(
-				classTables, classTableRows, classNames, "mo:publication_of",
-				valueNames, 1, 1, "11",
-				"TracksRecordingsRelationsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkURIPropertyViaIDOnTheLeftAndGUIDOnTheRight(classTables,
+						classTableRows, classNames, "mo:publication_of",
+						valueNames, "#_", 1, 1, "11",
+						"TracksRecordingsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

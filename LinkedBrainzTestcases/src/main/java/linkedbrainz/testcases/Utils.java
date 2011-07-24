@@ -1207,6 +1207,9 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource
 	 *            GUIDs of the right side of the relation.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1222,13 +1225,13 @@ public class Utils
 	public TestResult checkURIInversePropertyViaGUIDs(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, String rightSideFragmentId, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			ArrayList<String> valueNames, String rightSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, true, numberOfJoins, limit, proofID, false,
-				false, rightSideFragmentId, checkName);
+				false, null, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1269,6 +1272,9 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource ids
 	 *            of the right side of the relation.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1284,13 +1290,13 @@ public class Utils
 	public TestResult checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String rightSideFragmentId, String checkName)
+			ArrayList<String> valueNames, String rightSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, false, true, numberOfJoins, limit, proofID, true,
-				false, rightSideFragmentId, checkName);
+				false, null, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1331,6 +1337,8 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource
 	 *            GUIDs of the right side of the relation.
+	 * @param leftSideFragmentId
+	 *            the fragment id of the URI of the left side of the relation
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1346,13 +1354,13 @@ public class Utils
 	public TestResult checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			ArrayList<String> valueNames, String leftSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, false,
 				true, false, false, true, numberOfJoins, limit, proofID, false,
-				false, null, checkName);
+				false, leftSideFragmentId, null, checkName);
 	}
 
 	/**
@@ -1416,7 +1424,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, true, true, numberOfJoins, limit, proofID, true,
-				true, null, checkName);
+				true, null, null, checkName);
 	}
 
 	/**
@@ -1457,6 +1465,9 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource
 	 *            GUIDs of the right side of the relation.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1471,13 +1482,14 @@ public class Utils
 	 */
 	public TestResult checkURIPropertyViaGUIDs(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
-			String propertyName, ArrayList<String> valueNames, String rightSideFragmentId,
-			int numberOfJoins, int limit, String proofID, String checkName)
+			String propertyName, ArrayList<String> valueNames,
+			String rightSideFragmentId, int numberOfJoins, int limit,
+			String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, rightSideFragmentId, checkName);
+				false, false, null, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1518,6 +1530,9 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource ids
 	 *            of the right side of the relation.
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1526,9 +1541,6 @@ public class Utils
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
 	 *            should usually deliver an appropriated result.
-	 * @param rightSideFragmentId
-	 *            the fragment id of the URI of the right side of the relation
-	 *            that includes the instance id as well
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1536,13 +1548,13 @@ public class Utils
 	public TestResult checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String rightSideFragmentId, String checkName)
+			ArrayList<String> valueNames, String rightSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, false, false, numberOfJoins, limit, proofID,
-				true, false, rightSideFragmentId, checkName);
+				true, false, null, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1583,6 +1595,8 @@ public class Utils
 	 *            the value name for resources of the right side of the
 	 *            relation. The third one is the value name for the resource ids
 	 *            of the right side of the relation.
+	 * @param leftSideFragmentId
+	 *            the fragment id of the URI of the left side of the relation
 	 * @param numberOfJoins
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
@@ -1598,13 +1612,13 @@ public class Utils
 	public TestResult checkURIPropertyViaIDOnTheLeftAndGUIDOnTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			ArrayList<String> classNames, String propertyName,
-			ArrayList<String> valueNames, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			ArrayList<String> valueNames, String leftSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, false,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, null, checkName);
+				false, false, leftSideFragmentId, null, checkName);
 	}
 
 	/**
@@ -1668,7 +1682,7 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				false, false, true, false, numberOfJoins, limit, proofID, true,
-				true, null, checkName);
+				true, null, null, checkName);
 	}
 
 	/**
@@ -1731,6 +1745,8 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            indicates whether the values for the comparison are RDF
 	 *            resources or RDF literals
+	 * @param leftSideFragmentId
+	 *            the fragment id of the URI of the left side of the relation
 	 * @param rightSideFragmentId
 	 *            the fragment id of the URI of the right side of the relation
 	 *            that includes the instance id as well
@@ -1745,7 +1761,8 @@ public class Utils
 			boolean rightSideGUID, boolean leftSideURI, boolean rightSideURI,
 			boolean inverseProperty, int numberOfJoins, int limit,
 			String proofID, boolean comparisonOnResource,
-			boolean withCondition, String rightSideFragmentId, String checkName)
+			boolean withCondition, String leftSideFragmentId,
+			String rightSideFragmentId, String checkName)
 	{
 		boolean URIComparison = false;
 		boolean URIreplacement = false;
@@ -1805,6 +1822,7 @@ public class Utils
 		{
 			initCandidatesSqlQuery(classTables.get(0), "id", limit);
 
+			// TODO: parametrise leftsideFragmentId
 			// left side = ID + right side = GUID
 			if (rightSideGUID && !rightSideURI)
 			{
@@ -1814,7 +1832,7 @@ public class Utils
 						+ "PROPERTY_NAME ?VALUE_NAME2 . "
 						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
 						+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
-						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDER#_\") } ";
+						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
 			}
 			// left side = ID + right side = ID
 			else if (!rightSideGUID && !rightSideURI)
@@ -1960,6 +1978,13 @@ public class Utils
 
 			initSparqlQuery2 = initSparqlQuery.replace("CONDITION", "");
 			initSparqlQuery = initSparqlQuery2;
+		}
+
+		if (leftSideFragmentId != null)
+		{
+			String initSparqlQuery3 = initSparqlQuery.replace(
+					"LEFT_SIDE_FRAGMENT_ID", leftSideFragmentId);
+			initSparqlQuery = initSparqlQuery3;
 		}
 
 		return checkURIProperty(classTables, classTableRows, classNames,
