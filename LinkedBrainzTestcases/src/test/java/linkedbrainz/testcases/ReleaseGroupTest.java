@@ -45,11 +45,15 @@ public class ReleaseGroupTest
 	@Test
 	public void checkReleaseGroupNames()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("release_group");
+		classTables.add("release_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("release_group",
-						"release_name", "name", "name", "mo:SignalGroup",
-						"dct:title", "title", 5, false,
-						"ReleaseGroupNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
+						"name", "mo:SignalGroup", "dct:title", "title", 1, 5,
+						false, "ReleaseGroupNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

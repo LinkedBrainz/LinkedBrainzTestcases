@@ -39,10 +39,15 @@ public class RecordingTest
 	@Test
 	public void checkRecordingNames()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("recording");
+		classTables.add("track_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("recording", "track_name",
-						"name", "name", "mo:Signal", "dct:title", "title", 5,
-						false, "RecordingNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
+						"name", "mo:Signal", "dct:title", "title", 1, 5, false,
+						"RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -55,10 +60,15 @@ public class RecordingTest
 	@Test
 	public void checkRecordingISRCs()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("isrc");
+		classTables.add("recording");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheRight("isrc", "recording",
-						"recording", "isrc", "mo:Signal", "mo:isrc", "ISRC", 5,
-						false, "RecordingISRCsCheck");
+				.checkSimplePropertyViaGUIDOnTheRight(classTables, "recording",
+						"isrc", "mo:Signal", "mo:isrc", "ISRC", 5, false,
+						"RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -135,9 +145,9 @@ public class RecordingTest
 		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
 		// GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
-						classTableRows, classNames, "mo:published_as",
-						valueNames, "#_", 1, 5,
+				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(
+						classTables, classTableRows, classNames,
+						"mo:published_as", valueNames, "#_", 1, 5,
 						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingsTracksRelationsCheck");
 

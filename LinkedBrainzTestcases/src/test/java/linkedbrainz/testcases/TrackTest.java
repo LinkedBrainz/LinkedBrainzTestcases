@@ -48,9 +48,14 @@ public class TrackTest
 	@Test
 	public void checkTrackNames()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("track");
+		classTables.add("track_name");
+		
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaIDOnTheLeft("track", "track_name",
-						"name", "name", "mo:Track", "dct:title", "title", "_",
+				.checkSimplePropertyViaIDOnTheLeft(classTables,
+						"name", "name", "mo:Track", "dct:title", "title", "#_",
 						1, false, "TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

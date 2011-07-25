@@ -46,10 +46,15 @@ public class LabelTest
 	@Test
 	public void checkLabelNames()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("label_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
-						"name", "name", "mo:Label", "foaf:name", "name", 5,
-						false, "LabelNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
+						"name", "mo:Label", "foaf:name", "name", 1, 5, false,
+						"LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -62,10 +67,15 @@ public class LabelTest
 	@Test
 	public void checkLabelSortLabels()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("labe_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("label", "label_name",
-						"sort_name", "name", "mo:Label", "ov:sortLabel",
-						"sortName", 5, false, "LabelSortLabelsCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "sort_name",
+						"name", "mo:Label", "ov:sortLabel", "sortName", 1, 5,
+						false, "LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -351,10 +361,10 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels and their Discogs links from the DB and
-	 * resolves them via a SPARQL query to cleaned up Discogs page URLs.
+	 * Fetches 5 (+1) labels and their Discogs links from the DB and resolves
+	 * them via a SPARQL query to cleaned up Discogs page URLs.
 	 * 
 	 */
 	@Test
@@ -404,10 +414,10 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels and their VGMdb links from the DB and
-	 * resolves them via a SPARQL query to cleaned up VGMdb page URLs.
+	 * Fetches 5 (+1) labels and their VGMdb links from the DB and resolves them
+	 * via a SPARQL query to cleaned up VGMdb page URLs.
 	 * 
 	 */
 	@Test
@@ -457,10 +467,10 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 5 (+1) labels and their homepages from the DB and resolves
-	 * them via a SPARQL query.
+	 * Fetches 5 (+1) labels and their homepages from the DB and resolves them
+	 * via a SPARQL query.
 	 * 
 	 */
 	@Test

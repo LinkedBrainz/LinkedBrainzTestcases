@@ -2,6 +2,8 @@ package linkedbrainz.testcases;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import junit.framework.JUnit4TestAdapter;
@@ -29,6 +31,27 @@ public class TracklistTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
+	}
+	
+	/**
+	 * Fetches 5 track lists from the DB and resolves their track counts against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkTrackListsTrackCount()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		
+		classTables.add("tracklist");
+		
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						"country", "iso_code", "mo:MusicArtist",
+						"foaf:based_near", "country", 1, 5, true,
+						"ArtistsCountryCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
 	public static junit.framework.Test suite()

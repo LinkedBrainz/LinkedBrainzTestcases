@@ -79,10 +79,15 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistNames()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("artist_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
-						"name", "name", "mo:MusicArtist", "foaf:name", "name",
-						5, false, "ArtistNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
+						"name", "mo:MusicArtist", "foaf:name", "name", 1, 5,
+						false, "ArtistNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -95,10 +100,15 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistSortLabels()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("artist_name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("artist", "artist_name",
-						"sort_name", "name", "mo:MusicArtist", "ov:sortLabel",
-						"sortName", 5, false, "ArtistSortLabelsCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "sort_name",
+						"name", "mo:MusicArtist", "ov:sortLabel", "sortName",
+						1, 5, false, "ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -127,10 +137,15 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistGender()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("gender");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("artist", "gender",
-						"gender", "name", "mo:MusicArtist", "foaf:gender",
-						"gender", 5, false, "ArtistGenderCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "gender",
+						"name", "mo:MusicArtist", "foaf:gender", "gender", 1,
+						5, false, "ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -352,11 +367,15 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistCountry()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("country");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft("artist", "country",
-						"country", "iso_code", "mo:MusicArtist",
-						"foaf:based_near", "country", 5, true,
-						"ArtistsCountryCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "country",
+						"iso_code", "mo:MusicArtist", "foaf:based_near",
+						"country", 1, 5, true, "ArtistsCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
