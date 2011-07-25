@@ -410,8 +410,8 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkClassViaGUIDOrIDAndFragmentId(String table,
-			String row, String className, String fragmentId,
-			int limit, String checkName)
+			String row, String className, String fragmentId, int limit,
+			String checkName)
 	{
 		String initSqlQuery2 = "SELECT ID_ROW FROM musicbrainz.TABLE LIMIT LIMIT_NUMBER";
 		String initSqlQuery3 = initSqlQuery2.replace("ID_ROW", row);
@@ -1988,6 +1988,7 @@ public class Utils
 		String initSqlQuery2 = null;
 		String initSparqlQuery2 = null;
 
+		// init conditions where needed
 		if (withCondition)
 		{
 			initSqlQuery2 = initSqlQuery
@@ -2015,11 +2016,19 @@ public class Utils
 			initSparqlQuery = initSparqlQuery2;
 		}
 
+		// init left-side-fragment-id where needed
 		if (leftSideFragmentId != null)
 		{
 			String initSparqlQuery3 = initSparqlQuery.replace(
 					"LEFT_SIDE_FRAGMENT_ID", leftSideFragmentId);
 			initSparqlQuery = initSparqlQuery3;
+		}
+
+		// if a right-side-fragment-id is set, then it must be a comparision on
+		// resource
+		if (rightSideFragmentId != null)
+		{
+			comparisonOnResource = true;
 		}
 
 		return checkURIProperty(classTables, classTableRows, classNames,

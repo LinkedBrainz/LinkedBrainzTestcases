@@ -33,7 +33,7 @@ public class WorkTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 compositions from the DB and resolves it via a SPARQL query.
 	 * 
@@ -43,7 +43,8 @@ public class WorkTest
 	{
 		TestResult testResult = Utils.getInstance()
 				.checkClassViaGUIDOrIDAndFragmentId("work", "gid",
-						"mo:Composition", "#composition", 5, "CompositionsCheck");
+						"mo:Composition", "#composition", 5,
+						"CompositionsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
@@ -302,7 +303,7 @@ public class WorkTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) works and their IOBDb links from the DB and resolves them
 	 * via a SPARQL query to IOBDb page URLs.
@@ -335,7 +336,8 @@ public class WorkTest
 		valueNames.add("iobdbURI");
 		valueNames.add("iobdbURI");
 
-		// add "Sweeney Todd, The Demon Barber of Fleet Street" (a musical) as proof GUID
+		// add "Sweeney Todd, The Demon Barber of Fleet Street" (a musical) as
+		// proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
@@ -355,7 +357,7 @@ public class WorkTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) compositions and musical works from the DB (currently they
 	 * are derived from the same table) and resolves them via a SPARQL query.
@@ -387,6 +389,41 @@ public class WorkTest
 				valueNames, "#composition", null, 0, 5,
 				"aacb1ab0-c740-436a-a782-ed60026cf82b",
 				"CompositionsWorksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) musical works and compositions from the DB (currently they
+	 * are derived from the same table) and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkWorksCompositionsRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("composition");
+
+		classTableRows.add("gid");
+
+		classNames.add("mo:MusicalWork");
+		classNames.add("mo:Composition");
+
+		valueNames.add("workURI");
+		valueNames.add("compositionURI");
+		valueNames.add("compositionURI");
+
+		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "mo:composed_in",
+				valueNames, null, "#composition", 0, 5,
+				"aacb1ab0-c740-436a-a782-ed60026cf82b",
+				"WorksCompositionsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
