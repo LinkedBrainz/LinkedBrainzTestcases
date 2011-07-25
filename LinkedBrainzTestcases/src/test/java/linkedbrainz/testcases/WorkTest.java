@@ -96,7 +96,7 @@ public class WorkTest
 		classTableRows.add("artist_credit");
 		classTableRows.add("artist");
 
-		classNames.add("mo:MusicalWork");
+		classNames.add("mo:Composition");
 		classNames.add("mo:MusicArtist");
 
 		valueNames.add("workURI");
@@ -337,6 +337,41 @@ public class WorkTest
 								"is:info_service", "isi:iobdb"),
 						"8fce3022-510f-3e21-bab6-5304595e2c5b",
 						"WorksIOBDblinksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 (+1) compositions and musical works from the DB (currently they
+	 * are derived from the same table) and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkCompositionsWorksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("composition");
+
+		classTableRows.add("gid");
+
+		classNames.add("mo:Composition");
+		classNames.add("mo:MusicalWork");
+
+		valueNames.add("compositionURI");
+		valueNames.add("workURI");
+		valueNames.add("workGUID");
+
+		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "mo:produced_work",
+				valueNames, "#composition", null, 0, 5,
+				"aacb1ab0-c740-436a-a782-ed60026cf82b",
+				"CompositionsWorksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
