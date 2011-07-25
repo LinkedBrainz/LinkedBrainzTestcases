@@ -33,6 +33,21 @@ public class WorkTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 compositions from the DB and resolves it via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkCompositions()
+	{
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDOrIDAndFragmentId("work", "gid",
+						"mo:Composition", "#composition", 5, "CompositionsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+
+	}
 
 	/**
 	 * Fetches 5 works from the DB and resolves their names against the result
