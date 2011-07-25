@@ -57,14 +57,18 @@ public class ReleaseTest
 	public void checkReleaseNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("release");
 		classTables.add("release_name");
 
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
-						"name", "mo:Release", "dct:title", "title", 1, 5,
-						false, "ReleaseNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Release", "dct:title", "title", 1,
+						5, false, "ReleaseNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -121,15 +125,18 @@ public class ReleaseTest
 	public void checkReleasesCountry()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("release");
 		classTables.add("country");
 
+		classTableRows.add("country");
+		classTableRows.add("iso_code");
+
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeftWithFragment(classTables,
-						"country", "iso_code", "mo:ReleaseEvent",
-						"event:place", "country", "#event", 5, true,
-						"ReleasesCountryCheck");
+						classTableRows, "mo:ReleaseEvent", "event:place",
+						"country", "#event", 5, true, "ReleasesCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

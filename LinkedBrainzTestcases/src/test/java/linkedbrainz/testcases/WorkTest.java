@@ -60,14 +60,18 @@ public class WorkTest
 	public void checkWorkNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("work");
 		classTables.add("work_name");
 
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
-						"name", "mo:MusicalWork", "dct:title", "title", 1, 5,
-						false, "WorkNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicalWork", "dct:title", "title",
+						1, 5, false, "WorkNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

@@ -47,14 +47,18 @@ public class LabelTest
 	public void checkLabelNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("label");
 		classTables.add("label_name");
 
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
-						"name", "mo:Label", "foaf:name", "name", 1, 5, false,
-						"LabelNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "foaf:name", "name", 1, 5,
+						false, "LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -68,14 +72,18 @@ public class LabelTest
 	public void checkLabelSortLabels()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("label");
-		classTables.add("labe_name");
+		classTables.add("label_name");
+
+		classTableRows.add("sort_name");
+		classTableRows.add("name");
 
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "sort_name",
-						"name", "mo:Label", "ov:sortLabel", "sortName", 1, 5,
-						false, "LabelSortLabelsCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "ov:sortLabel", "sortName",
+						1, 5, false, "LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

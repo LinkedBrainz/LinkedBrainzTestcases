@@ -49,14 +49,18 @@ public class TrackTest
 	public void checkTrackNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("track");
 		classTables.add("track_name");
-		
+
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaIDOnTheLeft(classTables,
-						"name", "name", "mo:Track", "dct:title", "title", "#_",
-						1, false, "TrackNamesCheck");
+				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
+						"mo:Track", "dct:title", "title", "#_", 1, 1, false,
+						"TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -141,6 +145,29 @@ public class TrackTest
 						classTableRows, classNames, "mo:publication_of",
 						valueNames, "#_", 1, 1, "11",
 						"TracksRecordingsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 1 track from the DB and resolves its track number against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkTracksTrackNumber()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("track");
+
+		classTableRows.add("position");
+
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaIDOnTheLeft(classTables,
+						classTableRows, "mo:Track", "mo:track_number",
+						"trackNumber", "#_", 0, 1, false, "TracksTrackNumberCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

@@ -80,14 +80,18 @@ public class ArtistTest
 	public void checkMusicArtistNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("artist");
 		classTables.add("artist_name");
 
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
-						"name", "mo:MusicArtist", "foaf:name", "name", 1, 5,
-						false, "ArtistNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicArtist", "foaf:name", "name",
+						1, 5, false, "ArtistNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -101,14 +105,18 @@ public class ArtistTest
 	public void checkMusicArtistSortLabels()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("artist");
 		classTables.add("artist_name");
 
+		classTableRows.add("sort_name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "sort_name",
-						"name", "mo:MusicArtist", "ov:sortLabel", "sortName",
-						1, 5, false, "ArtistSortLabelsCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicArtist", "ov:sortLabel",
+						"sortName", 1, 5, false, "ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -138,14 +146,18 @@ public class ArtistTest
 	public void checkMusicArtistGender()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("artist");
 		classTables.add("gender");
 
+		classTableRows.add("gender");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "gender",
-						"name", "mo:MusicArtist", "foaf:gender", "gender", 1,
-						5, false, "ArtistGenderCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicArtist", "foaf:gender",
+						"gender", 1, 5, false, "ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -368,13 +380,17 @@ public class ArtistTest
 	public void checkMusicArtistCountry()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("artist");
 		classTables.add("country");
 
+		classTableRows.add("country");
+		classTableRows.add("iso_code");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "country",
-						"iso_code", "mo:MusicArtist", "foaf:based_near",
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicArtist", "foaf:based_near",
 						"country", 1, 5, true, "ArtistsCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());

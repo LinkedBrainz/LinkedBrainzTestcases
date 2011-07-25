@@ -32,7 +32,7 @@ public class TracklistTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
+
 	/**
 	 * Fetches 5 track lists from the DB and resolves their track counts against
 	 * the result of the related SPARQL query.
@@ -42,14 +42,16 @@ public class TracklistTest
 	public void checkTrackListsTrackCount()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
-		
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
 		classTables.add("tracklist");
-		
+
+		classTableRows.add("track_count");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
-						"country", "iso_code", "mo:MusicArtist",
-						"foaf:based_near", "country", 1, 5, true,
-						"ArtistsCountryCheck");
+				.checkSimplePropertyViaIDOnTheLeft(classTables,
+						classTableRows, "mo:Record", "mo:track_count",
+						"trackCount", "#_", 0, 5, false, "TrackListsTrackCountCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

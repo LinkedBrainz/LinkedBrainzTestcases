@@ -40,14 +40,18 @@ public class RecordingTest
 	public void checkRecordingNames()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("recording");
 		classTables.add("track_name");
 
+		classTableRows.add("name");
+		classTableRows.add("name");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheLeft(classTables, "name",
-						"name", "mo:Signal", "dct:title", "title", 1, 5, false,
-						"RecordingNamesCheck");
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Signal", "dct:title", "title", 1,
+						5, false, "RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -61,14 +65,18 @@ public class RecordingTest
 	public void checkRecordingISRCs()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
 
 		classTables.add("isrc");
 		classTables.add("recording");
 
+		classTableRows.add("recording");
+		classTableRows.add("isrc");
+
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaGUIDOnTheRight(classTables, "recording",
-						"isrc", "mo:Signal", "mo:isrc", "ISRC", 5, false,
-						"RecordingISRCsCheck");
+				.checkSimplePropertyViaGUIDOnTheRight(classTables,
+						classTableRows, "mo:Signal", "mo:isrc", "ISRC", 5,
+						false, "RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

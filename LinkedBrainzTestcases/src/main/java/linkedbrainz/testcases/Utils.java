@@ -714,12 +714,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of of the table of the left side of the INNER JOIN of
-	 *            the SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -740,15 +740,15 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaGUIDOnTheLeft(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, int numberOfJoins, int limit,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName,
+			int numberOfJoins, int limit, boolean comparisonOnResource,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", numberOfJoins, true);
 
-		return checkSimplePropertyViaGUID(classTables, classTableRow1,
-				classTableRow2, className, propertyName, valueName, limit,
+		return checkSimplePropertyViaGUID(classTables, classTableRows,
+				className, propertyName, valueName, limit,
 				comparisonOnResource, checkName);
 	}
 
@@ -761,12 +761,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of the table of the left side of the INNER JOIN of the
-	 *            SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -785,15 +785,14 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaGUIDOnTheRight(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, int limit, boolean comparisonOnResource,
-			String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName, int limit,
+			boolean comparisonOnResource, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, false);
 
-		return checkSimplePropertyViaGUID(classTables, classTableRow1,
-				classTableRow2, className, propertyName, valueName, limit,
+		return checkSimplePropertyViaGUID(classTables, classTableRows,
+				className, propertyName, valueName, limit,
 				comparisonOnResource, checkName);
 	}
 
@@ -806,12 +805,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of the table of the left side of the INNER JOIN of the
-	 *            SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -830,10 +829,9 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	private TestResult checkSimplePropertyViaGUID(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, int limit, boolean comparisonOnResource,
-			String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName, int limit,
+			boolean comparisonOnResource, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
@@ -841,9 +839,8 @@ public class Utils
 				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
 				+ "PROPERTY_NAME ?VALUE_NAME . }";
 
-		return checkSimpleProperty(classTables, classTableRow1, classTableRow2,
-				className, propertyName, valueName, limit,
-				comparisonOnResource, checkName);
+		return checkSimpleProperty(classTables, classTableRows, className,
+				propertyName, valueName, limit, comparisonOnResource, checkName);
 	}
 
 	/**
@@ -855,12 +852,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of of the table of the left side of the INNER JOIN of
-	 *            the SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -882,16 +879,16 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaGUIDOnTheLeftWithFragment(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, String fragmentId, int limit,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName,
+			String fragmentId, int limit, boolean comparisonOnResource,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, true);
 
-		return checkSimplePropertyViaID(classTables, classTableRow1,
-				classTableRow2, className, propertyName, valueName, fragmentId,
-				limit, comparisonOnResource, checkName);
+		return checkSimplePropertyViaID(classTables, classTableRows, className,
+				propertyName, valueName, fragmentId, limit,
+				comparisonOnResource, checkName);
 	}
 
 	/**
@@ -903,12 +900,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of of the table of the left side of the INNER JOIN of
-	 *            the SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -920,6 +917,8 @@ public class Utils
 	 * @param fragmentId
 	 *            the fragment identifier of the URI pattern that includes the
 	 *            comparison ID
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query            
 	 * @param limit
 	 *            the result limit for the SQL query
 	 * @param comparisonOnResource
@@ -930,16 +929,16 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaIDOnTheLeft(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, String fragmentId, int limit,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName,
+			String fragmentId, int numberOfJoins, int limit, boolean comparisonOnResource,
+			String checkName)
 	{
-		initSqlQueryForCheckSimpleProperty("id", 1, true);
+		initSqlQueryForCheckSimpleProperty("id", numberOfJoins, true);
 
-		return checkSimplePropertyViaID(classTables, classTableRow1,
-				classTableRow2, className, propertyName, valueName, fragmentId,
-				limit, comparisonOnResource, checkName);
+		return checkSimplePropertyViaID(classTables, classTableRows, className,
+				propertyName, valueName, fragmentId, limit,
+				comparisonOnResource, checkName);
 	}
 
 	/**
@@ -951,12 +950,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of the table of the left side of the INNER JOIN of the
-	 *            SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -978,16 +977,16 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	public TestResult checkSimplePropertyViaIDOnTheRight(
-			ArrayList<String> classTables, String classTableRow1,
-			String classTableRow2, String className, String propertyName,
-			String valueName, String fragmentId, int limit,
-			boolean comparisonOnResource, String checkName)
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName,
+			String fragmentId, int limit, boolean comparisonOnResource,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("id", 1, false);
 
-		return checkSimplePropertyViaID(classTables, classTableRow1,
-				classTableRow2, className, propertyName, valueName, fragmentId,
-				limit, comparisonOnResource, checkName);
+		return checkSimplePropertyViaID(classTables, classTableRows, className,
+				propertyName, valueName, fragmentId, limit,
+				comparisonOnResource, checkName);
 	}
 
 	/**
@@ -999,12 +998,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of the table of the left side of the INNER JOIN of the
-	 *            SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -1026,7 +1025,7 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	private TestResult checkSimplePropertyViaID(ArrayList<String> classTables,
-			String classTableRow1, String classTableRow2, String className,
+			ArrayList<String> classTableRows, String className,
 			String propertyName, String valueName, String fragmentId,
 			int limit, boolean comparisonOnResource, String checkName)
 	{
@@ -1037,9 +1036,8 @@ public class Utils
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDERFRAGMENT_ID\") } ";
 		initSparqlQuery = initSparqlQuery2.replace("FRAGMENT_ID", fragmentId);
 
-		return checkSimpleProperty(classTables, classTableRow1, classTableRow2,
-				className, propertyName, valueName, limit,
-				comparisonOnResource, checkName);
+		return checkSimpleProperty(classTables, classTableRows, className,
+				propertyName, valueName, limit, comparisonOnResource, checkName);
 	}
 
 	/**
@@ -1051,12 +1049,12 @@ public class Utils
 	 *            list might be the table of the left side of the INNER JOIN of
 	 *            the SQL query and the second one might be the table of the
 	 *            right side of the INNER JOIN of the SQL query
-	 * @param classTableRow1
-	 *            the row of of the table of the left side of the INNER JOIN of
-	 *            the SQL query
-	 * @param classTableRow2
-	 *            the row of the table that delivers the values for the specific
-	 *            RDF property
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
 	 * @param propertyName
@@ -1075,7 +1073,7 @@ public class Utils
 	 * @return the result of the test (incl. fail message)
 	 */
 	private TestResult checkSimpleProperty(ArrayList<String> classTables,
-			String classTableRow1, String classTableRow2, String className,
+			ArrayList<String> classTableRows, String className,
 			String propertyName, String valueName, int limit,
 			boolean comparisonOnResource, String checkName)
 	{
@@ -1085,14 +1083,13 @@ public class Utils
 		this.limit = limit;
 
 		String initSqlQuery = this.initSqlQuery;
-		String initSqlQuery2 = replacePlaceholders(classTables, "CLASS",
+		String initSqlQuery2 = replacePlaceholders(classTableRows, "CLASS_ROW",
 				initSqlQuery);
-		String initSqlQuery4 = initSqlQuery2.replace("CLASS_ROW1",
-				classTableRow1);
-		String initSqlQuery5 = initSqlQuery4.replace("VALUE_NAME", valueName);
-		String initSqlQuery6 = initSqlQuery5.replace("LIMIT_PLACEHOLDER",
-				Integer.toString(limit));
-		String sqlQuery = initSqlQuery6.replace("CLASS_ROW2", classTableRow2);
+		String initSqlQuery3 = replacePlaceholders(classTables, "CLASS",
+				initSqlQuery2);
+		String initSqlQuery4 = initSqlQuery3.replace("VALUE_NAME", valueName);
+		String sqlQuery = initSqlQuery4.replace("LIMIT_PLACEHOLDER", Integer
+				.toString(limit));
 
 		Map<String, String> values = null;
 		String valuesKey = null;
@@ -1104,6 +1101,8 @@ public class Utils
 				className);
 		String sparqlQuery = initSparqlQuery3.replace("PROPERTY_NAME",
 				propertyName);
+
+		int relationsCounter = 0;
 
 		try
 		{
@@ -1179,6 +1178,8 @@ public class Utils
 								queryCounter++;
 							}
 						}
+
+						relationsCounter++;
 					}
 				} catch (Exception e)
 				{
@@ -1188,6 +1189,20 @@ public class Utils
 				}
 
 				sparqlResultSet.close();
+			}
+			
+			if (relationsCounter != values.size())
+			{
+				return new TestResult(
+						false,
+						sparqlFailMsg
+								+ ".\n"
+								+ "The number of relations from the SPARQL query doesn't seem to be equal to the number of fetched rows from the SQL query.\n"
+								+ "Number of fetched rows from the SQL query: "
+								+ values.size()
+								+ ".\n"
+								+ "Number of relations from the SPARQL query: "
+								+ relationsCounter + ".");
 			}
 		}
 
@@ -2533,30 +2548,35 @@ public class Utils
 		switch (numberOfJoins)
 		{
 		case 0:
+			initSqlQuery4 = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS VALUE_NAME, "
+					+ "musicbrainz.CLASS1.ID_CLASS_ROW AS id "
+					+ "FROM musicbrainz.CLASS1 " + "LIMIT LIMIT_PLACEHOLDER";
 			break;
 		case 1:
 			initSqlQuery2 = "SELECT musicbrainz.SELECT_CLASS1.CLASS_ROW2 AS VALUE_NAME, "
 					+ "musicbrainz.SELECT_CLASS2.ID_CLASS_ROW AS id "
 					+ "FROM musicbrainz.CLASS1 "
 					+ "INNER JOIN musicbrainz.CLASS2  ON CLASS1.CLASS_ROW1 = CLASS2.id LIMIT LIMIT_PLACEHOLDER";
-			initSqlQuery3 = initSqlQuery2.replace("ID_CLASS_ROW",
-					classIdTableRow);
 
 			if (left)
 			{
-				initSqlQuery4 = initSqlQuery3
+				initSqlQuery3 = initSqlQuery2
 						.replace("SELECT_CLASS1", "CLASS2");
-				initSqlQuery = initSqlQuery4.replace("SELECT_CLASS2", "CLASS1");
+				initSqlQuery4 = initSqlQuery3
+						.replace("SELECT_CLASS2", "CLASS1");
 			} else
 			{
-				initSqlQuery4 = initSqlQuery3
+				initSqlQuery3 = initSqlQuery2
 						.replace("SELECT_CLASS1", "CLASS1");
-				initSqlQuery = initSqlQuery4.replace("SELECT_CLASS2", "CLASS2");
+				initSqlQuery4 = initSqlQuery3
+						.replace("SELECT_CLASS2", "CLASS2");
 			}
 			break;
 		default:
 			break;
 		}
+
+		initSqlQuery = initSqlQuery4.replace("ID_CLASS_ROW", classIdTableRow);
 	}
 
 	/**
