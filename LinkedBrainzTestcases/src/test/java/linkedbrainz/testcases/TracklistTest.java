@@ -15,7 +15,7 @@ import linkedbrainz.testcases.model.TestResult;
 public class TracklistTest
 {
 	/**
-	 * Fetches 1 track list from the DB and resolves it via a SPARQL query.
+	 * Fetches 5 track lists from the DB and resolves it via a SPARQL query.
 	 * 
 	 * ATTENTION: requires to switch off the resultSizeLimit
 	 * 
@@ -23,8 +23,9 @@ public class TracklistTest
 	@Test
 	public void checkTrackLists()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaID(
-				"tracklist", "id", "mo:Record", "TrackListsCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDOrIDAndFragmentId("tracklist", "id",
+						"mo:Record", "#_", 5, "TrackListsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 

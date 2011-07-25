@@ -34,6 +34,21 @@ public class ReleaseTest
 	}
 
 	/**
+	 * Fetches 5 release events from the DB and resolves it via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseEvents()
+	{
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDOrIDAndFragmentId("release", "gid",
+						"mo:ReleaseEvent", "#event", 5, "ReleaseEventsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+
+	}
+	
+	/**
 	 * Fetches 5 releases from the DB and resolves their names against the
 	 * result of the related SPARQL query.
 	 * 

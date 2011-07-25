@@ -399,18 +399,31 @@ public class Utils
 	 *            the specific row for the SQL query
 	 * @param className
 	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param idString
+	 *            the identifier for the id column
+	 * @param fragmentId
+	 *            the fragment id of the URI that contains the id as well
+	 * @param limit
+	 *            the result limit of the SQL query
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	public TestResult checkClassViaID(String table, String row,
-			String className, String checkName)
+	public TestResult checkClassViaGUIDOrIDAndFragmentId(String table,
+			String row, String className, String fragmentId,
+			int limit, String checkName)
 	{
-		initSqlQuery = "SELECT id FROM musicbrainz.TABLE LIMIT 1";
-		initSparqlQuery = Utils.DEFAULT_PREFIXES + "SELECT DISTINCT ?URI "
+		String initSqlQuery2 = "SELECT ID_ROW FROM musicbrainz.TABLE LIMIT LIMIT_NUMBER";
+		String initSqlQuery3 = initSqlQuery2.replace("ID_ROW", row);
+		initSqlQuery = initSqlQuery3.replace("LIMIT_NUMBER", Integer
+				.toString(limit));
+
+		String initSparqlQuery2 = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?URI "
 				+ "WHERE { ?URI rdf:type CLASS_NAME . "
-				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDER#_\") } ";
-		limit = 1;
+				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDERFRAGMENT_ID\") } ";
+		initSparqlQuery = initSparqlQuery2.replace("FRAGMENT_ID", fragmentId);
+		this.limit = limit;
 
 		return checkClass(table, row, className, checkName);
 	}
@@ -758,7 +771,7 @@ public class Utils
 	 *            the value name for the SQL and SPARQL query that is used for
 	 *            the comparison
 	 * @param limit
-	 *            the result limit fo the SQL query
+	 *            the result limit of the SQL query
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
@@ -1489,7 +1502,8 @@ public class Utils
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, leftSideFragmentId, rightSideFragmentId, checkName);
+				false, false, leftSideFragmentId, rightSideFragmentId,
+				checkName);
 	}
 
 	/**

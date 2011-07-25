@@ -30,8 +30,9 @@ public class TrackTest
 	@Test
 	public void checkTracks()
 	{
-		TestResult testResult = Utils.getInstance().checkClassViaID("track",
-				"id", "mo:Track", "TracksCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkClassViaGUIDOrIDAndFragmentId("track", "id", "mo:Track",
+						"#_", 1, "TracksCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
