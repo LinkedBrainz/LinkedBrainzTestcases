@@ -1483,13 +1483,13 @@ public class Utils
 	public TestResult checkURIPropertyViaGUIDs(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames,
-			String rightSideFragmentId, int numberOfJoins, int limit,
-			String proofID, String checkName)
+			String leftSideFragmentId, String rightSideFragmentId,
+			int numberOfJoins, int limit, String proofID, String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, null, rightSideFragmentId, checkName);
+				false, false, leftSideFragmentId, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -1767,28 +1767,47 @@ public class Utils
 		boolean URIComparison = false;
 		boolean URIreplacement = false;
 
+		String leftSideFragmentIdAndRightSideGUID = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+				+ "PROPERTY_NAME ?VALUE_NAME2 . "
+				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+				+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
+				+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
+
 		// to init the candidates SQL query and the SPARQL query
 		if (leftSideGUID)
 		{
 			initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
 			// left side = GUID + right side = GUID +
-			// GUID property seems to be available
+			// right side GUID property seems to be available
 			if (rightSideGUID && !rightSideURI && rightSideFragmentId == null)
 			{
-				initSparqlQuery = Utils.DEFAULT_PREFIXES
-						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-						+ "PROPERTY_NAME ?VALUE_NAME2 ; "
-						+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
-						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-						+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+				// left side GUID property seems to be available
+				if (leftSideFragmentId == null)
+				{
+					initSparqlQuery = Utils.DEFAULT_PREFIXES
+							+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+							+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+							+ "PROPERTY_NAME ?VALUE_NAME2 ; "
+							+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string . "
+							+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
+							+ "mo:musicbrainz_guid ?VALUE_NAME3 . } ";
+				}
+				// left side GUID property doesn't seem to be available, check
+				// has to be done via extracting the GUID from the URI
+				else
+				{
+					initSparqlQuery = leftSideFragmentIdAndRightSideGUID;
+				}
 			} else
 			{
 				// left side = GUID + right side = ID
 				// or
 				// left side = GUID + right side = GUID +
-				// GUID property doesn't seem to be available, check has to be
+				// right side GUID property doesn't seem to be available, check
+				// has to be
 				// done via extracting the GUID from the URI
 				if ((!rightSideGUID && !rightSideURI)
 						|| (rightSideGUID && !rightSideURI && rightSideFragmentId != null))
@@ -1826,13 +1845,7 @@ public class Utils
 			// left side = ID + right side = GUID
 			if (rightSideGUID && !rightSideURI)
 			{
-				initSparqlQuery = Utils.DEFAULT_PREFIXES
-						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-						+ "PROPERTY_NAME ?VALUE_NAME2 . "
-						+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
-						+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
-						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
+				initSparqlQuery = leftSideFragmentIdAndRightSideGUID;
 			}
 			// left side = ID + right side = ID
 			else if (!rightSideGUID && !rightSideURI)
@@ -1857,6 +1870,8 @@ public class Utils
 			// TODO:
 			switch (numberOfJoins)
 			{
+			case 0:
+				break;
 			case 1:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
 						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
@@ -1907,6 +1922,12 @@ public class Utils
 			// currently for normal properties (non-inverse properties)
 			switch (numberOfJoins)
 			{
+			case 0:
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS2_id, "
+						+ "musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id "
+						+ "FROM musicbrainz.CLASS1 "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				break;
 			case 1:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
 						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "

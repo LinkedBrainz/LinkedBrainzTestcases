@@ -143,7 +143,8 @@ public class ReleaseTest
 		// GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:label",
-				valueNames, null, 2, 5, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+				valueNames, null, null, 2, 5,
+				"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 				"ReleasesLabelsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -295,6 +296,43 @@ public class ReleaseTest
 								"is:info_service", "isi:vgmdb"),
 						"2f6dfc7c-5ead-45aa-ae71-44e830de88da",
 						"ReleasesVGMDBlinksReleationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) release events and releases from the DB (currently they
+	 * are derived from the same table) and resolves them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseEventsReleasesRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("release_event");
+
+		classTableRows.add("gid");
+
+		classNames.add("mo:ReleaseEvent");
+		classNames.add("mo:Release");
+
+		valueNames.add("releaseEventURI");
+		valueNames.add("releaseURI");
+		valueNames.add("releaseGUID");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables, classTableRows, classNames, "mo:release",
+				valueNames, "#event", null, 0, 5,
+				"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+				"ReleaseEventsReleasesRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

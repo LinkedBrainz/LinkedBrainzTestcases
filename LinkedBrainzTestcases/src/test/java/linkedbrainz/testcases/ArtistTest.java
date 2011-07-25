@@ -169,7 +169,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, null, 3, 5, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, null, null, 3, 5,
+				"c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsReleasesRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -209,7 +210,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, null, 3, 5, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, null, null, 3, 5,
+				"c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsRecordingsReleationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -253,7 +255,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, null, 3, 5, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, null, null, 3, 5,
+				"c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsWorksRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -293,7 +296,8 @@ public class ArtistTest
 		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "foaf:made",
-				valueNames, null, 3, 5, "c0b2500e-0cef-4130-869d-732b23ed9df5",
+				valueNames, null, null, 3, 5,
+				"c0b2500e-0cef-4130-869d-732b23ed9df5",
 				"ArtistsReleaseGroupsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
