@@ -9,6 +9,7 @@ import linkedbrainz.d2rs.translator.DBPediaTranslator;
 import linkedbrainz.d2rs.translator.IBDBTranslator;
 import linkedbrainz.d2rs.translator.IOBDBTranslator;
 import linkedbrainz.d2rs.translator.WikipediaTranslator;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -386,7 +387,7 @@ public class WorkTest
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:produced_work",
-				valueNames, "#composition", null, 0, 5,
+				valueNames, "#composition", null, 0, 5, null,
 				"aacb1ab0-c740-436a-a782-ed60026cf82b",
 				"CompositionsWorksRelationsCheck");
 
@@ -421,9 +422,61 @@ public class WorkTest
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:composed_in",
-				valueNames, null, "#composition", 0, 5,
+				valueNames, null, "#composition", 0, 5, null,
 				"aacb1ab0-c740-436a-a782-ed60026cf82b",
 				"WorksCompositionsRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) compositions and their composers from the DB and resolves
+	 * them via a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkCompositionsComposersRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("artist");
+		classTables.add("l_artist_work");
+		classTables.add("link");
+		classTables.add("link_type");
+
+		classTableRows.add("gid");
+		classTableRows.add("gid");
+		classTableRows.add("entity1");
+		classTableRows.add("link");
+		classTableRows.add("link_type");
+		classTableRows.add("entity0");
+
+		classNames.add("mo:Composition");
+		classNames.add("mo:MusicArtist");
+
+		valueNames.add("compositionURI");
+		valueNames.add("composerURI");
+		valueNames.add("composerGUID");
+
+		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
+		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
+				classTables,
+				classTableRows,
+				classNames,
+				"mo:composer",
+				valueNames,
+				"#composition",
+				null,
+				4,
+				5,
+				new Condition("link_type", "gid",
+						"'d59d99ea-23d4-4a80-b066-edca32ee158f'"),
+				"aacb1ab0-c740-436a-a782-ed60026cf82b",
+				"CompositionsArtistsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

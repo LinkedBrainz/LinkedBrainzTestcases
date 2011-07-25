@@ -47,7 +47,7 @@ public class ReleaseTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
-	
+
 	/**
 	 * Fetches 5 releases from the DB and resolves their names against the
 	 * result of the related SPARQL query.
@@ -158,7 +158,7 @@ public class ReleaseTest
 		// GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:label",
-				valueNames, null, null, 2, 5,
+				valueNames, null, null, 2, 5, null,
 				"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 				"ReleasesLabelsRelationsCheck");
 
@@ -345,7 +345,7 @@ public class ReleaseTest
 		// GUID
 		TestResult testResult = Utils.getInstance().checkURIPropertyViaGUIDs(
 				classTables, classTableRows, classNames, "mo:release",
-				valueNames, "#event", null, 0, 5,
+				valueNames, "#event", null, 0, 5, null,
 				"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 				"ReleaseEventsReleasesRelationsCheck");
 

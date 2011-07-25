@@ -1497,13 +1497,14 @@ public class Utils
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames,
 			String leftSideFragmentId, String rightSideFragmentId,
-			int numberOfJoins, int limit, String proofID, String checkName)
+			int numberOfJoins, int limit, Condition condition, String proofID,
+			String checkName)
 	{
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
-				false, false, leftSideFragmentId, rightSideFragmentId,
-				checkName);
+				false, initCondition(condition), leftSideFragmentId,
+				rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -2539,21 +2540,30 @@ public class Utils
 	 * @param condition
 	 *            the condition object that includes specific values that are
 	 *            used to initialise the condition statements
+	 * @return true, if a condition was set; otherwise false
 	 */
-	private void initCondition(Condition condition)
+	private boolean initCondition(Condition condition)
 	{
-		initSQLCondition(condition.getConditionClass(), condition
-				.getConditionRow(), condition.getConditionValue());
-
-		if (condition instanceof URICondition)
+		if (condition != null)
 		{
-			URICondition uriCondition = (URICondition) condition;
+			initSQLCondition(condition.getConditionClass(), condition
+					.getConditionRow(), condition.getConditionValue());
 
-			initSPAQLCondition(uriCondition.getConditionProperty(),
-					uriCondition.getConditionPropertyValue());
+			if (condition instanceof URICondition)
+			{
+				URICondition uriCondition = (URICondition) condition;
+
+				initSPAQLCondition(uriCondition.getConditionProperty(),
+						uriCondition.getConditionPropertyValue());
+			}
+
+			this.condition = condition;
+
+			return true;
+		} else
+		{
+			return false;
 		}
-
-		this.condition = condition;
 	}
 
 	/**
