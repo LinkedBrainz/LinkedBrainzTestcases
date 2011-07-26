@@ -169,6 +169,36 @@ public class RecordingTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
+	/**
+	 * Fetches 5 (+1) recordings from the DB and resolves their PUIDs against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingsPUIDs()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("recording");
+		classTables.add("recording_puid");
+		classTables.add("puid");
+
+		classTableRows.add("puid");
+		classTableRows.add("recording");
+		classTableRows.add("puid");
+
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Signal", "mo:puid", "puid", 2,
+						5, false, true, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingsPUIDsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(RecordingTest.class);
