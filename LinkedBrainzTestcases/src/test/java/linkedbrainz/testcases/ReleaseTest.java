@@ -193,12 +193,12 @@ public class ReleaseTest
 	}
 
 	/**
-	 * Fetches 5 (+1) releases and track lists (records) from the DB and
-	 * resolves them via a SPARQL query.
+	 * Fetches 5 (+1) releases and mediums (records) from the DB and resolves
+	 * them via a SPARQL query.
 	 * 
 	 */
 	@Test
-	public void checkReleaseTracklistsRelations()
+	public void checkReleaseMediumsRelations()
 	{
 		ArrayList<String> classTables = new ArrayList<String>();
 		ArrayList<String> classTableRows = new ArrayList<String>();
@@ -206,13 +206,11 @@ public class ReleaseTest
 		ArrayList<String> valueNames = new ArrayList<String>();
 
 		classTables.add("release");
-		classTables.add("tracklist");
 		classTables.add("medium");
 
 		classTableRows.add("gid");
 		classTableRows.add("id");
 		classTableRows.add("release");
-		classTableRows.add("tracklist");
 
 		classNames.add("mo:Release");
 		classNames.add("mo:Record");
@@ -225,10 +223,10 @@ public class ReleaseTest
 		// Beatles as proof
 		// GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIPropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
+				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
 						classTableRows, classNames, "mo:record", valueNames,
-						"#_", 2, 1, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
-						"ReleasesTracklistsRelationsCheck");
+						"#_", 1, 5, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesMediumsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

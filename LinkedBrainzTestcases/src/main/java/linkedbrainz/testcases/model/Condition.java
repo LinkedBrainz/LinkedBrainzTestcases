@@ -11,6 +11,12 @@ public class Condition
 	private String conditionClass;
 	private String conditionRow;
 	private String conditionValue;
+	private String translatorClass = null;
+
+	public Condition(String translatorClass)
+	{
+		this.translatorClass = translatorClass;
+	}
 
 	public Condition(String conditionClass, String conditionRow,
 			String conditionValue)
@@ -48,6 +54,16 @@ public class Condition
 	public void setConditionValue(String conditionValue)
 	{
 		this.conditionValue = conditionValue;
+	}
+
+	public String getTranslatorClass()
+	{
+		return translatorClass;
+	}
+
+	public void setTranslatorClass(String translatorClass)
+	{
+		this.translatorClass = translatorClass;
 	}
 
 }

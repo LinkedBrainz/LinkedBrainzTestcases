@@ -1,5 +1,6 @@
 package linkedbrainz.testcases;
 
+import java.lang.reflect.Constructor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,6 +25,8 @@ import com.hp.hpl.jena.shared.PrefixMapping;
 import com.hp.hpl.jena.shared.impl.PrefixMappingImpl;
 import com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP;
 import com.hp.hpl.jena.sparql.resultset.ResultSetMem;
+
+import de.fuberlin.wiwiss.d2rq.values.Translator;
 
 /**
  * 
@@ -1028,6 +1031,11 @@ public class Utils
 				sqlResultSet.close();
 			}
 
+			// TODO: ?
+			// add a hardcoded id, since one could fetch instances that have
+			// no relations and the wondering about the results
+			// values.put(proofId, "VALUE");
+
 			if (values.size() == limit)
 			{
 				Iterator<String> iter = values.keySet().iterator();
@@ -1765,6 +1773,71 @@ public class Utils
 	 * 
 	 * @param classTables
 	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded ID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This ID should
+	 *            usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaIDOnTheLeftAndURIOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, String leftSideFragmentId,
+			int numberOfJoins, int limit, Condition condition, String proofID,
+			String checkName)
+	{
+		initCondition(condition);
+
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, false,
+				false, false, true, false, numberOfJoins, limit, proofID, true,
+				true, leftSideFragmentId, null, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
 	 *            items. The first one delivers the id(s) for the check that are
 	 *            located on the left side of the relation and is located on the
 	 *            right side of the first INNER JOIN. The second one delivers
@@ -1929,7 +2002,13 @@ public class Utils
 			// left side = ID + right side = URI
 			else if (rightSideURI)
 			{
-				// TODO
+				initSparqlQuery = Utils.DEFAULT_PREFIXES
+						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+						+ "PROPERTY_NAME ?VALUE_NAME2 . "
+						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
+
+				URIComparison = true;
 			}
 		}
 		// left side = URI
@@ -2304,6 +2383,12 @@ public class Utils
 
 							if (URIComparison)
 							{
+								System.out
+										.println("[EXEC]  let's do a URI comparision");
+
+								Translator translator = null;
+								String uriFromSqlQuery = null;
+
 								if (URIreplacement)
 								{
 									URICondition uriCondition = (URICondition) condition;
@@ -2357,18 +2442,32 @@ public class Utils
 											+ " :: linkedDataFragmentId: "
 											+ uriCondition
 													.getOriginalFragementId());
+								} else if (condition.getTranslatorClass() != null)
+								{
+									System.out
+											.println("[EXEC]  here we go in the Translator class case");
+
+									if (getTranslatorInstance(condition
+											.getTranslatorClass()) != null)
+									{
+										translator = getTranslatorInstance(condition
+												.getTranslatorClass());
+
+										System.out
+												.println("[EXEC]  here we go with an instatiated Translator class");
+									}
 								}
 
 								// check the URI against the URI from SQL query
 								for (int k = 0; k < resources.size(); k++)
 								{
-									String uriFromSqlQuery = resources.get(k);
-
 									if (URIreplacement)
 									{
 										// TODO: requires probably further
 										// investigation, e.g., fragment
 										// replacement etc.
+
+										uriFromSqlQuery = resources.get(k);
 
 										URICondition uriCondition = (URICondition) condition;
 
@@ -2400,6 +2499,10 @@ public class Utils
 												uriFromSqlQuery = cleanedUpOrginialBaseUri;
 											}
 										}
+									} else if (translator != null)
+									{
+										uriFromSqlQuery = translator
+												.toRDFValue(resources.get(k));
 									}
 
 									if (resourceURI.equals(uriFromSqlQuery))
@@ -2412,6 +2515,9 @@ public class Utils
 								}
 							} else
 							{
+								System.out
+										.println("[EXEC]  here we go with a right side URI + fragment id comparison");
+
 								if (rightSideFragmentId == null)
 								{
 									// init right side fragment id with a
@@ -2421,10 +2527,10 @@ public class Utils
 
 								// check the URI against the id it should
 								// contain
-								for (int k = 0; k < resources.size(); k++)
+								for (int m = 0; m < resources.size(); m++)
 								{
 									if (resourceURI.contains("/"
-											+ resources.get(k)
+											+ resources.get(m)
 											+ rightSideFragmentId))
 
 									{
@@ -2436,6 +2542,9 @@ public class Utils
 							}
 						} else
 						{
+							System.out
+									.println("[EXEC]  here we go with a simple full literal comparison");
+
 							// just a simple full literal comparison
 							if (relations.get(relationsKey).contains(
 									sparqlRS.next().getLiteral(
@@ -2665,13 +2774,19 @@ public class Utils
 	private void initSQLCondition(String conditionClass, String conditionRow,
 			String conditionValue)
 	{
-		String initSQLQueryCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
-		String initSQLQueryCondition2 = initSQLQueryCondition.replace(
-				"CONDITION_CLASS", conditionClass);
-		String initSQLQueryCondition3 = initSQLQueryCondition2.replace(
-				"CONDITION_ROW", conditionRow);
-		sqlQueryCondition = initSQLQueryCondition3.replace("CONDITION_VALUE",
-				conditionValue);
+		if (conditionClass != null)
+		{
+			String initSQLQueryCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
+			String initSQLQueryCondition2 = initSQLQueryCondition.replace(
+					"CONDITION_CLASS", conditionClass);
+			String initSQLQueryCondition3 = initSQLQueryCondition2.replace(
+					"CONDITION_ROW", conditionRow);
+			sqlQueryCondition = initSQLQueryCondition3.replace(
+					"CONDITION_VALUE", conditionValue);
+		} else
+		{
+			sqlQueryCondition = "";
+		}
 	}
 
 	/**
@@ -2699,5 +2814,30 @@ public class Utils
 		{
 			sparqlQueryCondition = "";
 		}
+	}
+
+	private Translator getTranslatorInstance(String translatorClassString)
+	{
+		Class translatorClass = null;
+		Translator translator = null;
+		try
+		{
+			translatorClass = Class.forName(translatorClassString);
+		} catch (ClassNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try
+		{
+			Constructor c = translatorClass.getConstructor(new Class[] {});
+			translator = (Translator) c.newInstance(new Object[] {});
+		} catch (Exception ex)
+		{
+			throw new RuntimeException(ex);
+		}
+
+		return translator;
 	}
 }
