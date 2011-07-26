@@ -26,6 +26,15 @@ public class Condition
 		this.conditionValue = conditionValue;
 	}
 
+	public Condition(String conditionClass, String conditionRow,
+			String conditionValue, String translatorClass)
+	{
+		this.conditionClass = conditionClass;
+		this.conditionRow = conditionRow;
+		this.conditionValue = conditionValue;
+		this.translatorClass = translatorClass;
+	}
+
 	public String getConditionClass()
 	{
 		return conditionClass;

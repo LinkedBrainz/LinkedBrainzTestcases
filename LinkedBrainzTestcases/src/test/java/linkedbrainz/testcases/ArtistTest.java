@@ -455,7 +455,8 @@ public class ArtistTest
 		valueNames.add("dbpediaURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -466,9 +467,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
-								DBPediaTranslator.ORIGINAL_BASE_URI,
-								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
-								"is:info_service", "isi:dbpedia"),
+								"is:info_service", "isi:dbpedia",
+								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBPedialinksRelationsCheck");
 
@@ -508,7 +508,8 @@ public class ArtistTest
 		valueNames.add("wikiURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -519,9 +520,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
-								WikipediaTranslator.ORIGINAL_BASE_URI,
-								WikipediaTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:wikipedia"),
+								"is:info_service", "isi:wikipedia",
+								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsWikipedialinksRelationsCheck");
 
@@ -561,7 +561,8 @@ public class ArtistTest
 		valueNames.add("dataIncubatorDiscogsURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -572,10 +573,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
-								"http://www.discogs.com/artist/",
-								"http://discogs.dataincubator.org/artist/", "",
-								"", "is:info_service",
-								"isi:dataincubatordiscogs"),
+								"is:info_service", "isi:dataincubatordiscogs",
+								"linkedbrainz.d2rs.translator.DataIncubatorDiscogsTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDataIncubatorDiscogslinksReleationsCheck");
 
@@ -615,7 +614,8 @@ public class ArtistTest
 		valueNames.add("discogsURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -626,9 +626,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
-								DiscogsTranslator.ORIGINAL_BASE_URI,
-								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:discogs"),
+								"is:info_service", "isi:discogs",
+								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDiscogslinksReleationsCheck");
 
@@ -668,8 +667,7 @@ public class ArtistTest
 		valueNames.add("bbcURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils
-				.getInstance()
+		TestResult testResult = Utils.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -679,8 +677,9 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'d028a975-000c-4525-9333-d3c8425e4b54'", "",
-								"", "", "#artist", "is:info_service", "isi:bbc"),
+								"'d028a975-000c-4525-9333-d3c8425e4b54'",
+								"is:info_service", "isi:bbc",
+								"linkedbrainz.d2rs.translator.BBCTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsBBClinksRelationsCheck");
 
@@ -782,9 +781,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
-								DBTuneMySpaceTranslator.ORIGINAL_BASE_URI,
-								DBTuneMySpaceTranslator.LINKED_DATA_BASE_URI,
-								"", "", "is:info_service", "isi:dbtunemyspace"),
+								"is:info_service", "isi:dbtunemyspace",
+								"linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsDBTuneMyspacelinksReleationsCheck");
 
@@ -824,7 +822,8 @@ public class ArtistTest
 		valueNames.add("myspaceURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -835,9 +834,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
-								MySpaceTranslator.ORIGINAL_BASE_URI,
-								MySpaceTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:myspace"),
+								"is:info_service", "isi:myspace",
+								"linkedbrainz.d2rs.translator.MySpaceTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsMyspacelinksReleationsCheck");
 
@@ -877,7 +875,8 @@ public class ArtistTest
 		valueNames.add("youTubeChannelURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -888,9 +887,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'",
-								YouTubeTranslator.ORIGINAL_BASE_URI,
-								YouTubeTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:youtube"),
+								"is:info_service", "isi:youtube",
+								"linkedbrainz.d2rs.translator.YouTubeTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsYouTubeChannelsReleationsCheck");
 
@@ -942,9 +940,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'5728c659-56b2-4e23-97d1-80e1f229c7d3'",
-								IBDBTranslator.ORIGINAL_BASE_URI,
-								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:ibdb"),
+								"is:info_service", "isi:ibdb",
+								"linkedbrainz.d2rs.translator.IBDBTranslator"),
 						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
 						"ArtistsIBDblinksReleationsCheck");
 
@@ -996,9 +993,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'94c8b0cc-4477-4106-932c-da60e63de61c'",
-								IMDBTranslator.ORIGINAL_BASE_URI,
-								IMDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:imdb"),
+								"is:info_service", "isi:imdb",
+								"linkedbrainz.d2rs.translator.IMDBTranslator"),
 						"1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
 						"ArtistsIMDblinksReleationsCheck");
 
@@ -1039,7 +1035,8 @@ public class ArtistTest
 
 		// add Stephen Sondheim proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -1050,9 +1047,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'689043e3-2b9e-47ba-ad86-2742589e0743'",
-								IOBDBTranslator.ORIGINAL_BASE_URI,
-								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:iobdb"),
+								"is:info_service", "isi:iobdb",
+								"linkedbrainz.d2rs.translator.IOBDBTranslator"),
 						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
 						"ArtistsIOBDblinksReleationsCheck");
 
@@ -1093,7 +1089,8 @@ public class ArtistTest
 
 		// add Massive Attack proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -1104,9 +1101,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'ded9a80a-e6de-4831-880c-c78b9981b54b'",
-								IOBDBTranslator.ORIGINAL_BASE_URI,
-								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:musicmoz"),
+								"is:info_service", "isi:musicmoz",
+								"linkedbrainz.d2rs.translator.MusicMozTranslator"),
 						"10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8",
 						"ArtistsMusicMozlinksReleationsCheck");
 
@@ -1147,7 +1143,8 @@ public class ArtistTest
 
 		// add De La Soul proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -1158,9 +1155,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'b6f02157-a9d3-4f24-9057-0675b2dbc581'",
-								PureVolumeTranslator.ORIGINAL_BASE_URI,
-								PureVolumeTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:purevolume"),
+								"is:info_service", "isi:purevolume",
+								"linkedbrainz.d2rs.translator.PureVolumeTranslator"),
 						"a8ebde98-7e91-46c7-992c-90039ba42017",
 						"ArtistsPureVolumelinksReleationsCheck");
 
@@ -1201,7 +1197,8 @@ public class ArtistTest
 
 		// add Davy Spillane proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -1212,9 +1209,8 @@ public class ArtistTest
 						5,
 						new URICondition("link_type", "gid",
 								"'0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'",
-								PureVolumeTranslator.ORIGINAL_BASE_URI,
-								PureVolumeTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:vgmdb"),
+								"is:info_service", "isi:vgmdb",
+								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"135b658e-4409-404f-a64e-f1f8e5c2866d",
 						"ArtistsVGMDBlinksReleationsCheck");
 

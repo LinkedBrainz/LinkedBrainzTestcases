@@ -2136,8 +2136,6 @@ public class Utils
 
 			if (condition instanceof URICondition)
 			{
-				URIreplacement = true;
-
 				initSparqlQuery2 = initSparqlQuery.replace("CONDITION",
 						sparqlQueryCondition);
 				initSparqlQuery = initSparqlQuery2;
@@ -2172,7 +2170,7 @@ public class Utils
 
 		return checkProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
-				URIComparison, URIreplacement, rightSideFragmentId, checkName);
+				URIComparison, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -2230,8 +2228,7 @@ public class Utils
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, int limit,
 			String proofID, boolean comparisonOnResource,
-			boolean URIComparison, boolean URIreplacement,
-			String rightSideFragmentId, String checkName)
+			boolean URIComparison, String rightSideFragmentId, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
@@ -2389,60 +2386,7 @@ public class Utils
 								Translator translator = null;
 								String uriFromSqlQuery = null;
 
-								if (URIreplacement)
-								{
-									URICondition uriCondition = (URICondition) condition;
-
-									String resourceURI2 = null;
-
-									// replace base URI
-									if (!uriCondition.getLinkedDataBaseURI()
-											.equals(""))
-									{
-										resourceURI2 = resourceURI
-												.replace(
-														uriCondition
-																.getLinkedDataBaseURI(),
-														uriCondition
-																.getOriginalBaseURI());
-									} else
-									{
-										resourceURI2 = resourceURI;
-									}
-									String resourceURI3 = null;
-
-									// replace fragment ID
-									if (uriCondition.getLinkedDataFragmentId()
-											.equals(""))
-									{
-										resourceURI3 = resourceURI2
-												+ uriCondition
-														.getOriginalFragementId();
-									} else
-									{
-										resourceURI3 = resourceURI2
-												.replace(
-														uriCondition
-																.getLinkedDataFragmentId(),
-														uriCondition
-																.getOriginalFragementId());
-									}
-									resourceURI = resourceURI3;
-
-									System.out.println("[EXEC]  replaced URI: "
-											+ resourceURI
-											+ " :: originalBaseURI: "
-											+ uriCondition.getOriginalBaseURI()
-											+ " :: linkedDataBaseURI: "
-											+ uriCondition
-													.getLinkedDataBaseURI()
-											+ " :: originalFragementId: "
-											+ uriCondition
-													.getOriginalFragementId()
-											+ " :: linkedDataFragmentId: "
-											+ uriCondition
-													.getOriginalFragementId());
-								} else if (condition.getTranslatorClass() != null)
+								if (condition.getTranslatorClass() != null)
 								{
 									System.out
 											.println("[EXEC]  here we go in the Translator class case");
@@ -2461,48 +2405,14 @@ public class Utils
 								// check the URI against the URI from SQL query
 								for (int k = 0; k < resources.size(); k++)
 								{
-									if (URIreplacement)
-									{
-										// TODO: requires probably further
-										// investigation, e.g., fragment
-										// replacement etc.
-
-										uriFromSqlQuery = resources.get(k);
-
-										URICondition uriCondition = (URICondition) condition;
-
-										// replace base URI
-										if (!uriCondition
-												.getLinkedDataBaseURI().equals(
-														""))
-										{
-											// clean up the base URI like it
-											// will be
-											// done on the Translator classes as
-											// well
-											String cleanedUpOrginialBaseUri = null;
-											if (linkedbrainz.d2rs.translator.util.Utils
-													.cleanUpBaseURI(
-															uriFromSqlQuery,
-															uriCondition
-																	.getOriginalBaseURI()) != null)
-											{
-												cleanedUpOrginialBaseUri = linkedbrainz.d2rs.translator.util.Utils
-														.cleanUpBaseURI(
-																uriFromSqlQuery,
-																uriCondition
-																		.getOriginalBaseURI());
-											}
-
-											if (cleanedUpOrginialBaseUri != null)
-											{
-												uriFromSqlQuery = cleanedUpOrginialBaseUri;
-											}
-										}
-									} else if (translator != null)
+									if (translator != null)
 									{
 										uriFromSqlQuery = translator
 												.toRDFValue(resources.get(k));
+									}
+									else
+									{
+										uriFromSqlQuery = resources.get(k);
 									}
 
 									if (resourceURI.equals(uriFromSqlQuery))

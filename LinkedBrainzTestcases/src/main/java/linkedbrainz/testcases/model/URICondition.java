@@ -9,87 +9,16 @@ package linkedbrainz.testcases.model;
  */
 public class URICondition extends Condition
 {
-	private String originalBaseURI = "";
-	private String linkedDataBaseURI = "";
-	private String originalFragementId = "";
-	private String linkedDataFragmentId = "";
 	private String conditionProperty = "";
 	private String conditionPropertyValue = "";
 
 	public URICondition(String conditionClass, String conditionRow,
-			String conditionValue, String originalBaseURI,
-			String linkedDataBaseURI)
+			String conditionValue, String conditionProperty,
+			String conditionPropertyValue, String translatorClass)
 	{
-		super(conditionClass, conditionRow, conditionValue);
-		this.originalBaseURI = originalBaseURI;
-		this.linkedDataBaseURI = linkedDataBaseURI;
-	}
-
-	public URICondition(String conditionClass, String conditionRow,
-			String conditionValue, String originalBaseURI,
-			String linkedDataBaseURI, String originalFragmentId,
-			String linkedDataFragmentId)
-	{
-		super(conditionClass, conditionRow, conditionValue);
-		this.originalBaseURI = originalBaseURI;
-		this.linkedDataBaseURI = linkedDataBaseURI;
-		this.originalFragementId = originalFragmentId;
-		this.linkedDataFragmentId = linkedDataFragmentId;
-	}
-
-	public URICondition(String conditionClass, String conditionRow,
-			String conditionValue, String originalBaseURI,
-			String linkedDataBaseURI, String originalFragmentId,
-			String linkedDataFragmentId, String conditionProperty,
-			String conditionPropertyValue)
-	{
-		super(conditionClass, conditionRow, conditionValue);
-		this.originalBaseURI = originalBaseURI;
-		this.linkedDataBaseURI = linkedDataBaseURI;
-		this.originalFragementId = originalFragmentId;
-		this.linkedDataFragmentId = linkedDataFragmentId;
+		super(conditionClass, conditionRow, conditionValue, translatorClass);
 		this.conditionProperty = conditionProperty;
 		this.conditionPropertyValue = conditionPropertyValue;
-	}
-
-	public String getOriginalBaseURI()
-	{
-		return originalBaseURI;
-	}
-
-	public void setOriginalBaseURI(String originalBaseURI)
-	{
-		this.originalBaseURI = originalBaseURI;
-	}
-
-	public String getLinkedDataBaseURI()
-	{
-		return linkedDataBaseURI;
-	}
-
-	public void setLinkedDataBaseURI(String linkedDataBaseURI)
-	{
-		this.linkedDataBaseURI = linkedDataBaseURI;
-	}
-
-	public String getOriginalFragementId()
-	{
-		return originalFragementId;
-	}
-
-	public void setOriginalFragementId(String originalFragementId)
-	{
-		this.originalFragementId = originalFragementId;
-	}
-
-	public String getLinkedDataFragmentId()
-	{
-		return linkedDataFragmentId;
-	}
-
-	public void setLinkedDataFragmentId(String linkedDataFragmentId)
-	{
-		this.linkedDataFragmentId = linkedDataFragmentId;
 	}
 
 	public String getConditionProperty()
