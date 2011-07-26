@@ -54,10 +54,14 @@ public class ReleaseGroupTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
+		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:SignalGroup", "dct:title", "title",
-						1, 5, false, "ReleaseGroupNamesCheck");
+						1, 5, false, false,
+						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
+						"ReleaseGroupNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

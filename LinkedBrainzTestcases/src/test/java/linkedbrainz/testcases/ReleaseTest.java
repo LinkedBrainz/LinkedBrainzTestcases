@@ -65,10 +65,15 @@ public class ReleaseTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Release", "dct:title", "title", 1,
-						5, false, "ReleaseNamesCheck");
+						5, false, false,
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleaseNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -133,10 +138,15 @@ public class ReleaseTest
 		classTableRows.add("country");
 		classTableRows.add("iso_code");
 
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeftWithFragment(classTables,
 						classTableRows, "mo:ReleaseEvent", "event:place",
-						"country", "#event", 5, true, "ReleasesCountryCheck");
+						"country", "#event", 5, true, false,
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

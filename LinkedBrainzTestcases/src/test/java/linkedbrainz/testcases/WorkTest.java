@@ -68,10 +68,15 @@ public class WorkTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add
+		// "Il dissoluto punito, ossia il Don Giovanni, K. 527: Act I, Scene VII. No. 5 Coro "Giovinette,
+		// che fate all'amore" (Zerlina, Coro)" as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicalWork", "dct:title", "title",
-						1, 5, false, "WorkNamesCheck");
+						1, 5, false, false,
+						"00955628-ace0-3873-9ef2-e0e66b203fc3",
+						"WorkNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -84,12 +89,26 @@ public class WorkTest
 	@Test
 	public void checkWorkAliases()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("work");
+		classTables.add("work_alias");
+		classTables.add("work_name");
+
+		classTableRows.add("name");
+		classTableRows.add("work");
+		classTableRows.add("name");
+
 		// add
 		// "Il dissoluto punito, ossia il Don Giovanni, K. 527: Act I, Scene VII. No. 5 Coro "Giovinette,
 		// che fate all'amore" (Zerlina, Coro)" as proof GUID
-		TestResult testResult = Utils.getInstance().checkInstanceAliases(
-				"work", "mo:MusicalWork",
-				"00955628-ace0-3873-9ef2-e0e66b203fc3", "WorkAliasesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicalWork", "skos:altLabel",
+						"alias", 2, 5, false, true,
+						"00955628-ace0-3873-9ef2-e0e66b203fc3",
+						"LabelsAliasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

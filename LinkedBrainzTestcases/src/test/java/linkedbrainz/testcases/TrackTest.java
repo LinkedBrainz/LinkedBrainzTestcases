@@ -57,10 +57,11 @@ public class TrackTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add ""Five Man Army" from Massive Attack as proof id
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
 						"mo:Track", "dct:title", "title", "#_", 1, 1, false,
-						"TrackNamesCheck");
+						false, "11", "TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -99,7 +100,7 @@ public class TrackTest
 		valueNames.add("artistURI");
 		valueNames.add("artistGUID");
 
-		// add ""Five Man Army" from Massive Attack as proof id TestResult
+		// add ""Five Man Army" from Massive Attack as proof id
 		TestResult testResult = Utils.getInstance()
 				.checkURIInversePropertyViaIDonTheLeftAndGUIDonTheRight(
 						classTables, classTableRows, classNames, "foaf:maker",
@@ -148,10 +149,10 @@ public class TrackTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
-	 * Fetches 1 track from the DB and resolves its track number against
-	 * the result of the related SPARQL query.
+	 * Fetches 1 track from the DB and resolves its track number against the
+	 * result of the related SPARQL query.
 	 * 
 	 */
 	@Test
@@ -164,10 +165,11 @@ public class TrackTest
 
 		classTableRows.add("position");
 
+		// add ""Five Man Army" from Massive Attack as proof id
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaIDOnTheLeft(classTables,
-						classTableRows, "mo:Track", "mo:track_number",
-						"trackNumber", "#_", 0, 1, false, "TracksTrackNumberCheck");
+				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
+						"mo:Track", "mo:track_number", "trackNumber", "#_", 0,
+						1, false, false, "11", "TracksTrackNumberCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

@@ -88,10 +88,13 @@ public class ArtistTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:name", "name",
-						1, 5, false, "ArtistNamesCheck");
+						1, 5, false, false,
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -113,10 +116,13 @@ public class ArtistTest
 		classTableRows.add("sort_name");
 		classTableRows.add("name");
 
+		// add The Beatles as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "ov:sortLabel",
-						"sortName", 1, 5, false, "ArtistSortLabelsCheck");
+						"sortName", 1, 5, false, false,
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -129,10 +135,24 @@ public class ArtistTest
 	@Test
 	public void checkMusicArtistAliases()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("artist");
+		classTables.add("artist_alias");
+		classTables.add("artist_name");
+
+		classTableRows.add("name");
+		classTableRows.add("artist");
+		classTableRows.add("name");
+
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance().checkInstanceAliases(
-				"artist", "mo:MusicArtist",
-				"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d", "ArtistAliasesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicArtist", "skos:altLabel",
+						"alias", 2, 5, false, true,
+						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+						"ArtistsAliasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -154,10 +174,13 @@ public class ArtistTest
 		classTableRows.add("gender");
 		classTableRows.add("name");
 
+		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:gender",
-						"gender", 1, 5, false, "ArtistGenderCheck");
+						"gender", 1, 5, false, false,
+						"c0b2500e-0cef-4130-869d-732b23ed9df5",
+						"ArtistGenderCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -388,10 +411,13 @@ public class ArtistTest
 		classTableRows.add("country");
 		classTableRows.add("iso_code");
 
+		// add Tori Amos as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:based_near",
-						"country", 1, 5, true, "ArtistsCountryCheck");
+						"country", 1, 5, true, false,
+						"c0b2500e-0cef-4130-869d-732b23ed9df5",
+						"ArtistsCountryCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

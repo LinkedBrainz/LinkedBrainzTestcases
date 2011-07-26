@@ -55,10 +55,12 @@ public class LabelTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add Columbia Records as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Label", "foaf:name", "name", 1, 5,
-						false, "LabelNamesCheck");
+						false, false, "011d1192-6f65-45bd-85c4-0400dd45693e",
+						"LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -80,10 +82,13 @@ public class LabelTest
 		classTableRows.add("sort_name");
 		classTableRows.add("name");
 
+		// add Columbia Records as proof GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Label", "ov:sortLabel", "sortName",
-						1, 5, false, "LabelSortLabelsCheck");
+						1, 5, false, false,
+						"011d1192-6f65-45bd-85c4-0400dd45693e",
+						"LabelSortLabelsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -96,10 +101,24 @@ public class LabelTest
 	@Test
 	public void checkLabelAliases()
 	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("label_alias");
+		classTables.add("label_name");
+
+		classTableRows.add("name");
+		classTableRows.add("label");
+		classTableRows.add("name");
+
 		// add Columbia Records as proof GUID
-		TestResult testResult = Utils.getInstance().checkInstanceAliases(
-				"label", "mo:Label", "011d1192-6f65-45bd-85c4-0400dd45693e",
-				"LabelAliasesCheck");
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "skos:altLabel", "alias",
+						2, 5, false, true,
+						"011d1192-6f65-45bd-85c4-0400dd45693e",
+						"LabelsAliasesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

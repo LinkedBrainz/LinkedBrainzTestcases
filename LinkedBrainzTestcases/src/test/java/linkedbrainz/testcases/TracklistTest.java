@@ -48,10 +48,14 @@ public class TracklistTest
 
 		classTableRows.add("track_count");
 
+		// add track list from "Sgt. Pepper’s Lonely Hearts Club Band" (PMC
+		// 7027) from The
+		// Beatles as proof id (see 44b7cab1-0ce1-404e-9089-b458eb3fa530 for the
+		// related release)
 		TestResult testResult = Utils.getInstance()
-				.checkSimplePropertyViaIDOnTheLeft(classTables,
-						classTableRows, "mo:Record", "mo:track_count",
-						"trackCount", "#_", 0, 5, false, "TrackListsTrackCountCheck");
+				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
+						"mo:Record", "mo:track_count", "trackCount", "#_", 0,
+						5, false, false, "22325", "TrackListsTrackCountCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

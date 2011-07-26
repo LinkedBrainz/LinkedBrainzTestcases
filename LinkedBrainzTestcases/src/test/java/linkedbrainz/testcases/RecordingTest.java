@@ -48,10 +48,14 @@ public class RecordingTest
 		classTableRows.add("name");
 		classTableRows.add("name");
 
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Signal", "dct:title", "title", 1,
-						5, false, "RecordingNamesCheck");
+						5, false, false,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -73,10 +77,13 @@ public class RecordingTest
 		classTableRows.add("recording");
 		classTableRows.add("isrc");
 
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheRight(classTables,
 						classTableRows, "mo:Signal", "mo:isrc", "ISRC", 5,
-						false, "RecordingISRCsCheck");
+						false, false, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

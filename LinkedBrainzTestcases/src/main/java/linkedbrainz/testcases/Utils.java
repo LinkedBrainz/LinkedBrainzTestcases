@@ -29,6 +29,8 @@ import com.hp.hpl.jena.sparql.resultset.ResultSetMem;
  * 
  * @author zazi
  * 
+ *         TODO: merge checkSimpleProperty and checkProperty method
+ * 
  */
 public class Utils
 {
@@ -523,189 +525,6 @@ public class Utils
 	}
 
 	/**
-	 * Fetches some instances from the DB and resolves their aliases against the
-	 * result of the related SPARQL query.
-	 * 
-	 * @param classTable
-	 *            the specific class table for the SQL query
-	 * @param classTable
-	 *            Row the specific row in the class table for the SQL query
-	 * @param classNameTable
-	 *            the specific class name table for the SQL query
-	 * @param className
-	 *            the class name of the specific RDF class for the SPARQL query
-	 * @param propertyName
-	 *            the property name of the specific RDF property for the SPARQL
-	 *            query
-	 * @param checkName
-	 *            the name of the specific check
-	 * @return the result of the test (incl. fail message)
-	 */
-	public TestResult checkInstanceAliases(String classTable, String className,
-			String proofGUID, String checkName)
-	{
-		resetQueryVars();
-		initFailMsgs(checkName);
-
-		// fetch some arbitrary MBZ gids for the beginning
-		String initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id "
-				+ "FROM musicbrainz.CLASS " + "LIMIT 5";
-		String sqlQuery = initSqlQuery.replace("CLASS", classTable);
-		limit = 5;
-
-		Map<String, List<String>> aliases = null;
-		String aliasesKey = null;
-
-		String initSparqlQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?URI ?alias "
-				+ "WHERE { ?URI a CLASS_NAME ; "
-				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
-				+ "skos:altLabel ?alias . }";
-		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
-
-		int overallAliasesCounter = 0;
-
-		try
-		{
-			sqlResultSet = runSQLQuery(sqlQuery);
-		} catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-
-			return new TestResult(false, sqlFailMsg);
-		}
-
-		if (sqlResultSet != null)
-		{
-			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-			aliases = new HashMap<String, List<String>>();
-
-			try
-			{
-				// init aliases map with empty lists
-				while (sqlRS.next())
-				{
-					aliases.put(sqlRS.getString("id"), new ArrayList<String>());
-				}
-			} catch (SQLException e)
-			{
-				System.out.println(e.getMessage());
-
-				return new TestResult(false, sqlFailMsg);
-			}
-
-			sqlResultSet.close();
-		}
-
-		// add a hardcoded GUID, since one could fetch instances that have no
-		// aliases and the wondering about the results
-		aliases.put(proofGUID, new ArrayList<String>());
-
-		if (aliases.size() == limit + 1)
-		{
-			Iterator<String> iter = aliases.keySet().iterator();
-
-			for (int j = 0; j < aliases.size(); j++)
-			{
-				aliasesKey = iter.next();
-				initSqlQuery = "SELECT musicbrainz.CLASS.gid AS id, "
-						+ "musicbrainz.CLASS_alias.name AS CLASS_alias_name_id, "
-						+ "musicbrainz.CLASS_name.id AS CLASS_name_id, "
-						+ "musicbrainz.CLASS_alias.CLASS AS CLASS_alias_CLASS_id, "
-						+ "musicbrainz.CLASS_alias.id AS CLASS_alias_id, "
-						+ "musicbrainz.CLASS_name.name AS alias "
-						+ "FROM musicbrainz.CLASS_alias "
-						+ "INNER JOIN musicbrainz.CLASS_name  ON CLASS_alias.name = CLASS_name.id "
-						+ "INNER JOIN musicbrainz.CLASS ON CLASS_alias.CLASS = CLASS.id "
-						+ "WHERE CLASS.gid = 'GUID_PLACEHOLDER'";
-				String initSqlQuery2 = initSqlQuery
-						.replace("CLASS", classTable);
-				sqlQuery = initSqlQuery2
-						.replace("GUID_PLACEHOLDER", aliasesKey);
-				sqlResultSet = null;
-
-				try
-				{
-					sqlResultSet = runSQLQuery(sqlQuery);
-				} catch (SQLException e)
-				{
-					System.out.println(e.getMessage());
-
-					return new TestResult(false, sqlFailMsg);
-				}
-
-				if (sqlResultSet != null)
-				{
-					java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-					try
-					{
-						// fill alias lists with aliases
-						while (sqlRS.next())
-						{
-
-							aliases.get(sqlRS.getString("id")).add(
-									sqlRS.getString("alias"));
-							overallAliasesCounter++;
-						}
-
-						System.out.println("[EXEC]  fetched "
-								+ aliases.get(aliasesKey).size()
-								+ " aliases for GUID " + aliasesKey);
-					} catch (SQLException e)
-					{
-						System.out.println(e.getMessage());
-
-						return new TestResult(false, sqlFailMsg);
-					}
-
-					sqlResultSet.close();
-				}
-
-			}
-
-			iter = aliases.keySet().iterator();
-
-			for (int i = 0; i < aliases.size(); i++)
-			{
-				sparqlRS = null;
-				aliasesKey = iter.next();
-
-				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
-						aliasesKey);
-
-				try
-				{
-					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
-							SERVICE_ENDPOINT);
-
-					sparqlRS = sparqlResultSet.getResultSet();
-
-					while (sparqlRS.hasNext())
-					{
-						if (aliases.get(aliasesKey)
-								.contains(
-										sparqlRS.next().getLiteral("alias")
-												.getString()))
-						{
-							queryCounter++;
-						}
-					}
-				} catch (Exception e)
-				{
-					System.out.println(e.getMessage());
-
-					return new TestResult(false, sparqlFailMsg);
-				}
-
-				sparqlResultSet.close();
-			}
-		}
-
-		return new TestResult(queryCounter == overallAliasesCounter,
-				queryCounterFailMsg);
-	}
-
-	/**
 	 * Fetches some instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
 	 * 
@@ -735,6 +554,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -743,13 +569,13 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			int numberOfJoins, int limit, boolean comparisonOnResource,
-			String checkName)
+			boolean multipleValues, String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", numberOfJoins, true);
 
 		return checkSimplePropertyViaGUID(classTables, classTableRows,
 				className, propertyName, valueName, limit,
-				comparisonOnResource, checkName);
+				comparisonOnResource, multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -780,6 +606,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -787,13 +620,14 @@ public class Utils
 	public TestResult checkSimplePropertyViaGUIDOnTheRight(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName, int limit,
-			boolean comparisonOnResource, String checkName)
+			boolean comparisonOnResource, boolean multipleValues,
+			String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, false);
 
 		return checkSimplePropertyViaGUID(classTables, classTableRows,
 				className, propertyName, valueName, limit,
-				comparisonOnResource, checkName);
+				comparisonOnResource, multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -824,6 +658,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -831,7 +672,8 @@ public class Utils
 	private TestResult checkSimplePropertyViaGUID(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName, int limit,
-			boolean comparisonOnResource, String checkName)
+			boolean comparisonOnResource, boolean multipleValues,
+			String proofId, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
@@ -839,8 +681,11 @@ public class Utils
 				+ "mo:musicbrainz_guid \"ID_PLACEHOLDER\"^^xsd:string ; "
 				+ "PROPERTY_NAME ?VALUE_NAME . }";
 
+		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
+
 		return checkSimpleProperty(classTables, classTableRows, className,
-				propertyName, valueName, limit, comparisonOnResource, checkName);
+				propertyName, valueName, limit, comparisonOnResource,
+				multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -874,6 +719,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -882,13 +734,13 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			String fragmentId, int limit, boolean comparisonOnResource,
-			String checkName)
+			boolean multipleValues, String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, true);
 
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, checkName);
+				comparisonOnResource, multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -918,12 +770,19 @@ public class Utils
 	 *            the fragment identifier of the URI pattern that includes the
 	 *            comparison ID
 	 * @param numberOfJoins
-	 *            indicates the number of joins of the SQL query            
+	 *            indicates the number of joins of the SQL query
 	 * @param limit
 	 *            the result limit for the SQL query
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -931,14 +790,15 @@ public class Utils
 	public TestResult checkSimplePropertyViaIDOnTheLeft(
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
-			String fragmentId, int numberOfJoins, int limit, boolean comparisonOnResource,
-			String checkName)
+			String fragmentId, int numberOfJoins, int limit,
+			boolean comparisonOnResource, boolean multipleValues,
+			String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("id", numberOfJoins, true);
 
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, checkName);
+				comparisonOnResource, multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -972,6 +832,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -980,13 +847,13 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			String fragmentId, int limit, boolean comparisonOnResource,
-			String checkName)
+			boolean multipleValues, String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("id", 1, false);
 
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, checkName);
+				comparisonOnResource, multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -1020,6 +887,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1027,7 +901,8 @@ public class Utils
 	private TestResult checkSimplePropertyViaID(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, String className,
 			String propertyName, String valueName, String fragmentId,
-			int limit, boolean comparisonOnResource, String checkName)
+			int limit, boolean comparisonOnResource, boolean multipleValues,
+			String proofId, String checkName)
 	{
 		String initSparqlQuery2 = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
@@ -1036,8 +911,11 @@ public class Utils
 				+ "FILTER regex(str(?URI), \"/ID_PLACEHOLDERFRAGMENT_ID\") } ";
 		initSparqlQuery = initSparqlQuery2.replace("FRAGMENT_ID", fragmentId);
 
+		initCandidatesSqlQuery(classTables.get(0), "id", limit);
+
 		return checkSimpleProperty(classTables, classTableRows, className,
-				propertyName, valueName, limit, comparisonOnResource, checkName);
+				propertyName, valueName, limit, comparisonOnResource,
+				multipleValues, proofId, checkName);
 	}
 
 	/**
@@ -1068,6 +946,13 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            if this value is set to 'true' the comparison values are RDF
 	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1075,11 +960,13 @@ public class Utils
 	private TestResult checkSimpleProperty(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, String className,
 			String propertyName, String valueName, int limit,
-			boolean comparisonOnResource, String checkName)
+			boolean comparisonOnResource, boolean multipleValues,
+			String proofId, String checkName)
 	{
 		resetQueryVars();
 		initFailMsgs(checkName);
 
+		TestResult testResult = null;
 		this.limit = limit;
 
 		String initSqlQuery = this.initSqlQuery;
@@ -1088,11 +975,7 @@ public class Utils
 		String initSqlQuery3 = replacePlaceholders(classTables, "CLASS",
 				initSqlQuery2);
 		String initSqlQuery4 = initSqlQuery3.replace("VALUE_NAME", valueName);
-		String sqlQuery = initSqlQuery4.replace("LIMIT_PLACEHOLDER", Integer
-				.toString(limit));
-
-		Map<String, String> values = null;
-		String valuesKey = null;
+		String sqlQuery = null;
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String initSparqlQuery2 = initSparqlQuery.replace("VALUE_NAME",
@@ -1104,28 +987,18 @@ public class Utils
 
 		int relationsCounter = 0;
 
-		try
+		// just execute the normal simple SQL query
+		if (!multipleValues)
 		{
-			sqlResultSet = runSQLQuery(sqlQuery);
-		} catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
+			sqlQuery = initSqlQuery4.replace("LIMIT_PLACEHOLDER", Integer
+					.toString(limit));
 
-			return new TestResult(false, sqlFailMsg);
-		}
-
-		if (sqlResultSet != null)
-		{
-			java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
-			values = new HashMap<String, String>();
+			Map<String, String> values = null;
+			String valuesKey = null;
 
 			try
 			{
-				while (sqlRS.next())
-				{
-					values.put(sqlRS.getString("id"), sqlRS
-							.getString(valueName));
-				}
+				sqlResultSet = runSQLQuery(sqlQuery);
 			} catch (SQLException e)
 			{
 				System.out.println(e.getMessage());
@@ -1133,80 +1006,239 @@ public class Utils
 				return new TestResult(false, sqlFailMsg);
 			}
 
-			sqlResultSet.close();
-		}
-
-		if (values.size() == limit)
-		{
-			Iterator<String> iter = values.keySet().iterator();
-
-			for (int i = 0; i < limit; i++)
+			if (sqlResultSet != null)
 			{
-				sparqlRS = null;
-				valuesKey = iter.next();
-
-				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
-						valuesKey);
+				java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+				values = new HashMap<String, String>();
 
 				try
 				{
-					sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
-							SERVICE_ENDPOINT);
-
-					sparqlRS = sparqlResultSet.getResultSet();
-
-					while (sparqlRS.hasNext())
+					while (sqlRS.next())
 					{
-						if (comparisonOnResource)
-						{
-							String resourceURI = sparqlRS.next().getResource(
-									valueName).getURI();
+						values.put(sqlRS.getString("id"), sqlRS
+								.getString(valueName));
+					}
+				} catch (SQLException e)
+				{
+					System.out.println(e.getMessage());
 
-							// check the URI against the id it should contain
-							if (resourceURI.endsWith("/"
-									+ values.get(valuesKey)))
+					return new TestResult(false, sqlFailMsg);
+				}
+
+				sqlResultSet.close();
+			}
+
+			if (values.size() == limit)
+			{
+				Iterator<String> iter = values.keySet().iterator();
+
+				for (int i = 0; i < limit; i++)
+				{
+					sparqlRS = null;
+					valuesKey = iter.next();
+
+					currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
+							valuesKey);
+
+					try
+					{
+						sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+								SERVICE_ENDPOINT);
+
+						sparqlRS = sparqlResultSet.getResultSet();
+
+						while (sparqlRS.hasNext())
+						{
+							if (comparisonOnResource)
 							{
-								queryCounter++;
+								String resourceURI = sparqlRS.next()
+										.getResource(valueName).getURI();
+
+								// check the URI against the id it should
+								// contain
+								if (resourceURI.endsWith("/"
+										+ values.get(valuesKey)))
+								{
+									queryCounter++;
+								}
+
+							} else
+							{
+								if (values.get(valuesKey).equals(
+										sparqlRS.next().getLiteral(valueName)
+												.getString()))
+								{
+									queryCounter++;
+								}
 							}
 
-						} else
+							relationsCounter++;
+						}
+					} catch (Exception e)
+					{
+						System.out.println(e.getMessage());
+
+						return new TestResult(false, sparqlFailMsg);
+					}
+
+					sparqlResultSet.close();
+				}
+
+				if (relationsCounter != values.size())
+				{
+					return new TestResult(
+							false,
+							sparqlFailMsg
+									+ ".\n"
+									+ "The number of relations from the SPARQL query doesn't seem to be equal to the number of fetched rows from the SQL query.\n"
+									+ "Number of fetched rows from the SQL query: "
+									+ values.size()
+									+ ".\n"
+									+ "Number of relations from the SPARQL query: "
+									+ relationsCounter + ".");
+				}
+			}
+
+			testResult = new TestResult(queryCounter == limit,
+					queryCounterFailMsg);
+		}
+		// prefetch some id values that are utilised in the proper SQL query
+		else
+		{
+			Map<String, List<String>> relations = null;
+			String relationsKey = null;
+
+			int overallRelationsCounter = 0;
+
+			try
+			{
+				sqlResultSet = runSQLQuery(candidatesSqlQuery);
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+
+				return new TestResult(false, sqlFailMsg);
+			}
+
+			if (sqlResultSet != null)
+			{
+				java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+				relations = new HashMap<String, List<String>>();
+
+				try
+				{
+					// init aliases map with empty lists
+					while (sqlRS.next())
+					{
+						relations.put(sqlRS.getString("id"),
+								new ArrayList<String>());
+					}
+				} catch (SQLException e)
+				{
+					System.out.println(e.getMessage());
+
+					return new TestResult(false, sqlFailMsg);
+				}
+
+				sqlResultSet.close();
+			}
+
+			// add a hardcoded id, since one could fetch instances that have
+			// no relations and the wondering about the results
+			relations.put(proofId, new ArrayList<String>());
+
+			if (relations.size() == limit + 1)
+			{
+				Iterator<String> iter = relations.keySet().iterator();
+
+				for (int j = 0; j < relations.size(); j++)
+				{
+					relationsKey = iter.next();
+					sqlQuery = initSqlQuery4.replace("ID_PLACEHOLDER",
+							relationsKey);
+					sqlResultSet = null;
+
+					try
+					{
+						sqlResultSet = runSQLQuery(sqlQuery);
+					} catch (SQLException e)
+					{
+						System.out.println(e.getMessage());
+
+						return new TestResult(false, sqlFailMsg);
+					}
+
+					if (sqlResultSet != null)
+					{
+						java.sql.ResultSet sqlRS = sqlResultSet.getResultSet();
+						try
 						{
-							if (values.get(valuesKey).equals(
+							// fill relations lists with relations
+							while (sqlRS.next())
+							{
+
+								relations.get(sqlRS.getString("id")).add(
+										sqlRS.getString(valueName));
+								overallRelationsCounter++;
+							}
+
+							System.out.println("[EXEC]  fetched "
+									+ relations.get(relationsKey).size()
+									+ " relations for ID " + relationsKey);
+						} catch (SQLException e)
+						{
+							System.out.println(e.getMessage());
+
+							return new TestResult(false, sqlFailMsg);
+						}
+
+						sqlResultSet.close();
+					}
+
+				}
+
+				iter = relations.keySet().iterator();
+
+				for (int i = 0; i < relations.size(); i++)
+				{
+					sparqlRS = null;
+					relationsKey = iter.next();
+
+					currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
+							relationsKey);
+
+					try
+					{
+						sparqlResultSet = runSPARQLQuery(currentSparqlQuery,
+								SERVICE_ENDPOINT);
+
+						sparqlRS = sparqlResultSet.getResultSet();
+
+						while (sparqlRS.hasNext())
+						{
+							if (relations.get(relationsKey).contains(
 									sparqlRS.next().getLiteral(valueName)
 											.getString()))
 							{
 								queryCounter++;
 							}
 						}
+					} catch (Exception e)
+					{
+						System.out.println(e.getMessage());
 
-						relationsCounter++;
+						return new TestResult(false, sparqlFailMsg);
 					}
-				} catch (Exception e)
-				{
-					System.out.println(e.getMessage());
 
-					return new TestResult(false, sparqlFailMsg);
+					sparqlResultSet.close();
 				}
+			}
 
-				sparqlResultSet.close();
-			}
-			
-			if (relationsCounter != values.size())
-			{
-				return new TestResult(
-						false,
-						sparqlFailMsg
-								+ ".\n"
-								+ "The number of relations from the SPARQL query doesn't seem to be equal to the number of fetched rows from the SQL query.\n"
-								+ "Number of fetched rows from the SQL query: "
-								+ values.size()
-								+ ".\n"
-								+ "Number of relations from the SPARQL query: "
-								+ relationsCounter + ".");
-			}
+			return new TestResult(queryCounter == overallRelationsCounter,
+					queryCounterFailMsg);
 		}
 
-		return new TestResult(queryCounter == limit, queryCounterFailMsg);
+		return testResult;
 	}
 
 	/**
@@ -2059,7 +2091,7 @@ public class Utils
 			comparisonOnResource = true;
 		}
 
-		return checkURIProperty(classTables, classTableRows, classNames,
+		return checkProperty(classTables, classTableRows, classNames,
 				propertyName, valueNames, limit, proofID, comparisonOnResource,
 				URIComparison, URIreplacement, rightSideFragmentId, checkName);
 	}
@@ -2115,7 +2147,7 @@ public class Utils
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
 	 */
-	private TestResult checkURIProperty(ArrayList<String> classTables,
+	private TestResult checkProperty(ArrayList<String> classTables,
 			ArrayList<String> classTableRows, ArrayList<String> classNames,
 			String propertyName, ArrayList<String> valueNames, int limit,
 			String proofID, boolean comparisonOnResource,
@@ -2404,6 +2436,7 @@ public class Utils
 							}
 						} else
 						{
+							// just a simple full literal comparison
 							if (relations.get(relationsKey).contains(
 									sparqlRS.next().getLiteral(
 											valueNames.get(2)).getString()))
@@ -2572,6 +2605,13 @@ public class Utils
 						.replace("SELECT_CLASS2", "CLASS2");
 			}
 			break;
+		case 2:
+			initSqlQuery4 = "SELECT musicbrainz.CLASS3.CLASS_ROW3 AS VALUE_NAME, "
+					+ "musicbrainz.CLASS1.ID_CLASS_ROW AS id "
+					+ "FROM musicbrainz.CLASS3 "
+					+ "INNER JOIN musicbrainz.CLASS2  ON CLASS2.CLASS_ROW1 = CLASS3.id "
+					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS2.CLASS_ROW2 = CLASS1.id "
+					+ "WHERE musicbrainz.CLASS1.ID_CLASS_ROW = 'ID_PLACEHOLDER'";
 		default:
 			break;
 		}
