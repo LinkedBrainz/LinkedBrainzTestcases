@@ -5,11 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
-import linkedbrainz.d2rs.translator.DiscogsTranslator;
-import linkedbrainz.d2rs.translator.IBDBTranslator;
-import linkedbrainz.d2rs.translator.IMDBTranslator;
-import linkedbrainz.d2rs.translator.IOBDBTranslator;
-import linkedbrainz.d2rs.translator.MusicMozTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -142,7 +137,8 @@ public class ReleaseGroupTest
 
 		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -153,9 +149,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'6578f0e9-1ace-4095-9de8-6e517ddb1ceb'",
-								"http://wikipedia.org/wiki/",
-								"http://dbpedia.org/resource/", "", "",
-								"is:info_service", "isi:dbpedia"),
+								"is:info_service", "isi:dbpedia",
+								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
 						"ReleaseGroupsDBPedialinksRelationsCheck");
 
@@ -196,7 +191,8 @@ public class ReleaseGroupTest
 
 		// add "Sgt. Pepper’s Lonely Hearts Club Band" from The Beatles as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -207,9 +203,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'6578f0e9-1ace-4095-9de8-6e517ddb1ceb'",
-								"http://wikipedia.org/wiki/",
-								"http://wikipedia.org/wiki/", "", "",
-								"is:info_service", "isi:wikipedia"),
+								"is:info_service", "isi:wikipedia",
+								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
 						"ReleaseGroupsWikipedialinksRelationsCheck");
 
@@ -250,7 +245,8 @@ public class ReleaseGroupTest
 
 		// add "Chances Are" from Bob Marley as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -261,9 +257,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'99e550f3-5ab4-3110-b5b9-fe01d970b126'",
-								DiscogsTranslator.ORIGINAL_BASE_URI,
-								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:discogs"),
+								"is:info_service", "isi:discogs",
+								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"5600398c-c9fa-398a-84df-d8b13b009853",
 						"ReleaseGroupsDiscogslinksReleationsCheck");
 
@@ -315,9 +310,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'a7f96734-716e-48b8-9040-adc5b3256836'",
-								IBDBTranslator.ORIGINAL_BASE_URI,
-								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:ibdb"),
+								"is:info_service", "isi:ibdb",
+								"linkedbrainz.d2rs.translator.IBDBTranslator"),
 						"5d192683-17da-34c6-ad6b-6e37e8bd449d",
 						"ReleaseGroupsIBDblinksReleationsCheck");
 
@@ -369,9 +363,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'85b0a010-3237-47c7-8476-6fcefd4761af'",
-								IMDBTranslator.ORIGINAL_BASE_URI,
-								IMDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:imdb"),
+								"is:info_service", "isi:imdb",
+								"linkedbrainz.d2rs.translator.IMDBTranslator"),
 						"6d79d579-213d-3172-a860-1cd9bde0ecd5",
 						"ReleaseGroupsIMDblinksReleationsCheck");
 
@@ -412,7 +405,8 @@ public class ReleaseGroupTest
 
 		// add "One Mo' Time" (a musical) as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -423,9 +417,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'fd87657e-aa2f-44ad-b5d8-d97c0c938a4d'",
-								IOBDBTranslator.ORIGINAL_BASE_URI,
-								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:iobdb"),
+								"is:info_service", "isi:iobdb",
+								"linkedbrainz.d2rs.translator.IOBDBTranslator"),
 						"0e888dba-0b67-45a5-a1bf-58598ff90156",
 						"ReleaseGroupsIOBDblinksReleationsCheck");
 
@@ -466,7 +459,8 @@ public class ReleaseGroupTest
 
 		// add "Use Your Illusion II " by Guns N' Roses as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -477,9 +471,8 @@ public class ReleaseGroupTest
 						5,
 						new URICondition("link_type", "gid",
 								"'d111c58d-0d9b-4675-99c1-ddc5a8e01847'",
-								MusicMozTranslator.ORIGINAL_BASE_URI,
-								MusicMozTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:musicmoz"),
+								"is:info_service", "isi:musicmoz",
+								"linkedbrainz.d2rs.translator.MusicMozTranslator"),
 						"617c9f00-9488-3a70-a994-9de312541617",
 						"ReleaseGroupsMusicMozlinksReleationsCheck");
 

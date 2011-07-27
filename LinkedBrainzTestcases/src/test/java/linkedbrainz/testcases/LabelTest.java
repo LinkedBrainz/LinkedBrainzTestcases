@@ -5,13 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
-import linkedbrainz.d2rs.translator.DBPediaTranslator;
-import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
-import linkedbrainz.d2rs.translator.DiscogsTranslator;
-import linkedbrainz.d2rs.translator.MySpaceTranslator;
-import linkedbrainz.d2rs.translator.VGMDBTranslator;
-import linkedbrainz.d2rs.translator.WikipediaTranslator;
-import linkedbrainz.d2rs.translator.YouTubeTranslator;
 import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
@@ -168,9 +161,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
-								DBTuneMySpaceTranslator.ORIGINAL_BASE_URI,
-								DBTuneMySpaceTranslator.LINKED_DATA_BASE_URI,
-								"", "", "is:info_service", "isi:dbtunemyspace"),
+								"is:info_service", "isi:dbtunemyspace",
+								"linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
 						"LabelsDBTuneMyspacelinksReleationsCheck");
 
@@ -210,7 +202,8 @@ public class LabelTest
 		valueNames.add("myspaceURI");
 
 		// add Universal Music as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -221,9 +214,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
-								MySpaceTranslator.ORIGINAL_BASE_URI,
-								MySpaceTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:myspace"),
+								"is:info_service", "isi:myspace",
+								"linkedbrainz.d2rs.translator.MySpaceTranslator"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
 						"LabelsMyspacelinksReleationsCheck");
 
@@ -263,7 +255,8 @@ public class LabelTest
 		valueNames.add("dbpediaURI");
 
 		// add Columbia Records as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -274,9 +267,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
-								DBPediaTranslator.ORIGINAL_BASE_URI,
-								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
-								"is:info_service", "isi:dbpedia"),
+								"is:info_service", "isi:dbpedia",
+								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsDBPedialinksRelationsCheck");
 
@@ -316,7 +308,8 @@ public class LabelTest
 		valueNames.add("wikiURI");
 
 		// add Columbia Records as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -327,9 +320,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
-								WikipediaTranslator.ORIGINAL_BASE_URI,
-								WikipediaTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:wikipedia"),
+								"is:info_service", "isi:wikipedia",
+								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsWikipedialinksRelationsCheck");
 
@@ -369,7 +361,8 @@ public class LabelTest
 		valueNames.add("youTubeChannelURI");
 
 		// add Mute Records as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -380,9 +373,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'d9c71059-ba9d-4135-b909-481d12cf84e3'",
-								YouTubeTranslator.ORIGINAL_BASE_URI,
-								YouTubeTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:youtube"),
+								"is:info_service", "isi:youtube",
+								"linkedbrainz.d2rs.translator.YouTubeTranslator"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsYouTubeChannelsReleationsCheck");
 
@@ -422,7 +414,8 @@ public class LabelTest
 		valueNames.add("discogsURI");
 
 		// add Mute Records as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -433,9 +426,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'5b987f87-25bc-4a2d-b3f1-3618795b8207'",
-								DiscogsTranslator.ORIGINAL_BASE_URI,
-								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:discogs"),
+								"is:info_service", "isi:discogs",
+								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
 						"LabelsDiscogslinksReleationsCheck");
 
@@ -475,7 +467,8 @@ public class LabelTest
 		valueNames.add("vgmdbURI");
 
 		// add TOY'S FACTORY as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -486,9 +479,8 @@ public class LabelTest
 						5,
 						new URICondition("link_type", "gid",
 								"'8a2d3e55-d291-4b99-87a0-c59c6b121762'",
-								VGMDBTranslator.ORIGINAL_BASE_URI,
-								VGMDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:vgmdb"),
+								"is:info_service", "isi:vgmdb",
+								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"5f7aa61d-cf77-4c2a-9a43-41682508dccd",
 						"LabelsVGMDBlinksReleationsCheck");
 

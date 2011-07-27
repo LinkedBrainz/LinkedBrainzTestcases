@@ -5,16 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
-import linkedbrainz.d2rs.translator.DBPediaTranslator;
-import linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator;
-import linkedbrainz.d2rs.translator.DiscogsTranslator;
-import linkedbrainz.d2rs.translator.IBDBTranslator;
-import linkedbrainz.d2rs.translator.IMDBTranslator;
-import linkedbrainz.d2rs.translator.IOBDBTranslator;
-import linkedbrainz.d2rs.translator.MySpaceTranslator;
-import linkedbrainz.d2rs.translator.PureVolumeTranslator;
-import linkedbrainz.d2rs.translator.WikipediaTranslator;
-import linkedbrainz.d2rs.translator.YouTubeTranslator;
 import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;

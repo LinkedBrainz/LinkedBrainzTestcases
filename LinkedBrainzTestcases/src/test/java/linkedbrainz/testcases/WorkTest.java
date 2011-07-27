@@ -5,10 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
-import linkedbrainz.d2rs.translator.DBPediaTranslator;
-import linkedbrainz.d2rs.translator.IBDBTranslator;
-import linkedbrainz.d2rs.translator.IOBDBTranslator;
-import linkedbrainz.d2rs.translator.WikipediaTranslator;
 import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
@@ -201,7 +197,8 @@ public class WorkTest
 		valueNames.add("dbpediaURI");
 
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -212,9 +209,8 @@ public class WorkTest
 						5,
 						new URICondition("link_type", "gid",
 								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'",
-								DBPediaTranslator.ORIGINAL_BASE_URI,
-								DBPediaTranslator.LINKED_DATA_BASE_URI, "", "",
-								"is:info_service", "isi:dbpedia"),
+								"is:info_service", "isi:dbpedia",
+								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"aacb1ab0-c740-436a-a782-ed60026cf82b",
 						"WorksDBPedialinksRelationsCheck");
 
@@ -254,7 +250,8 @@ public class WorkTest
 		valueNames.add("wikipediaURI");
 
 		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -265,9 +262,8 @@ public class WorkTest
 						5,
 						new URICondition("link_type", "gid",
 								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'",
-								WikipediaTranslator.ORIGINAL_BASE_URI,
-								WikipediaTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:wikipedia"),
+								"is:info_service", "isi:wikipedia",
+								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"aacb1ab0-c740-436a-a782-ed60026cf82b",
 						"WorksWikipedialinksRelationsCheck");
 
@@ -324,9 +320,8 @@ public class WorkTest
 						5,
 						new URICondition("link_type", "gid",
 								"'206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'",
-								IBDBTranslator.ORIGINAL_BASE_URI,
-								IBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:ibdb"),
+								"is:info_service", "isi:ibdb",
+								"linkedbrainz.d2rs.translator.IBDBTranslator"),
 						"aa8b1e50-d265-301a-8bd9-3336ac4f779c",
 						"WorksIBDblinksRelationsCheck");
 
@@ -367,7 +362,8 @@ public class WorkTest
 
 		// add "Sweeney Todd, The Demon Barber of Fleet Street" (a musical) as
 		// proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -378,9 +374,8 @@ public class WorkTest
 						5,
 						new URICondition("link_type", "gid",
 								"'8845d830-fe9b-4ed6-a084-b1a3f193167a'",
-								IOBDBTranslator.ORIGINAL_BASE_URI,
-								IOBDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:iobdb"),
+								"is:info_service", "isi:iobdb",
+								"linkedbrainz.d2rs.translator.IOBDBTranslator"),
 						"8fce3022-510f-3e21-bab6-5304595e2c5b",
 						"WorksIOBDblinksRelationsCheck");
 

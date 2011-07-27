@@ -188,7 +188,7 @@ public class Utils
 
 		try
 		{
-			System.out.println("[EXEC]  SPARQL query:\n\t\t" + queryString);
+			System.out.println("\n[EXEC]  SPARQL query:\n\t\t" + queryString);
 
 			com.hp.hpl.jena.query.ResultSet rs = qe.execSelect();
 
@@ -298,7 +298,7 @@ public class Utils
 			dbConnection = getDBConnection();
 			statement = dbConnection.createStatement();
 
-			System.out.println("[EXEC]  DB query:\n\t\t" + query);
+			System.out.println("\n[EXEC]  DB query:\n\t\t" + query);
 
 			// execute select SQL statement
 			java.sql.ResultSet rs = statement.executeQuery(query);
@@ -989,6 +989,12 @@ public class Utils
 				propertyName);
 
 		int relationsCounter = 0;
+		int currentRelationsCounter = 0;
+
+		System.out
+				.println("\n##################################################\n[EXEC]  "
+						+ checkName
+						+ "\n##################################################\n");
 
 		// just execute the normal simple SQL query
 		if (!multipleValues)
@@ -1044,6 +1050,8 @@ public class Utils
 				{
 					sparqlRS = null;
 					valuesKey = iter.next();
+					currentRelationsCounter = 0;
+					relationsCounter = 0;
 
 					currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
 							valuesKey);
@@ -1068,6 +1076,7 @@ public class Utils
 										+ values.get(valuesKey)))
 								{
 									queryCounter++;
+									currentRelationsCounter++;
 								}
 
 							} else
@@ -1077,11 +1086,39 @@ public class Utils
 												.getString()))
 								{
 									queryCounter++;
+									currentRelationsCounter++;
 								}
 							}
 
 							relationsCounter++;
 						}
+
+						if (relationsCounter != 1)
+						{
+							return new TestResult(
+									false,
+									sparqlFailMsg
+											+ ".\n"
+											+ "The number of relations from the SPARQL query doesn't seem to be equal to the number of fetched rows from the SQL query.\n"
+											+ "\nNumber of fetched rows from the SQL query = "
+											+ values.size()
+											/ limit
+											+ ".\n Number of the values from the SPARQL query result = "
+											+ currentRelationsCounter
+											+ "\nNumber of relations from the SPARQL query = "
+											+ relationsCounter + ".");
+						}
+
+						System.out
+								.println("[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.\n\t\t"
+										+ "Number of values from the SQL query result = "
+										+ values.size()
+										/ limit
+										+ ".\n\t\tNumber of the values from the SPARQL query result = "
+										+ currentRelationsCounter
+										+ ".\n\t\tRelations counter of the SPARQL result set = "
+										+ relationsCounter + ".");
+
 					} catch (Exception e)
 					{
 						System.out.println(e.getMessage());
@@ -1090,20 +1127,6 @@ public class Utils
 					}
 
 					sparqlResultSet.close();
-				}
-
-				if (relationsCounter != values.size())
-				{
-					return new TestResult(
-							false,
-							sparqlFailMsg
-									+ ".\n"
-									+ "The number of relations from the SPARQL query doesn't seem to be equal to the number of fetched rows from the SQL query.\n"
-									+ "Number of fetched rows from the SQL query: "
-									+ values.size()
-									+ ".\n"
-									+ "Number of relations from the SPARQL query: "
-									+ relationsCounter + ".");
 				}
 			}
 
@@ -1120,6 +1143,9 @@ public class Utils
 
 			try
 			{
+				System.out
+						.println("[EXEC]  Prefetch some id values that are utilised in the proper SQL query.");
+
 				sqlResultSet = runSQLQuery(candidatesSqlQuery);
 			} catch (SQLException e)
 			{
@@ -1211,6 +1237,8 @@ public class Utils
 				{
 					sparqlRS = null;
 					relationsKey = iter.next();
+					currentRelationsCounter = 0;
+					relationsCounter = 0;
 
 					currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
 							relationsKey);
@@ -1229,8 +1257,41 @@ public class Utils
 											.getString()))
 							{
 								queryCounter++;
+								currentRelationsCounter++;
 							}
+
+							relationsCounter++;
 						}
+
+						if (currentRelationsCounter != relations.get(
+								relationsKey).size())
+						{
+							return new TestResult(
+									false,
+									sparqlFailMsg
+											+ ".\n The comparision of the values for the key \""
+											+ relationsKey
+											+ "\" between the SQL query and the SPARQL are showing a difference.\n"
+											+ " Number of values from the SQL query result = "
+											+ relations.get(relationsKey)
+													.size()
+											+ ".\n Number of the values from the SPARQL query result = "
+											+ currentRelationsCounter
+											+ ".\n Relations counter of the SPARQL result set = "
+											+ relationsCounter + ".");
+						}
+
+						System.out
+								.println("[EXEC]  The comparision of the values for the key \""
+										+ relationsKey
+										+ "\" between the SQL query and the SPARQL has the following results.\n\t\t"
+										+ "Number of values from the SQL query result = "
+										+ relations.get(relationsKey).size()
+										+ ".\n\t\tNumber of the values from the SPARQL query result = "
+										+ currentRelationsCounter
+										+ ".\n\t\tRelations counter of the SPARQL result set = "
+										+ relationsCounter + ".");
+
 					} catch (Exception e)
 					{
 						System.out.println(e.getMessage());
@@ -1912,7 +1973,6 @@ public class Utils
 			String rightSideFragmentId, String checkName)
 	{
 		boolean URIComparison = false;
-		boolean URIreplacement = false;
 
 		String leftSideFragmentIdAndRightSideGUID = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
@@ -2251,8 +2311,16 @@ public class Utils
 		int currentRelationsCounter = 0;
 		int relationsCounter = 0;
 
+		System.out
+				.println("\n##################################################\n[EXEC]  "
+						+ checkName
+						+ "\n##################################################\n");
+
 		try
 		{
+			System.out
+					.println("[EXEC]  Prefetch some id values that are utilised in the proper SQL query.");
+
 			sqlResultSet = runSQLQuery(candidatesSqlQuery);
 		} catch (SQLException e)
 		{
@@ -2354,6 +2422,7 @@ public class Utils
 			{
 				sparqlRS = null;
 				currentRelationsCounter = 0;
+				relationsCounter = 0;
 				relationsKey = iter.next();
 
 				currentSparqlQuery = sparqlQuery.replace("ID_PLACEHOLDER",
@@ -2375,21 +2444,29 @@ public class Utils
 							String resourceURI = sparqlRS.next().getResource(
 									valueNames.get(2)).getURI();
 
-							System.out.println("[EXEC]  resource URI: "
-									+ resourceURI);
+							/*
+							 * System.out.println("[EXEC]  resource URI: " +
+							 * resourceURI);
+							 */
 
 							if (URIComparison)
 							{
-								System.out
-										.println("[EXEC]  let's do a URI comparision");
+								/*
+								 * System.out
+								 * .println("[EXEC]  let's do a URI comparision"
+								 * );
+								 */
 
 								Translator translator = null;
 								String uriFromSqlQuery = null;
 
 								if (condition.getTranslatorClass() != null)
 								{
-									System.out
-											.println("[EXEC]  here we go in the Translator class case");
+									/*
+									 * System.out.println(
+									 * "[EXEC]  here we go in the Translator class case"
+									 * );
+									 */
 
 									if (getTranslatorInstance(condition
 											.getTranslatorClass()) != null)
@@ -2397,8 +2474,11 @@ public class Utils
 										translator = getTranslatorInstance(condition
 												.getTranslatorClass());
 
-										System.out
-												.println("[EXEC]  here we go with an instatiated Translator class");
+										/*
+										 * System.out.println(
+										 * "[EXEC]  here we go with an instatiated Translator class"
+										 * );
+										 */
 									}
 								}
 
@@ -2409,8 +2489,7 @@ public class Utils
 									{
 										uriFromSqlQuery = translator
 												.toRDFValue(resources.get(k));
-									}
-									else
+									} else
 									{
 										uriFromSqlQuery = resources.get(k);
 									}
@@ -2425,8 +2504,11 @@ public class Utils
 								}
 							} else
 							{
-								System.out
-										.println("[EXEC]  here we go with a right side URI + fragment id comparison");
+								/*
+								 * System.out.println(
+								 * "[EXEC]  here we go with a right side URI + fragment id comparison"
+								 * );
+								 */
 
 								if (rightSideFragmentId == null)
 								{
@@ -2452,8 +2534,11 @@ public class Utils
 							}
 						} else
 						{
-							System.out
-									.println("[EXEC]  here we go with a simple full literal comparison");
+							/*
+							 * System.out.println(
+							 * "[EXEC]  here we go with a simple full literal comparison"
+							 * );
+							 */
 
 							// just a simple full literal comparison
 							if (relations.get(relationsKey).contains(
@@ -2479,11 +2564,22 @@ public class Utils
 										+ "\" between the SQL query and the SPARQL are showing a difference.\n"
 										+ " Number of values from the SQL query result = "
 										+ relations.get(relationsKey).size()
-										+ ".\n Number of the values from the SPARQL query result: "
+										+ ".\n Number of the values from the SPARQL query result = "
 										+ currentRelationsCounter
-										+ ".\n Relations counter of the SPARQL result set: "
+										+ ".\n Relations counter of the SPARQL result set = "
 										+ relationsCounter + ".");
 					}
+
+					System.out
+							.println("[EXEC]  The comparision of the values for the key \""
+									+ relationsKey
+									+ "\" between the SQL query and the SPARQL has the following results.\n\t\t"
+									+ "Number of values from the SQL query result = "
+									+ relations.get(relationsKey).size()
+									+ ".\n\t\tNumber of the values from the SPARQL query result = "
+									+ currentRelationsCounter
+									+ ".\n\t\tRelations counter of the SPARQL result set = "
+									+ relationsCounter + ".");
 				} catch (Exception e)
 				{
 					System.out.println(e.getMessage());
@@ -2710,8 +2806,10 @@ public class Utils
 	private void initSPAQLCondition(String conditionProperty,
 			String conditionPropertyValue)
 	{
-		System.out.println("[EXEC]  conditionProperty: " + conditionProperty
-				+ " :: conditionPropertyValue: " + conditionPropertyValue);
+		/*
+		 * System.out.println("[EXEC]  conditionProperty: " + conditionProperty
+		 * + " :: conditionPropertyValue: " + conditionPropertyValue);
+		 */
 
 		if (!conditionProperty.equals(""))
 		{

@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
-import linkedbrainz.d2rs.translator.DiscogsTranslator;
-import linkedbrainz.d2rs.translator.VGMDBTranslator;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -223,9 +221,10 @@ public class ReleaseTest
 		// Beatles as proof
 		// GUID
 		TestResult testResult = Utils.getInstance()
-				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(classTables,
-						classTableRows, classNames, "mo:record", valueNames,
-						"#_", 1, 5, "44b7cab1-0ce1-404e-9089-b458eb3fa530",
+				.checkURIInversePropertyViaGUIDOnTheLeftAndIDOnTheRight(
+						classTables, classTableRows, classNames, "mo:record",
+						valueNames, "#_", 1, 5,
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleasesMediumsRelationsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -266,7 +265,8 @@ public class ReleaseTest
 		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
 		// Beatles as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -277,9 +277,8 @@ public class ReleaseTest
 						5,
 						new URICondition("link_type", "gid",
 								"'4a78823c-1c53-4176-a5f3-58026c76f2bc'",
-								DiscogsTranslator.ORIGINAL_BASE_URI,
-								DiscogsTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:discogs"),
+								"is:info_service", "isi:discogs",
+								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleasesDiscogslinksReleationsCheck");
 
@@ -320,7 +319,8 @@ public class ReleaseTest
 
 		// add "THE END OF EVANGELION" (a soundtrack) as proof
 		// GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -331,9 +331,8 @@ public class ReleaseTest
 						5,
 						new URICondition("link_type", "gid",
 								"'6af0134a-df6a-425a-96e2-895f9cd342ba'",
-								VGMDBTranslator.ORIGINAL_BASE_URI,
-								VGMDBTranslator.ORIGINAL_BASE_URI, "", "",
-								"is:info_service", "isi:vgmdb"),
+								"is:info_service", "isi:vgmdb",
+								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"2f6dfc7c-5ead-45aa-ae71-44e830de88da",
 						"ReleasesVGMDBlinksReleationsCheck");
 
