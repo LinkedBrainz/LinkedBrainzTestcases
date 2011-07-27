@@ -41,24 +41,25 @@ public class Utils
 	private static Utils instance = null;
 
 	public static final String SERVICE_ENDPOINT = "http://localhost:2020/sparql";
-	public static final String DEFAULT_PREFIXES = "PREFIX dc: <http://purl.org/dc/elements/1.1/>"
-			+ "PREFIX ov: <http://open.vocab.org/terms/>"
-			+ "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>"
-			+ "PREFIX mo: <http://purl.org/ontology/mo/>"
-			+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>"
-			+ "PREFIX mbz: <http://test.musicbrainz.org/>"
-			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-			+ "PREFIX event: <http://purl.org/NET/c4dm/event.owl#>"
-			+ "PREFIX dct: <http://purl.org/dc/terms/>"
-			+ "PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>"
-			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>"
-			+ "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-			+ "PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>"
-			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>"
-			+ "PREFIX vocab: <http://localhost:2020/vocab/resource/>"
-			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>"
-			+ "PREFIX is: <http://purl.org/ontology/is/core#>"
-			+ "PREFIX isi: <http://purl.org/ontology/is/inst/>";
+	public static final String DEFAULT_PREFIXES = "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n"
+			+ "PREFIX ov: <http://open.vocab.org/terms/>\n"
+			+ "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n"
+			+ "PREFIX mo: <http://purl.org/ontology/mo/>\n"
+			+ "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n"
+			+ "PREFIX mbz: <http://test.musicbrainz.org/>\n"
+			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
+			+ "PREFIX event: <http://purl.org/NET/c4dm/event.owl#>\n"
+			+ "PREFIX dct: <http://purl.org/dc/terms/>\n"
+			+ "PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>\n"
+			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
+			+ "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n"
+			+ "PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>\n"
+			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
+			+ "PREFIX vocab: <http://localhost:2020/vocab/resource/>\n"
+			+ "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n"
+			+ "PREFIX is: <http://purl.org/ontology/is/core#>\n"
+			+ "PREFIX isi: <http://purl.org/ontology/is/inst/>\n"
+			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n";
 	public static final long TIMEOUT = 100000;
 	private PrefixMapping prefixMapping = null;
 
@@ -154,6 +155,8 @@ public class Utils
 					.setNsPrefix("is", "http://purl.org/ontology/is/core#");
 			prefixMapping.setNsPrefix("isi",
 					"http://purl.org/ontology/is/inst/");
+			prefixMapping.setNsPrefix("xsd",
+					"http://www.w3.org/2001/XMLSchema#");
 
 			prefixMapping.lock();
 		} else
@@ -460,11 +463,11 @@ public class Utils
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
-		
+
 		System.out
-		.println("\n##################################################\n[EXEC]  "
-				+ checkName
-				+ "\n##################################################\n");
+				.println("\n##################################################\n[EXEC]  "
+						+ checkName
+						+ "\n##################################################\n");
 
 		try
 		{
@@ -565,6 +568,9 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -577,13 +583,17 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			int numberOfJoins, int limit, boolean comparisonOnResource,
-			boolean multipleValues, String proofId, String checkName)
+			boolean multipleValues, Condition condition, String proofId,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", numberOfJoins, true);
 
+		setCondition(condition);
+
 		return checkSimplePropertyViaGUID(classTables, classTableRows,
 				className, propertyName, valueName, limit,
-				comparisonOnResource, multipleValues, proofId, checkName);
+				comparisonOnResource, multipleValues, initCondition(condition),
+				proofId, checkName);
 	}
 
 	/**
@@ -617,6 +627,9 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -629,13 +642,16 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName, int limit,
 			boolean comparisonOnResource, boolean multipleValues,
-			String proofId, String checkName)
+			Condition condition, String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, false);
 
+		setCondition(condition);
+
 		return checkSimplePropertyViaGUID(classTables, classTableRows,
 				className, propertyName, valueName, limit,
-				comparisonOnResource, multipleValues, proofId, checkName);
+				comparisonOnResource, multipleValues, initCondition(condition),
+				proofId, checkName);
 	}
 
 	/**
@@ -669,6 +685,8 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param withCondition
+	 *            indicates whether a condition is set or not
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -681,7 +699,7 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName, int limit,
 			boolean comparisonOnResource, boolean multipleValues,
-			String proofId, String checkName)
+			boolean withCondition, String proofId, String checkName)
 	{
 		initSparqlQuery = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
@@ -691,9 +709,10 @@ public class Utils
 
 		initCandidatesSqlQuery(classTables.get(0), "gid", limit);
 
-		return checkSimpleProperty(classTables, classTableRows, className,
-				propertyName, valueName, limit, comparisonOnResource,
-				multipleValues, proofId, checkName);
+		return checkSimplePropertyViaGUIOrID(classTables, classTableRows,
+				className, propertyName, valueName, limit,
+				comparisonOnResource, multipleValues, withCondition, proofId,
+				checkName);
 	}
 
 	/**
@@ -921,6 +940,77 @@ public class Utils
 
 		initCandidatesSqlQuery(classTables.get(0), "id", limit);
 
+		return checkSimplePropertyViaGUIOrID(classTables, classTableRows,
+				className, propertyName, valueName, limit,
+				comparisonOnResource, multipleValues, false, proofId, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the value of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            For a SQL query with one inner join the first table of this
+	 *            list might be the table of the left side of the INNER JOIN of
+	 *            the SQL query and the second one might be the table of the
+	 *            right side of the INNER JOIN of the SQL query
+	 * @param classTableRows
+	 *            For a SQL query with one inner join the first row this list
+	 *            might be the row of of the table of the left side of the INNER
+	 *            JOIN of the SQL query and the second one might be the row of
+	 *            the table that delivers the values for the specific RDF
+	 *            property
+	 * @param className
+	 *            the class name of the specific RDF class for the SPARQL query
+	 * @param propertyName
+	 *            the property name of the specific RDF property for the SPARQL
+	 *            query
+	 * @param valueName
+	 *            the value name for the SQL and SPARQL query that is used for
+	 *            the comparison
+	 * @param limit
+	 *            the result limit for the SQL query
+	 * @param comparisonOnResource
+	 *            if this value is set to 'true' the comparison values are RDF
+	 *            resource; otherwise they are RDF literals.
+	 * @param multipleValues
+	 *            indicates whether multiple values for the query keys are
+	 *            expected or not
+	 * @param withCondition
+	 *            indicates whether a condition is set or not
+	 * @param proofId
+	 *            a hardcoded Id, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This Id should
+	 *            usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	private TestResult checkSimplePropertyViaGUIOrID(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			String className, String propertyName, String valueName, int limit,
+			boolean comparisonOnResource, boolean multipleValues,
+			boolean withCondition, String proofId, String checkName)
+	{
+		// TODO:
+
+		String initSqlQuery2 = null;
+
+		// init conditions where needed
+		if (withCondition)
+		{
+			initCondition(condition);
+
+			initSqlQuery2 = initSqlQuery
+					.replace("CONDITION", sqlQueryCondition);
+			initSqlQuery = initSqlQuery2;
+
+		} else
+		{
+			initSqlQuery2 = initSqlQuery.replace("CONDITION", "");
+			initSqlQuery = initSqlQuery2;
+		}
+
 		return checkSimpleProperty(classTables, classTableRows, className,
 				propertyName, valueName, limit, comparisonOnResource,
 				multipleValues, proofId, checkName);
@@ -1068,8 +1158,37 @@ public class Utils
 
 						sparqlRS = sparqlResultSet.getResultSet();
 
+						Translator translator = null;
+						String value = values.get(valuesKey);
+
+						if (condition.getTranslatorClass() != null)
+						{
+
+							/*
+							 * System.out.println(
+							 * "[EXEC]  here we go in the Translator class case"
+							 * );
+							 */
+
+							if (getTranslatorInstance(condition
+									.getTranslatorClass()) != null)
+							{
+								translator = getTranslatorInstance(condition
+										.getTranslatorClass());
+
+								/*System.out
+										.println("[EXEC]  here we go with an instatiated Translator class");*/
+
+							}
+						}
+
 						while (sparqlRS.hasNext())
 						{
+							if (translator != null)
+							{
+								value = translator.toRDFValue(value);
+							}
+
 							if (comparisonOnResource)
 							{
 								String resourceURI = sparqlRS.next()
@@ -1077,8 +1196,7 @@ public class Utils
 
 								// check the URI against the id it should
 								// contain
-								if (resourceURI.endsWith("/"
-										+ values.get(valuesKey)))
+								if (resourceURI.endsWith("/" + value))
 								{
 									queryCounter++;
 									currentRelationsCounter++;
@@ -1086,9 +1204,8 @@ public class Utils
 
 							} else
 							{
-								if (values.get(valuesKey).equals(
-										sparqlRS.next().getLiteral(valueName)
-												.getString()))
+								if (value.equals(sparqlRS.next().getLiteral(
+										valueName).getString()))
 								{
 									queryCounter++;
 									currentRelationsCounter++;
@@ -1551,6 +1668,9 @@ public class Utils
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
 	 *            the result limit of the SQL query
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1565,7 +1685,7 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			Condition condition, String proofID, String checkName)
 	{
-		initCondition(condition);
+		setCondition(condition);
 
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
@@ -1618,6 +1738,9 @@ public class Utils
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
 	 *            the result limit of the SQL query
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1633,6 +1756,8 @@ public class Utils
 			int numberOfJoins, int limit, Condition condition, String proofID,
 			String checkName)
 	{
+		setCondition(condition);
+
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
 				true, false, false, false, numberOfJoins, limit, proofID,
@@ -1811,6 +1936,9 @@ public class Utils
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
 	 *            the result limit of the SQL query
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofID
 	 *            a hardcoded GUID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This GUID
@@ -1825,7 +1953,7 @@ public class Utils
 			ArrayList<String> valueNames, int numberOfJoins, int limit,
 			Condition condition, String proofID, String checkName)
 	{
-		initCondition(condition);
+		setCondition(condition);
 
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, true,
@@ -1875,6 +2003,9 @@ public class Utils
 	 *            indicates the number of joins of the SQL query
 	 * @param limit
 	 *            the result limit of the SQL query
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofID
 	 *            a hardcoded ID, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This ID should
@@ -1890,7 +2021,7 @@ public class Utils
 			int numberOfJoins, int limit, Condition condition, String proofID,
 			String checkName)
 	{
-		initCondition(condition);
+		setCondition(condition);
 
 		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
 				classTableRows, classNames, propertyName, valueNames, false,
@@ -1958,6 +2089,8 @@ public class Utils
 	 * @param comparisonOnResource
 	 *            indicates whether the values for the comparison are RDF
 	 *            resources or RDF literals
+	 * @param withCondition
+	 *            indicates whether a condition is set or not
 	 * @param leftSideFragmentId
 	 *            the fragment id of the URI of the left side of the relation
 	 * @param rightSideFragmentId
@@ -2099,11 +2232,11 @@ public class Utils
 				break;
 			case 2:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-					+ "FROM musicbrainz.CLASS3 "
-					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
-					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS3 "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 3:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
@@ -2188,6 +2321,8 @@ public class Utils
 		// init conditions where needed
 		if (withCondition)
 		{
+			initCondition(condition);
+
 			initSqlQuery2 = initSqlQuery
 					.replace("CONDITION", sqlQueryCondition);
 			initSqlQuery = initSqlQuery2;
@@ -2696,13 +2831,13 @@ public class Utils
 		case 0:
 			initSqlQuery4 = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS VALUE_NAME, "
 					+ "musicbrainz.CLASS1.ID_CLASS_ROW AS id "
-					+ "FROM musicbrainz.CLASS1 " + "LIMIT LIMIT_PLACEHOLDER";
+					+ "FROM musicbrainz.CLASS1 CONDITIONLIMIT LIMIT_PLACEHOLDER";
 			break;
 		case 1:
 			initSqlQuery2 = "SELECT musicbrainz.SELECT_CLASS1.CLASS_ROW2 AS VALUE_NAME, "
 					+ "musicbrainz.SELECT_CLASS2.ID_CLASS_ROW AS id "
 					+ "FROM musicbrainz.CLASS1 "
-					+ "INNER JOIN musicbrainz.CLASS2  ON CLASS1.CLASS_ROW1 = CLASS2.id LIMIT LIMIT_PLACEHOLDER";
+					+ "INNER JOIN musicbrainz.CLASS2  ON CLASS1.CLASS_ROW1 = CLASS2.id CONDITIONLIMIT LIMIT_PLACEHOLDER";
 
 			if (left)
 			{
@@ -2724,7 +2859,7 @@ public class Utils
 					+ "FROM musicbrainz.CLASS3 "
 					+ "INNER JOIN musicbrainz.CLASS2  ON CLASS2.CLASS_ROW1 = CLASS3.id "
 					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS2.CLASS_ROW2 = CLASS1.id "
-					+ "WHERE musicbrainz.CLASS1.ID_CLASS_ROW = 'ID_PLACEHOLDER'";
+					+ "WHERE CONDITIONmusicbrainz.CLASS1.ID_CLASS_ROW = 'ID_PLACEHOLDER'";
 		default:
 			break;
 		}
@@ -2744,6 +2879,8 @@ public class Utils
 	{
 		if (condition != null)
 		{
+			this.condition = condition;
+
 			initSQLCondition(condition.getConditionClass(), condition
 					.getConditionRow(), condition.getConditionValue());
 
@@ -2754,8 +2891,6 @@ public class Utils
 				initSPAQLCondition(uriCondition.getConditionProperty(),
 						uriCondition.getConditionPropertyValue());
 			}
-
-			this.condition = condition;
 
 			return true;
 		} else
@@ -2780,12 +2915,41 @@ public class Utils
 	{
 		if (conditionClass != null)
 		{
-			String initSQLQueryCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROW = CONDITION_VALUE AND ";
+			String initSQLQueryCondition = null;
+
+			// small hacky workaround :\
+			if (initSqlQuery == null)
+			{
+				initSqlQuery = "";
+			}
+
+			// look whether there is already another condition set
+			if (initSqlQuery.contains("WHERE"))
+			{
+				initSQLQueryCondition = "musicbrainz.CONDITION_CLASS.CONDITION_ROWCOMPARISONCONDITION_VALUE AND ";
+			} else
+			{
+				initSQLQueryCondition = "WHERE musicbrainz.CONDITION_CLASS.CONDITION_ROWCOMPARISONCONDITION_VALUE ";
+			}
+
 			String initSQLQueryCondition2 = initSQLQueryCondition.replace(
 					"CONDITION_CLASS", conditionClass);
-			String initSQLQueryCondition3 = initSQLQueryCondition2.replace(
+
+			String initSQLQueryCondition3 = null;
+
+			if (condition.isComparison())
+			{
+				initSQLQueryCondition3 = initSQLQueryCondition2.replace(
+						"COMPARISON", " = ");
+			} else
+			{
+				initSQLQueryCondition3 = initSQLQueryCondition2.replace(
+						"COMPARISON", " ");
+			}
+
+			String initSQLQueryCondition4 = initSQLQueryCondition3.replace(
 					"CONDITION_ROW", conditionRow);
-			sqlQueryCondition = initSQLQueryCondition3.replace(
+			sqlQueryCondition = initSQLQueryCondition4.replace(
 					"CONDITION_VALUE", conditionValue);
 		} else
 		{
@@ -2845,5 +3009,18 @@ public class Utils
 		}
 
 		return translator;
+	}
+
+	private Condition getCondition()
+	{
+		return condition;
+	}
+
+	private void setCondition(Condition condition)
+	{
+		if (condition != null)
+		{
+			this.condition = condition;
+		}
 	}
 }

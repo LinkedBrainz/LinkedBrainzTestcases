@@ -52,7 +52,8 @@ public class LabelTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Label", "foaf:name", "name", 1, 5,
-						false, false, "011d1192-6f65-45bd-85c4-0400dd45693e",
+						false, false, null,
+						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -79,7 +80,7 @@ public class LabelTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Label", "ov:sortLabel", "sortName",
-						1, 5, false, false,
+						1, 5, false, false, null,
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelSortLabelsCheck");
 
@@ -109,7 +110,7 @@ public class LabelTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Label", "skos:altLabel", "alias",
-						2, 5, false, true,
+						2, 5, false, true, null,
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
 						"LabelsAliasesCheck");
 
@@ -160,7 +161,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
+								"'240ba9dc-9898-4505-9bf7-32a53a695612'", true,
 								"is:info_service", "isi:dbtunemyspace",
 								"linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
@@ -213,7 +214,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'240ba9dc-9898-4505-9bf7-32a53a695612'",
+								"'240ba9dc-9898-4505-9bf7-32a53a695612'", true,
 								"is:info_service", "isi:myspace",
 								"linkedbrainz.d2rs.translator.MySpaceTranslator"),
 						"19d052fa-570a-4b17-9a3d-8f2f029b7b57",
@@ -266,7 +267,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
+								"'51e9db21-8864-49b3-aa58-470d7b81fa50'", true,
 								"is:info_service", "isi:dbpedia",
 								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
@@ -319,7 +320,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'51e9db21-8864-49b3-aa58-470d7b81fa50'",
+								"'51e9db21-8864-49b3-aa58-470d7b81fa50'", true,
 								"is:info_service", "isi:wikipedia",
 								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"011d1192-6f65-45bd-85c4-0400dd45693e",
@@ -372,7 +373,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'d9c71059-ba9d-4135-b909-481d12cf84e3'",
+								"'d9c71059-ba9d-4135-b909-481d12cf84e3'", true,
 								"is:info_service", "isi:youtube",
 								"linkedbrainz.d2rs.translator.YouTubeTranslator"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
@@ -425,7 +426,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'5b987f87-25bc-4a2d-b3f1-3618795b8207'",
+								"'5b987f87-25bc-4a2d-b3f1-3618795b8207'", true,
 								"is:info_service", "isi:discogs",
 								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"e0b106a5-4add-4839-9e40-c192457e1bf8",
@@ -478,7 +479,7 @@ public class LabelTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'8a2d3e55-d291-4b99-87a0-c59c6b121762'",
+								"'8a2d3e55-d291-4b99-87a0-c59c6b121762'", true,
 								"is:info_service", "isi:vgmdb",
 								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"5f7aa61d-cf77-4c2a-9a43-41682508dccd",
@@ -520,7 +521,8 @@ public class LabelTest
 		valueNames.add("homepageURI");
 
 		// add Warp Records as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -530,7 +532,7 @@ public class LabelTest
 						4,
 						5,
 						new Condition("link_type", "gid",
-								"'fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'"),
+								"'fe108f43-acb9-4ad1-8be3-57e6ec5b17b6'", true),
 						"46f0f4cd-8aab-4b33-b698-f459faf64190",
 						"LabelsHomepagesReleationsCheck");
 

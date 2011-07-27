@@ -85,7 +85,7 @@ public class MediumTest
 		classTableRows.add("format");
 
 		classNames.add("mo:Record");
-		
+
 		valueNames.add("reocordURI");
 		valueNames.add("mediaTypeURI");
 		valueNames.add("mediaTypeURI");
@@ -101,7 +101,8 @@ public class MediumTest
 						classTableRows,
 						classNames,
 						"mo:media_type",
-						valueNames, "#_",
+						valueNames,
+						"#_",
 						1,
 						5,
 						new Condition(

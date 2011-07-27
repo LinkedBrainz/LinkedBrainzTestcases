@@ -1,10 +1,11 @@
 package linkedbrainz.testcases;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 
 import org.junit.Test;
@@ -53,7 +54,7 @@ public class RecordingTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Signal", "dct:title", "title", 1,
-						5, false, false,
+						5, false, false, null,
 						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingNamesCheck");
 
@@ -82,7 +83,8 @@ public class RecordingTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheRight(classTables,
 						classTableRows, "mo:Signal", "mo:isrc", "ISRC", 5,
-						false, false, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						false, false, null,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingISRCsCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
@@ -192,9 +194,45 @@ public class RecordingTest
 		// GUID
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
-						classTableRows, "mo:Signal", "mo:puid", "puid", 2,
-						5, false, true, "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						classTableRows, "mo:Signal", "mo:puid", "puid", 2, 5,
+						false, true, null,
+						"eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
 						"RecordingsPUIDsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 recording from the DB and resolves their length against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingsLength()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("recording");
+
+		classTableRows.add("length");
+
+		// add "Lucy in the Sky With Diamonds" from The Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(
+						classTables,
+						classTableRows,
+						"mo:Signal",
+						"mo:duration",
+						"length",
+						0,
+						5,
+						false,
+						false,
+						new Condition("recording", "length", "IS NOT NULL",
+								false, "linkedbrainz.d2rs.translator.DurationTranslator"), "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6",
+						"RecordingsLengthCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

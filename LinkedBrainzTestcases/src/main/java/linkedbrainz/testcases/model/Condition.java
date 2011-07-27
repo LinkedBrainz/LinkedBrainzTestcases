@@ -12,6 +12,7 @@ public class Condition
 	private String conditionRow;
 	private String conditionValue;
 	private String translatorClass = null;
+	private boolean comparison;
 
 	public Condition(String translatorClass)
 	{
@@ -19,19 +20,21 @@ public class Condition
 	}
 
 	public Condition(String conditionClass, String conditionRow,
-			String conditionValue)
+			String conditionValue, boolean comparison)
 	{
 		this.conditionClass = conditionClass;
 		this.conditionRow = conditionRow;
 		this.conditionValue = conditionValue;
+		this.comparison = comparison;
 	}
 
 	public Condition(String conditionClass, String conditionRow,
-			String conditionValue, String translatorClass)
+			String conditionValue, boolean comparison, String translatorClass)
 	{
 		this.conditionClass = conditionClass;
 		this.conditionRow = conditionRow;
 		this.conditionValue = conditionValue;
+		this.comparison = comparison;
 		this.translatorClass = translatorClass;
 	}
 
@@ -75,4 +78,13 @@ public class Condition
 		this.translatorClass = translatorClass;
 	}
 
+	public boolean isComparison()
+	{
+		return comparison;
+	}
+
+	public void setComparison(boolean comparison)
+	{
+		this.comparison = comparison;
+	}
 }

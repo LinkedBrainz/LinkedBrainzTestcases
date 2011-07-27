@@ -13,10 +13,12 @@ public class URICondition extends Condition
 	private String conditionPropertyValue = "";
 
 	public URICondition(String conditionClass, String conditionRow,
-			String conditionValue, String conditionProperty,
-			String conditionPropertyValue, String translatorClass)
+			String conditionValue, boolean comparison,
+			String conditionProperty, String conditionPropertyValue,
+			String translatorClass)
 	{
-		super(conditionClass, conditionRow, conditionValue, translatorClass);
+		super(conditionClass, conditionRow, conditionValue, comparison,
+				translatorClass);
 		this.conditionProperty = conditionProperty;
 		this.conditionPropertyValue = conditionPropertyValue;
 	}

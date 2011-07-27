@@ -70,7 +70,7 @@ public class WorkTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicalWork", "dct:title", "title",
-						1, 5, false, false,
+						1, 5, false, false, null,
 						"00955628-ace0-3873-9ef2-e0e66b203fc3",
 						"WorkNamesCheck");
 
@@ -102,7 +102,7 @@ public class WorkTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicalWork", "skos:altLabel",
-						"alias", 2, 5, false, true,
+						"alias", 2, 5, false, true, null,
 						"00955628-ace0-3873-9ef2-e0e66b203fc3",
 						"LabelsAliasesCheck");
 
@@ -208,7 +208,7 @@ public class WorkTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'",
+								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'", true,
 								"is:info_service", "isi:dbpedia",
 								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"aacb1ab0-c740-436a-a782-ed60026cf82b",
@@ -261,7 +261,7 @@ public class WorkTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'",
+								"'b45a88d6-851e-4a6e-9ec8-9a5f4ebe76ab'", true,
 								"is:info_service", "isi:wikipedia",
 								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"aacb1ab0-c740-436a-a782-ed60026cf82b",
@@ -319,7 +319,7 @@ public class WorkTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'",
+								"'206cf8e2-0a7c-4c17-b8bb-75722d9b9c6c'", true,
 								"is:info_service", "isi:ibdb",
 								"linkedbrainz.d2rs.translator.IBDBTranslator"),
 						"aa8b1e50-d265-301a-8bd9-3336ac4f779c",
@@ -373,7 +373,7 @@ public class WorkTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'8845d830-fe9b-4ed6-a084-b1a3f193167a'",
+								"'8845d830-fe9b-4ed6-a084-b1a3f193167a'", true,
 								"is:info_service", "isi:iobdb",
 								"linkedbrainz.d2rs.translator.IOBDBTranslator"),
 						"8fce3022-510f-3e21-bab6-5304595e2c5b",
@@ -497,7 +497,7 @@ public class WorkTest
 				4,
 				5,
 				new Condition("link_type", "gid",
-						"'d59d99ea-23d4-4a80-b066-edca32ee158f'"),
+						"'d59d99ea-23d4-4a80-b066-edca32ee158f'", true),
 				"aacb1ab0-c740-436a-a782-ed60026cf82b",
 				"CompositionsArtistsRelationsCheck");
 

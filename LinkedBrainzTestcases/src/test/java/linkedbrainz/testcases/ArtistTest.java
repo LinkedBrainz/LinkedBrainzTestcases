@@ -82,7 +82,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:name", "name",
-						1, 5, false, false,
+						1, 5, false, false, null,
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistNamesCheck");
 
@@ -110,7 +110,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "ov:sortLabel",
-						"sortName", 1, 5, false, false,
+						"sortName", 1, 5, false, false, null,
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistSortLabelsCheck");
 
@@ -140,7 +140,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "skos:altLabel",
-						"alias", 2, 5, false, true,
+						"alias", 2, 5, false, true, null,
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsAliasesCheck");
 
@@ -168,7 +168,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:gender",
-						"gender", 1, 5, false, false,
+						"gender", 1, 5, false, false, null,
 						"c0b2500e-0cef-4130-869d-732b23ed9df5",
 						"ArtistGenderCheck");
 
@@ -405,7 +405,7 @@ public class ArtistTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:MusicArtist", "foaf:based_near",
-						"country", 1, 5, true, false,
+						"country", 1, 5, true, false, null,
 						"c0b2500e-0cef-4130-869d-732b23ed9df5",
 						"ArtistsCountryCheck");
 
@@ -456,7 +456,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
+								"'29651736-fa6d-48e4-aadc-a557c6add1cb'", true,
 								"is:info_service", "isi:dbpedia",
 								"linkedbrainz.d2rs.translator.DBPediaTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -509,7 +509,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'29651736-fa6d-48e4-aadc-a557c6add1cb'",
+								"'29651736-fa6d-48e4-aadc-a557c6add1cb'", true,
 								"is:info_service", "isi:wikipedia",
 								"linkedbrainz.d2rs.translator.WikipediaTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -562,7 +562,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
+								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'", true,
 								"is:info_service", "isi:dataincubatordiscogs",
 								"linkedbrainz.d2rs.translator.DataIncubatorDiscogsTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -615,7 +615,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'",
+								"'04a5b104-a4c2-4bac-99a1-7b837c37d9e4'", true,
 								"is:info_service", "isi:discogs",
 								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -667,7 +667,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'d028a975-000c-4525-9333-d3c8425e4b54'",
+								"'d028a975-000c-4525-9333-d3c8425e4b54'", true,
 								"is:info_service", "isi:bbc",
 								"linkedbrainz.d2rs.translator.BBCTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -709,7 +709,8 @@ public class ArtistTest
 		valueNames.add("homepageURI");
 
 		// add The Beatles as proof GUID
-		TestResult testResult = Utils.getInstance()
+		TestResult testResult = Utils
+				.getInstance()
 				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
 						classTables,
 						classTableRows,
@@ -719,7 +720,7 @@ public class ArtistTest
 						4,
 						5,
 						new Condition("link_type", "gid",
-								"'fe33d22f-c3b0-4d68-bd53-a856badf2b15'"),
+								"'fe33d22f-c3b0-4d68-bd53-a856badf2b15'", true),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
 						"ArtistsHomepagesReleationsCheck");
 
@@ -770,7 +771,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
+								"'bac47923-ecde-4b59-822e-d08f0cd10156'", true,
 								"is:info_service", "isi:dbtunemyspace",
 								"linkedbrainz.d2rs.translator.DBTuneMySpaceTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -823,7 +824,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'bac47923-ecde-4b59-822e-d08f0cd10156'",
+								"'bac47923-ecde-4b59-822e-d08f0cd10156'", true,
 								"is:info_service", "isi:myspace",
 								"linkedbrainz.d2rs.translator.MySpaceTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -876,7 +877,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'",
+								"'6a540e5b-58c6-4192-b6ba-dbc71ec8fcf0'", true,
 								"is:info_service", "isi:youtube",
 								"linkedbrainz.d2rs.translator.YouTubeTranslator"),
 						"b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
@@ -929,7 +930,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'5728c659-56b2-4e23-97d1-80e1f229c7d3'",
+								"'5728c659-56b2-4e23-97d1-80e1f229c7d3'", true,
 								"is:info_service", "isi:ibdb",
 								"linkedbrainz.d2rs.translator.IBDBTranslator"),
 						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
@@ -982,7 +983,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'94c8b0cc-4477-4106-932c-da60e63de61c'",
+								"'94c8b0cc-4477-4106-932c-da60e63de61c'", true,
 								"is:info_service", "isi:imdb",
 								"linkedbrainz.d2rs.translator.IMDBTranslator"),
 						"1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
@@ -1036,7 +1037,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'689043e3-2b9e-47ba-ad86-2742589e0743'",
+								"'689043e3-2b9e-47ba-ad86-2742589e0743'", true,
 								"is:info_service", "isi:iobdb",
 								"linkedbrainz.d2rs.translator.IOBDBTranslator"),
 						"bcd6af9f-afa8-43fd-b1be-acbbbb2f7dc7",
@@ -1090,7 +1091,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'ded9a80a-e6de-4831-880c-c78b9981b54b'",
+								"'ded9a80a-e6de-4831-880c-c78b9981b54b'", true,
 								"is:info_service", "isi:musicmoz",
 								"linkedbrainz.d2rs.translator.MusicMozTranslator"),
 						"10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8",
@@ -1144,7 +1145,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'b6f02157-a9d3-4f24-9057-0675b2dbc581'",
+								"'b6f02157-a9d3-4f24-9057-0675b2dbc581'", true,
 								"is:info_service", "isi:purevolume",
 								"linkedbrainz.d2rs.translator.PureVolumeTranslator"),
 						"a8ebde98-7e91-46c7-992c-90039ba42017",
@@ -1198,7 +1199,7 @@ public class ArtistTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'",
+								"'0af15ab3-c615-46d6-b95b-a5fcd2a92ed9'", true,
 								"is:info_service", "isi:vgmdb",
 								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"135b658e-4409-404f-a64e-f1f8e5c2866d",

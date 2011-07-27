@@ -70,7 +70,7 @@ public class ReleaseTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
 						classTableRows, "mo:Release", "dct:title", "title", 1,
-						5, false, false,
+						5, false, false, null,
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleaseNamesCheck");
 
@@ -277,7 +277,7 @@ public class ReleaseTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'4a78823c-1c53-4176-a5f3-58026c76f2bc'",
+								"'4a78823c-1c53-4176-a5f3-58026c76f2bc'", true,
 								"is:info_service", "isi:discogs",
 								"linkedbrainz.d2rs.translator.DiscogsTranslator"),
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
@@ -331,7 +331,7 @@ public class ReleaseTest
 						4,
 						5,
 						new URICondition("link_type", "gid",
-								"'6af0134a-df6a-425a-96e2-895f9cd342ba'",
+								"'6af0134a-df6a-425a-96e2-895f9cd342ba'", true,
 								"is:info_service", "isi:vgmdb",
 								"linkedbrainz.d2rs.translator.VGMDBTranslator"),
 						"2f6dfc7c-5ead-45aa-ae71-44e830de88da",
@@ -423,7 +423,7 @@ public class ReleaseTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
-	
+
 	/**
 	 * Fetches 5 (+1) releases from the DB and resolves their release types
 	 * against the result of the related SPARQL query.
