@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 import linkedbrainz.testcases.model.URICondition;
 
@@ -372,6 +373,53 @@ public class ReleaseTest
 				valueNames, "#event", null, 0, 5, null,
 				"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 				"ReleaseEventsReleasesRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 5 (+1) releases from the DB and resolves their release states
+	 * against the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleasesReleaseStates()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("release_status");
+
+		classTableRows.add("gid");
+		classTableRows.add("id");
+		classTableRows.add("status");
+
+		classNames.add("mo:Release");
+
+		valueNames.add("releaseURI");
+		valueNames.add("releaseStatusURI");
+		valueNames.add("releaseStatusURI");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
+		TestResult testResult = Utils
+				.getInstance()
+				.checkURIPropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"mo:release_status",
+						valueNames,
+						1,
+						5,
+						new Condition(
+								"linkedbrainz.d2rs.translator.ReleaseStatusTranslator"),
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesReleaseStatesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

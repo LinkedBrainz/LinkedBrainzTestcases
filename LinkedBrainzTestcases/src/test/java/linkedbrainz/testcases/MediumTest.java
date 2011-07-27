@@ -90,9 +90,6 @@ public class MediumTest
 		valueNames.add("mediaTypeURI");
 		valueNames.add("mediaTypeURI");
 
-		// TODO: init valueNames and implement a check against the
-		// resolving-method from the specific Translator class
-
 		// add track list from "Sgt. Pepper’s Lonely Hearts Club Band" (PMC
 		// 7027) from The
 		// Beatles as proof id (see 44b7cab1-0ce1-404e-9089-b458eb3fa530 for the

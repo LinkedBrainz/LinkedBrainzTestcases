@@ -460,6 +460,11 @@ public class Utils
 
 		String initSparqlQuery = this.initSparqlQuery;
 		String sparqlQuery = initSparqlQuery.replace("CLASS_NAME", className);
+		
+		System.out
+		.println("\n##################################################\n[EXEC]  "
+				+ checkName
+				+ "\n##################################################\n");
 
 		try
 		{
