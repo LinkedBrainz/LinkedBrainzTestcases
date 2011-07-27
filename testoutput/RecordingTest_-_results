@@ -1,0 +1,569 @@
+JUnit version 4.9b3
+.[PRECONFIG]  Database JDBC Connection Testing
+[PRECONFIG]  Database JDBC Driver Registered!
+[PRECONFIG]  You made it, take control your database now!
+
+[EXEC]  DB query:
+		SELECT gid FROM musicbrainz.recording LIMIT 5
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Signal . ?URI mo:musicbrainz_guid "2152b30e-4e42-4bcd-9690-72abf66c0d81"^^xsd:string . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  set prefixes
+
+----------------------------------------------------------------------------
+| URI                                                                      |
+============================================================================
+| <http://localhost:2020/recording/2152b30e-4e42-4bcd-9690-72abf66c0d81#_> |
+----------------------------------------------------------------------------
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Signal . ?URI mo:musicbrainz_guid "ab3df03f-9534-4b9e-9eae-12985a5e7842"^^xsd:string . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------
+| URI                                                                      |
+============================================================================
+| <http://localhost:2020/recording/ab3df03f-9534-4b9e-9eae-12985a5e7842#_> |
+----------------------------------------------------------------------------
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Signal . ?URI mo:musicbrainz_guid "c3e98f9f-3661-4e06-95ab-492f22f19e1b"^^xsd:string . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------
+| URI                                                                      |
+============================================================================
+| <http://localhost:2020/recording/c3e98f9f-3661-4e06-95ab-492f22f19e1b#_> |
+----------------------------------------------------------------------------
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Signal . ?URI mo:musicbrainz_guid "c917afc4-c9bf-412e-8e2d-91a26809a47d"^^xsd:string . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------
+| URI                                                                      |
+============================================================================
+| <http://localhost:2020/recording/c917afc4-c9bf-412e-8e2d-91a26809a47d#_> |
+----------------------------------------------------------------------------
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Signal . ?URI mo:musicbrainz_guid "0ec91739-8331-4e29-b062-b3a5f889afb1"^^xsd:string . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------
+| URI                                                                      |
+============================================================================
+| <http://localhost:2020/recording/0ec91739-8331-4e29-b062-b3a5f889afb1#_> |
+----------------------------------------------------------------------------
+.
+##################################################
+[EXEC]  RecordingNamesCheck
+##################################################
+
+
+[EXEC]  DB query:
+		SELECT musicbrainz.track_name.name AS title, musicbrainz.recording.gid AS id FROM musicbrainz.recording INNER JOIN musicbrainz.track_name  ON recording.name = track_name.id LIMIT 5
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "4442e2cb-5c27-4578-8269-cd4ea4c108b7"^^xsd:string ; dct:title ?title . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-------------------------------------------------------------------------------------------------------------
+| URI                                                                      | title                          |
+=============================================================================================================
+| <http://localhost:2020/recording/4442e2cb-5c27-4578-8269-cd4ea4c108b7#_> | "Away From the Sun (acoustic)" |
+-------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "6dab6992-9e7f-451a-8229-6a2b3d2afec5"^^xsd:string ; dct:title ?title . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+---------------------------------------------------------------------------------------------
+| URI                                                                      | title          |
+=============================================================================================
+| <http://localhost:2020/recording/6dab6992-9e7f-451a-8229-6a2b3d2afec5#_> | "Stoopid Song" |
+---------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "4901268c-594a-49c4-a4cf-73d020eb4d17"^^xsd:string ; dct:title ?title . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-------------------------------------------------------------------------------------------------------------
+| URI                                                                      | title                          |
+=============================================================================================================
+| <http://localhost:2020/recording/4901268c-594a-49c4-a4cf-73d020eb4d17#_> | "No One Knows (feat. Voltage)" |
+-------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "3221256a-3508-4d9b-aa4a-f257729cb3c5"^^xsd:string ; dct:title ?title . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------
+| URI                                                                      | title           |
+==============================================================================================
+| <http://localhost:2020/recording/3221256a-3508-4d9b-aa4a-f257729cb3c5#_> | "Find an Oasis" |
+----------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "eb5a4c6f-6138-4522-a778-a19e9cc894c5"^^xsd:string ; dct:title ?title . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------
+| URI                                                                      | title           |
+==============================================================================================
+| <http://localhost:2020/recording/eb5a4c6f-6138-4522-a778-a19e9cc894c5#_> | "Find an Oasis" |
+----------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+.
+##################################################
+[EXEC]  RecordingISRCsCheck
+##################################################
+
+
+[EXEC]  DB query:
+		SELECT musicbrainz.isrc.isrc AS ISRC, musicbrainz.recording.gid AS id FROM musicbrainz.isrc INNER JOIN musicbrainz.recording  ON isrc.recording = recording.id LIMIT 5
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?ISRC WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "bef81f8f-4bcf-4308-bd66-e57018169a94"^^xsd:string ; mo:isrc ?ISRC . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | ISRC                                                      |
+========================================================================================================================================
+| <http://localhost:2020/recording/bef81f8f-4bcf-4308-bd66-e57018169a94#_> | "GBAAA9100081"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?ISRC WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "013b9488-5950-4e4f-928e-eb2691340e84"^^xsd:string ; mo:isrc ?ISRC . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | ISRC                                                      |
+========================================================================================================================================
+| <http://localhost:2020/recording/013b9488-5950-4e4f-928e-eb2691340e84#_> | "GBAAA9100069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?ISRC WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "b30b9943-9100-4d84-9ad2-69859ea88fbb"^^xsd:string ; mo:isrc ?ISRC . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | ISRC                                                      |
+========================================================================================================================================
+| <http://localhost:2020/recording/b30b9943-9100-4d84-9ad2-69859ea88fbb#_> | "GBAAA9100082"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?ISRC WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "babb3e56-c000-48cd-9815-00e092f0c952"^^xsd:string ; mo:isrc ?ISRC . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | ISRC                                                      |
+========================================================================================================================================
+| <http://localhost:2020/recording/babb3e56-c000-48cd-9815-00e092f0c952#_> | "GBAAA9000038"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?ISRC WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "44bda0c6-7d93-4000-9b7f-b2b5a4025ad4"^^xsd:string ; mo:isrc ?ISRC . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | ISRC                                                      |
+========================================================================================================================================
+| <http://localhost:2020/recording/44bda0c6-7d93-4000-9b7f-b2b5a4025ad4#_> | "GBAAA9100044"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+.
+##################################################
+[EXEC]  RecordingsArtistsRelationsCheck
+##################################################
+
+[EXEC]  Prefetch some id values that are utilised in the proper SQL query.
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS id FROM musicbrainz.recording LIMIT 5
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = 'c917afc4-c9bf-412e-8e2d-91a26809a47d'
+[EXEC]  fetched 1 relations for ID c917afc4-c9bf-412e-8e2d-91a26809a47d
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = '0ec91739-8331-4e29-b062-b3a5f889afb1'
+[EXEC]  fetched 1 relations for ID 0ec91739-8331-4e29-b062-b3a5f889afb1
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = 'c3e98f9f-3661-4e06-95ab-492f22f19e1b'
+[EXEC]  fetched 1 relations for ID c3e98f9f-3661-4e06-95ab-492f22f19e1b
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = 'ab3df03f-9534-4b9e-9eae-12985a5e7842'
+[EXEC]  fetched 1 relations for ID ab3df03f-9534-4b9e-9eae-12985a5e7842
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = 'eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6'
+[EXEC]  fetched 1 relations for ID eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.artist.gid AS artist_id FROM musicbrainz.artist_credit INNER JOIN musicbrainz.recording ON recording.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist_credit_name ON artist_credit_name.artist_credit = artist_credit.id INNER JOIN musicbrainz.artist ON artist.id = artist_credit_name.artist WHERE musicbrainz.recording.gid = '2152b30e-4e42-4bcd-9690-72abf66c0d81'
+[EXEC]  fetched 1 relations for ID 2152b30e-4e42-4bcd-9690-72abf66c0d81
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "c917afc4-c9bf-412e-8e2d-91a26809a47d"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/c917afc4-c9bf-412e-8e2d-91a26809a47d#_> | "27c7a892-aa69-4e58-bf46-14281b333069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "c917afc4-c9bf-412e-8e2d-91a26809a47d" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "0ec91739-8331-4e29-b062-b3a5f889afb1"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/0ec91739-8331-4e29-b062-b3a5f889afb1#_> | "27c7a892-aa69-4e58-bf46-14281b333069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "0ec91739-8331-4e29-b062-b3a5f889afb1" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "c3e98f9f-3661-4e06-95ab-492f22f19e1b"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/c3e98f9f-3661-4e06-95ab-492f22f19e1b#_> | "27c7a892-aa69-4e58-bf46-14281b333069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "c3e98f9f-3661-4e06-95ab-492f22f19e1b" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "ab3df03f-9534-4b9e-9eae-12985a5e7842"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/ab3df03f-9534-4b9e-9eae-12985a5e7842#_> | "27c7a892-aa69-4e58-bf46-14281b333069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "ab3df03f-9534-4b9e-9eae-12985a5e7842" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?artistGUID WHERE { ?recordingURI rdf:type mo:Signal ; foaf:maker ?artistURI ; mo:musicbrainz_guid "2152b30e-4e42-4bcd-9690-72abf66c0d81"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | artistGUID                                                                        |
+================================================================================================================================================================
+| <http://localhost:2020/recording/2152b30e-4e42-4bcd-9690-72abf66c0d81#_> | "27c7a892-aa69-4e58-bf46-14281b333069"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "2152b30e-4e42-4bcd-9690-72abf66c0d81" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+.
+##################################################
+[EXEC]  RecordingsTracksRelationsCheck
+##################################################
+
+[EXEC]  Prefetch some id values that are utilised in the proper SQL query.
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS id FROM musicbrainz.recording LIMIT 5
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = 'c917afc4-c9bf-412e-8e2d-91a26809a47d'
+[EXEC]  fetched 1 relations for ID c917afc4-c9bf-412e-8e2d-91a26809a47d
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = '0ec91739-8331-4e29-b062-b3a5f889afb1'
+[EXEC]  fetched 1 relations for ID 0ec91739-8331-4e29-b062-b3a5f889afb1
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = 'c3e98f9f-3661-4e06-95ab-492f22f19e1b'
+[EXEC]  fetched 1 relations for ID c3e98f9f-3661-4e06-95ab-492f22f19e1b
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = 'ab3df03f-9534-4b9e-9eae-12985a5e7842'
+[EXEC]  fetched 1 relations for ID ab3df03f-9534-4b9e-9eae-12985a5e7842
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = 'eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6'
+[EXEC]  fetched 6 relations for ID eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS recording_id, musicbrainz.track.id AS track_id FROM musicbrainz.recording INNER JOIN musicbrainz.track ON track.recording = recording.id WHERE musicbrainz.recording.gid = '2152b30e-4e42-4bcd-9690-72abf66c0d81'
+[EXEC]  fetched 1 relations for ID 2152b30e-4e42-4bcd-9690-72abf66c0d81
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "c917afc4-c9bf-412e-8e2d-91a26809a47d"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                |
+======================================================================================================================
+| <http://localhost:2020/recording/c917afc4-c9bf-412e-8e2d-91a26809a47d#_> | <http://localhost:2020/track/4661651#_> |
+----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "c917afc4-c9bf-412e-8e2d-91a26809a47d" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "0ec91739-8331-4e29-b062-b3a5f889afb1"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                |
+======================================================================================================================
+| <http://localhost:2020/recording/0ec91739-8331-4e29-b062-b3a5f889afb1#_> | <http://localhost:2020/track/4661652#_> |
+----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "0ec91739-8331-4e29-b062-b3a5f889afb1" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "c3e98f9f-3661-4e06-95ab-492f22f19e1b"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                |
+======================================================================================================================
+| <http://localhost:2020/recording/c3e98f9f-3661-4e06-95ab-492f22f19e1b#_> | <http://localhost:2020/track/4661650#_> |
+----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "c3e98f9f-3661-4e06-95ab-492f22f19e1b" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "ab3df03f-9534-4b9e-9eae-12985a5e7842"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                |
+======================================================================================================================
+| <http://localhost:2020/recording/ab3df03f-9534-4b9e-9eae-12985a5e7842#_> | <http://localhost:2020/track/4661649#_> |
+----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "ab3df03f-9534-4b9e-9eae-12985a5e7842" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                 |
+=======================================================================================================================
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/11484726#_> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/182534#_>   |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/1943909#_>  |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/7161546#_>  |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/12502546#_> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | <http://localhost:2020/track/198879#_>   |
+-----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 6.
+		Number of the values from the SPARQL query result = 6.
+		Relations counter of the SPARQL result set = 6.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?recordingURI ?trackURI WHERE { ?recordingURI rdf:type mo:Signal ; mo:published_as ?trackURI ; mo:musicbrainz_guid "2152b30e-4e42-4bcd-9690-72abf66c0d81"^^xsd:string . ?trackURI rdf:type mo:Track . } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------
+| recordingURI                                                             | trackURI                                |
+======================================================================================================================
+| <http://localhost:2020/recording/2152b30e-4e42-4bcd-9690-72abf66c0d81#_> | <http://localhost:2020/track/4661648#_> |
+----------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "2152b30e-4e42-4bcd-9690-72abf66c0d81" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+.
+##################################################
+[EXEC]  RecordingsPUIDsCheck
+##################################################
+
+[EXEC]  Prefetch some id values that are utilised in the proper SQL query.
+
+[EXEC]  DB query:
+		SELECT musicbrainz.recording.gid AS id FROM musicbrainz.recording LIMIT 5
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = 'c917afc4-c9bf-412e-8e2d-91a26809a47d'
+[EXEC]  fetched 0 relations for ID c917afc4-c9bf-412e-8e2d-91a26809a47d
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = '0ec91739-8331-4e29-b062-b3a5f889afb1'
+[EXEC]  fetched 0 relations for ID 0ec91739-8331-4e29-b062-b3a5f889afb1
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = 'c3e98f9f-3661-4e06-95ab-492f22f19e1b'
+[EXEC]  fetched 0 relations for ID c3e98f9f-3661-4e06-95ab-492f22f19e1b
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = 'ab3df03f-9534-4b9e-9eae-12985a5e7842'
+[EXEC]  fetched 0 relations for ID ab3df03f-9534-4b9e-9eae-12985a5e7842
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = 'eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6'
+[EXEC]  fetched 30 relations for ID eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6
+
+[EXEC]  DB query:
+		SELECT musicbrainz.puid.puid AS puid, musicbrainz.recording.gid AS id FROM musicbrainz.puid INNER JOIN musicbrainz.recording_puid  ON recording_puid.puid = puid.id INNER JOIN musicbrainz.recording ON recording_puid.recording = recording.id WHERE musicbrainz.recording.gid = '2152b30e-4e42-4bcd-9690-72abf66c0d81'
+[EXEC]  fetched 0 relations for ID 2152b30e-4e42-4bcd-9690-72abf66c0d81
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "c917afc4-c9bf-412e-8e2d-91a26809a47d"^^xsd:string ; mo:puid ?puid . }
+[EXEC]  The comparision of the values for the key "c917afc4-c9bf-412e-8e2d-91a26809a47d" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 0.
+		Number of the values from the SPARQL query result = 0.
+		Relations counter of the SPARQL result set = 0.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "0ec91739-8331-4e29-b062-b3a5f889afb1"^^xsd:string ; mo:puid ?puid . }
+[EXEC]  The comparision of the values for the key "0ec91739-8331-4e29-b062-b3a5f889afb1" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 0.
+		Number of the values from the SPARQL query result = 0.
+		Relations counter of the SPARQL result set = 0.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "c3e98f9f-3661-4e06-95ab-492f22f19e1b"^^xsd:string ; mo:puid ?puid . }
+[EXEC]  The comparision of the values for the key "c3e98f9f-3661-4e06-95ab-492f22f19e1b" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 0.
+		Number of the values from the SPARQL query result = 0.
+		Relations counter of the SPARQL result set = 0.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "ab3df03f-9534-4b9e-9eae-12985a5e7842"^^xsd:string ; mo:puid ?puid . }
+[EXEC]  The comparision of the values for the key "ab3df03f-9534-4b9e-9eae-12985a5e7842" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 0.
+		Number of the values from the SPARQL query result = 0.
+		Relations counter of the SPARQL result set = 0.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6"^^xsd:string ; mo:puid ?puid . }
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| URI                                                                      | puid                                                                              |
+================================================================================================================================================================
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "0afc0fc1-b0e1-1072-ebf9-f5e571f4958a"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "0dfb7deb-9e39-ea1e-16f0-1b8157e076e1"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "102229fc-cdfc-6678-f603-f17cb3855d6e"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "10b9083e-da49-86d2-3f29-1e667bcb2003"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "122fd46c-2918-bb04-fa1c-6f0b9c4b8a89"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "156a6c46-8d00-9516-8142-aa4ff9af192c"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "1c0514c2-3d9a-d275-73b7-e819bdd34350"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "1d4a7771-694e-e1f3-4bab-8bda4a3db05b"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "20d41e6f-ac01-1a73-7bfd-c5be82c1f490"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "23f6b850-3ecd-7703-aedb-03b67d93fdd0"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "2919ba8e-8e11-a586-b8bc-2809353483e1"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "299c3d96-4830-dc74-e5ef-e9e0702f8d04"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "4883a26a-1485-7708-2428-c869bb193b79"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "58957b54-0955-9e76-34c2-dae0d234e1a0"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "6c2e202a-800c-0309-37e6-3615d0f94a94"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "84693ea1-1843-ead5-0e73-5cefc9dc1aa1"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "8eafb373-81ec-e3c3-3302-6a603cd37d0e"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "908e17b6-fc7e-afb9-6aa0-ebb55964a0ec"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "931e13ea-dd0a-cf92-3317-73577c2bc5b1"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "9744ec63-87c6-eb27-4ab0-fc8b77288233"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "9e0a1094-13b1-d748-f512-981cef81adb8"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "9f9c641f-a7cf-7845-bfc8-aed5f3688ad1"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "b1386c36-e558-601c-f630-9ba91d0d43e4"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "b423687d-f253-dc3c-0228-4d2c23ebff65"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "b9aaeae6-30c5-a5ea-d0cd-bcc3e940b463"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "d20ec5f1-fa8d-251a-9031-939a41c8b28a"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "ea569c15-53d7-9802-b469-fc3a9b9f7945"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "f1f42d85-76ac-5d2d-d1b2-bcf90cddab23"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "f8fcef79-67f8-e877-8692-b137e6fb6087"^^<http://www.w3.org/2001/XMLSchema#string> |
+| <http://localhost:2020/recording/eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6#_> | "f9ae7890-2f95-9dcb-0a47-77c8ad8efcb6"^^<http://www.w3.org/2001/XMLSchema#string> |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "eb9bf15c-29e8-4c6b-bfa1-9b2a5b33a5b6" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 30.
+		Number of the values from the SPARQL query result = 30.
+		Relations counter of the SPARQL result set = 30.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?puid WHERE { ?URI a mo:Signal ; mo:musicbrainz_guid "2152b30e-4e42-4bcd-9690-72abf66c0d81"^^xsd:string ; mo:puid ?puid . }
+[EXEC]  The comparision of the values for the key "2152b30e-4e42-4bcd-9690-72abf66c0d81" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 0.
+		Number of the values from the SPARQL query result = 0.
+		Relations counter of the SPARQL result set = 0.
+
+Time: 4.097
+
+OK (6 tests)
+

@@ -9,9 +9,18 @@ Install instruction:
 2. You have to setup the DB connection settings (host, port, db-name, username, password) in 
    linkedbrainz.testcases.Utils.java, which are right on the top.
 
-Running instructions:
+
+Running instruction:
 
 1. Please keep attention that some of the tests are heavy memory consuming. So you may run into Java heap space errors. 
+2. To run the JUnit test from the command line you need to properly set your CLASSPATH variable, e.g.,
+
+export CLASSPATH="$CLASSPATH:$JUNIT_HOME/junit-4.9b3.jar:$HOME/.m2/repository/com/hp/hpl/jena/jena/2.6.4/jena-2.6.4.jar:$HOME/.m2/repository/com/hp/hpl/jena/arq/2.8.8/arq-2.8.8.jar:$HOME/.m2/repository/com/hp/hpl/jena/jenatest/jenatest-2.6.0.jar:$HOME/.m2/repository/com/hp/hpl/jena/arq-extra/2.7.0/arq-extra-2.7.0.jar:$HOME/.m2/repository/com/hp/hpl/jena/iri/0.8/iri-0.8.jar:$HOME/.m2/repository/com/hp/hpl/jena/sdb/1.3.4/sdb-1.3.4.jar:$HOME/.m2/repository/postgresql/postgresql/8.4-702.jdbc4/postgresql-8.4-702.jdbc4.jar:$HOME/.m2/repository/linkedbrainz/d2rs/translator/0.0.1-SNAPSHOT/translator-0.0.1-SNAPSHOT.jar:$HOME/.m2/repository/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar:$HOME/.m2/repository/org/slf4j/slf4j-log4j12/1.5.6/slf4j-log4j12-1.5.6.jar:$HOME/.m2/repository/log4j/log4j/1.2.12/log4j-1.2.12.jar:$HOME/.m2/repository/xerces/xercesImpl/2.7.1/xercesImpl-2.7.1.jar:$HOME/.m2/repository/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar:$HOME/.m2/repository/de/fuberlin/wiwiss/d2rq/0.7-maven/d2rq-0.7-maven.jar:.:$HOME/git/LinkedBrainzTestcases/LinkedBrainzTestcases/target/test-classes:$HOME/git/LinkedBrainzTestcases/LinkedBrainzTestcases/target/classes"
+
+
+Test execution logs:
+
+1. The output of various tests can be found in the folder 'testoutput'.
 
 
 *) The proposed mapping is a D2RQ [14,16,17] mapping and can be executed with a slighty modified version [12,13] of the D2R server [15].
