@@ -1160,25 +1160,28 @@ public class Utils
 
 						Translator translator = null;
 						String value = values.get(valuesKey);
-
-						if (condition.getTranslatorClass() != null)
-						{
-
-							/*
-							 * System.out.println(
-							 * "[EXEC]  here we go in the Translator class case"
-							 * );
-							 */
-
-							if (getTranslatorInstance(condition
-									.getTranslatorClass()) != null)
+						
+						if (condition != null)
+						{					
+							if (condition.getTranslatorClass() != null)
 							{
-								translator = getTranslatorInstance(condition
-										.getTranslatorClass());
 
 								/*System.out
-										.println("[EXEC]  here we go with an instatiated Translator class");*/
+										.println("[EXEC]  here we go in the Translator class case");*/
 
+								if (getTranslatorInstance(condition
+										.getTranslatorClass()) != null)
+								{
+									translator = getTranslatorInstance(condition
+											.getTranslatorClass());
+
+									/*
+									 * System.out.println(
+									 * "[EXEC]  here we go with an instatiated Translator class"
+									 * );
+									 */
+
+								}
 							}
 						}
 

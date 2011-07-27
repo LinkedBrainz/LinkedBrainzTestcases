@@ -1,0 +1,7 @@
+java org.junit.runner.JUnitCore linkedbrainz.testcases.ArtistTest > testoutput/ArtistTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.LabelTest > testoutput/LabelTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.MediumTest > testoutput/MediumTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.RecordingTest > testoutput/RecordingTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.ReleaseGroupTest > testoutput/ReleaseGroupTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.ReleaseTest > testoutput/ReleaseTest_-_results
+java org.junit.runner.JUnitCore linkedbrainz.testcases.WorkTest > testoutput/WorkTest_-_results

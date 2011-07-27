@@ -1,5 +1,10 @@
 JUnit version 4.9b3
-.[PRECONFIG]  Database JDBC Connection Testing
+.
+##################################################
+[EXEC]  ReleaseGroupsCheck
+##################################################
+
+[PRECONFIG]  Database JDBC Connection Testing
 [PRECONFIG]  Database JDBC Driver Registered!
 [PRECONFIG]  You made it, take control your database now!
 
@@ -7,7 +12,26 @@ JUnit version 4.9b3
 		SELECT gid FROM musicbrainz.release_group LIMIT 5
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  set prefixes
 
@@ -18,7 +42,26 @@ JUnit version 4.9b3
 -------------------------------------------------------------------------------
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------
@@ -28,7 +71,26 @@ JUnit version 4.9b3
 -------------------------------------------------------------------------------
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------
@@ -38,7 +100,26 @@ JUnit version 4.9b3
 -------------------------------------------------------------------------------
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------
@@ -48,7 +129,26 @@ JUnit version 4.9b3
 -------------------------------------------------------------------------------
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:SignalGroup . ?URI mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------
@@ -66,7 +166,26 @@ JUnit version 4.9b3
 		SELECT musicbrainz.release_name.name AS title, musicbrainz.release_group.gid AS id FROM musicbrainz.release_group INNER JOIN musicbrainz.release_name  ON release_group.name = release_name.id LIMIT 5
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string ; dct:title ?title . }
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string ; dct:title ?title . }
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -----------------------------------------------------------------------------------------------------
@@ -80,7 +199,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string ; dct:title ?title . }
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string ; dct:title ?title . }
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------------
@@ -94,7 +232,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string ; dct:title ?title . }
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string ; dct:title ?title . }
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------------------
@@ -108,7 +265,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string ; dct:title ?title . }
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string ; dct:title ?title . }
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------
@@ -122,7 +298,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string ; dct:title ?title . }
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?URI ?title WHERE { ?URI a mo:SignalGroup ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string ; dct:title ?title . }
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ---------------------------------------------------------------------------------------
@@ -169,84 +364,198 @@ JUnit version 4.9b3
 [EXEC]  fetched 1 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/e8bee759-9efc-35c2-93d7-09ace9123467#_> | "89ad4ac3-39f7-470e-963a-56509c546377"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/e8bee759-9efc-35c2-93d7-09ace9123467#_> | "89ad4ac3-39f7-470e-963a-56509c546377"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/2b10653e-655d-34fe-9db4-77242d817a17#_> | "249eb550-505e-43ef-ac50-e8c605706ff1"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/2b10653e-655d-34fe-9db4-77242d817a17#_> | "249eb550-505e-43ef-ac50-e8c605706ff1"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/3f863893-18ec-3d70-ac4b-5d9d28c82a09#_> | "3ce0ce48-8777-48fb-b62d-3fb374091d3b"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/3f863893-18ec-3d70-ac4b-5d9d28c82a09#_> | "3ce0ce48-8777-48fb-b62d-3fb374091d3b"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/9f7a4c28-8fa2-3113-929c-c47a9f7982c3#_> | "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/9f7a4c28-8fa2-3113-929c-c47a9f7982c3#_> | "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "9f7a4c28-8fa2-3113-929c-c47a9f7982c3" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7#_> | "31810c40-932a-4f2d-8cfd-17849844e2a6"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7#_> | "31810c40-932a-4f2d-8cfd-17849844e2a6"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?artistGUID WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; foaf:maker ?artistURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?artistURI rdf:type mo:MusicArtist ; mo:musicbrainz_guid ?artistGUID . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| releaseGroupURI                                                             | artistGUID                                                                        |
-===================================================================================================================================================================
-| <http://localhost:2020/signal-group/c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452#_> | "31810c40-932a-4f2d-8cfd-17849844e2a6"^^<http://www.w3.org/2001/XMLSchema#string> |
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------
+| releaseGroupURI                                                             | artistGUID                                         |
+====================================================================================================================================
+| <http://localhost:2020/signal-group/c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452#_> | "31810c40-932a-4f2d-8cfd-17849844e2a6"^^xsd:string |
+------------------------------------------------------------------------------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -286,28 +595,104 @@ JUnit version 4.9b3
 [EXEC]  fetched 1 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -321,7 +706,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------------------------------------------
@@ -335,7 +739,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?dbpediaURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; owl:sameAs ?dbpediaURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?dbpediaURI is:info_service isi:dbpedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -382,28 +805,104 @@ JUnit version 4.9b3
 [EXEC]  fetched 1 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "9f7a4c28-8fa2-3113-929c-c47a9f7982c3"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -417,7 +916,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -431,7 +949,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?wikiURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?wikiURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?wikiURI is:info_service isi:wikipedia . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -478,28 +1015,104 @@ JUnit version 4.9b3
 [EXEC]  fetched 0 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "5600398c-c9fa-398a-84df-d8b13b009853"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "5600398c-c9fa-398a-84df-d8b13b009853"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------------------------------------------
@@ -513,14 +1126,52 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?discogsURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?discogsURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?discogsURI is:info_service isi:discogs . } 
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
@@ -560,35 +1211,130 @@ JUnit version 4.9b3
 [EXEC]  fetched 0 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "5d192683-17da-34c6-ad6b-6e37e8bd449d"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "5d192683-17da-34c6-ad6b-6e37e8bd449d"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------------------------------
@@ -602,7 +1348,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?ibdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?ibdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?ibdbURI is:info_service isi:ibdb . } 
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
@@ -642,14 +1407,52 @@ JUnit version 4.9b3
 [EXEC]  fetched 0 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "6d79d579-213d-3172-a860-1cd9bde0ecd5"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "6d79d579-213d-3172-a860-1cd9bde0ecd5"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 --------------------------------------------------------------------------------------------------------------------
@@ -663,28 +1466,104 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?imdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?imdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?imdbURI is:info_service isi:imdb . } 
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
@@ -724,35 +1603,130 @@ JUnit version 4.9b3
 [EXEC]  fetched 0 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "0e888dba-0b67-45a5-a1bf-58598ff90156"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "0e888dba-0b67-45a5-a1bf-58598ff90156"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -766,7 +1740,26 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?iobdbURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?iobdbURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?iobdbURI is:info_service isi:iobdb . } 
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
@@ -806,28 +1799,104 @@ JUnit version 4.9b3
 [EXEC]  fetched 0 relations for ID c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "e8bee759-9efc-35c2-93d7-09ace9123467"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC]  The comparision of the values for the key "e8bee759-9efc-35c2-93d7-09ace9123467" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "2b10653e-655d-34fe-9db4-77242d817a17"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC]  The comparision of the values for the key "2b10653e-655d-34fe-9db4-77242d817a17" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "3f863893-18ec-3d70-ac4b-5d9d28c82a09"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC]  The comparision of the values for the key "3f863893-18ec-3d70-ac4b-5d9d28c82a09" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "617c9f00-9488-3a70-a994-9de312541617"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "617c9f00-9488-3a70-a994-9de312541617"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -841,20 +1910,58 @@ JUnit version 4.9b3
 		Relations counter of the SPARQL result set = 1.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC]  The comparision of the values for the key "0eac6659-d590-3eb7-8c13-ed8b3fdf4ef7" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
 [EXEC]  SPARQL query:
-		PREFIX dc: <http://purl.org/dc/elements/1.1/>PREFIX ov: <http://open.vocab.org/terms/>PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>PREFIX mo: <http://purl.org/ontology/mo/>PREFIX foaf: <http://xmlns.com/foaf/0.1/>PREFIX mbz: <http://test.musicbrainz.org/>PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>PREFIX event: <http://purl.org/NET/c4dm/event.owl#>PREFIX dct: <http://purl.org/dc/terms/>PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>PREFIX owl: <http://www.w3.org/2002/07/owl#>PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>PREFIX vocab: <http://localhost:2020/vocab/resource/>PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX is: <http://purl.org/ontology/is/core#>PREFIX isi: <http://purl.org/ontology/is/inst/>SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type mo:SignalGroup ; rdfs:seeAlso ?musicMozURI ; mo:musicbrainz_guid "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452"^^xsd:string . ?musicMozURI is:info_service isi:musicmoz . } 
 [EXEC]  The comparision of the values for the key "c6fe6a2b-0ed6-3d2c-b9ce-ddd5421a3452" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 0.
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
-Time: 12.679
+Time: 12.842
 
 OK (10 tests)
 
