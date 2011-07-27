@@ -2098,19 +2098,12 @@ public class Utils
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 2:
-				// TODO
-				/*
-				 * initSqlQuery =
-				 * "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, " +
-				 * "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id " +
-				 * "FROM musicbrainz.CLASS3 " +
-				 * "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-				 * +
-				 * "INNER JOIN musicbrainz.CLASS4 ON CLASS4.CLASS_ROW4 = CLASS3.id "
-				 * +
-				 * "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS4.CLASS_ROW5 "
-				 * + "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-				 */
+				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+					+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+					+ "FROM musicbrainz.CLASS3 "
+					+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+					+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
+					+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 3:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "

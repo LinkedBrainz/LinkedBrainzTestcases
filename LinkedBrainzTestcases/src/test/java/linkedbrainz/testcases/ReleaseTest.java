@@ -423,6 +423,55 @@ public class ReleaseTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 (+1) releases from the DB and resolves their release types
+	 * against the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleasesReleaseTypes()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("release_group_type");
+		classTables.add("release_group");
+
+		classTableRows.add("gid");
+		classTableRows.add("id");
+		classTableRows.add("release_group");
+		classTableRows.add("type");
+
+		classNames.add("mo:Release");
+
+		valueNames.add("releaseURI");
+		valueNames.add("releaseTypeURI");
+		valueNames.add("releaseTypeURI");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
+		TestResult testResult = Utils
+				.getInstance()
+				.checkURIInversePropertyViaGUIDOnTheLeftAndURIOnTheRight(
+						classTables,
+						classTableRows,
+						classNames,
+						"mo:release_type",
+						valueNames,
+						2,
+						5,
+						new Condition(
+								"linkedbrainz.d2rs.translator.ReleaseTypeTranslator"),
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleasesReleaseTypesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{
