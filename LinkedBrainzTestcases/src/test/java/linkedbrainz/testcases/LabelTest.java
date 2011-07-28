@@ -538,6 +538,34 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 labels from the DB and resolves their countries against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelCountry()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("label");
+		classTables.add("country");
+
+		classTableRows.add("country");
+		classTableRows.add("iso_code");
+
+		// add Warp Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "foaf:based_near",
+						"country", 1, 5, true, false, null,
+						"46f0f4cd-8aab-4b33-b698-f459faf64190",
+						"LabelsCountryCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{

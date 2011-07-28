@@ -34,6 +34,33 @@ public class MediumTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 
 	}
+	
+	/**
+	 * Fetches 5 mediums from the DB and resolves its names against the result of
+	 * the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMediumNames()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("medium");
+
+		classTableRows.add("name");
+
+		// add track list from "Sgt. Pepper’s Lonely Hearts Club Band" (PMC
+		// 7027) from The
+		// Beatles as proof id (see 44b7cab1-0ce1-404e-9089-b458eb3fa530 for the
+		// related release)
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
+						"mo:Record", "dct:title", "title", "#_", 0, 5, false,
+						false, new Condition("medium", "name", "IS NOT NULL", false), "93", "MediumNamesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	/**
 	 * Fetches 5 mediums (mo:Record instances) from the DB and resolves their

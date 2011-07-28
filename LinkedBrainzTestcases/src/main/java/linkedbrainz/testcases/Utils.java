@@ -539,7 +539,7 @@ public class Utils
 
 		return new TestResult(queryCounter == limit, queryCounterFailMsg);
 	}
-	
+
 	/**
 	 * Fetches some instances from the DB and resolves the values of a specific
 	 * property against the result of the related SPARQL query.
@@ -578,8 +578,8 @@ public class Utils
 	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded GUID, since one could fetch instances that have no
-	 *            relations and then wondering about the results. This GUID should
-	 *            usually deliver an appropriated result.
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -639,8 +639,8 @@ public class Utils
 	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded GUID, since one could fetch instances that have no
-	 *            relations and then wondering about the results. This GUID should
-	 *            usually deliver an appropriated result.
+	 *            relations and then wondering about the results. This GUID
+	 *            should usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1030,7 +1030,8 @@ public class Utils
 
 		return checkSimplePropertyViaGUIOrID(classTables, classTableRows,
 				className, propertyName, valueName, limit,
-				comparisonOnResource, multipleValues, false, proofId, checkName);
+				comparisonOnResource, multipleValues, withCondition, proofId,
+				checkName);
 	}
 
 	/**
@@ -1092,7 +1093,6 @@ public class Utils
 			initSqlQuery2 = initSqlQuery
 					.replace("CONDITION", sqlQueryCondition);
 			initSqlQuery = initSqlQuery2;
-
 		} else
 		{
 			initSqlQuery2 = initSqlQuery.replace("CONDITION", "");
