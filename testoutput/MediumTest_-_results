@@ -31,6 +31,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "/41968#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  set prefixes
@@ -61,6 +62,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "/288902#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -90,6 +92,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "/600623#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -119,6 +122,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "/600624#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -148,6 +152,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "/600625#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -156,6 +161,184 @@ SELECT DISTINCT ?URI WHERE { ?URI rdf:type mo:Record . FILTER regex(str(?URI), "
 ===========================================
 | <http://localhost:2020/record/600625#_> |
 -------------------------------------------
+.
+##################################################
+[EXEC]  MediumNamesCheck
+##################################################
+
+
+[EXEC]  DB query:
+		SELECT musicbrainz.medium.name AS title, musicbrainz.medium.id AS id FROM musicbrainz.medium WHERE musicbrainz.medium.name IS NOT NULL LIMIT 5
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?URI ?title WHERE { ?URI rdf:type mo:Record ; dct:title ?title . FILTER regex(str(?URI), "/1050964#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-------------------------------------------------------------------------
+| URI                                      | title                      |
+=========================================================================
+| <http://localhost:2020/record/1050964#_> | "Intermersion"^^xsd:string |
+-------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?URI ?title WHERE { ?URI rdf:type mo:Record ; dct:title ?title . FILTER regex(str(?URI), "/1050965#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-------------------------------------------------------------------------------------------------
+| URI                                      | title                                              |
+=================================================================================================
+| <http://localhost:2020/record/1050965#_> | "Fascination & Other Melodies of Love"^^xsd:string |
+-------------------------------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?URI ?title WHERE { ?URI rdf:type mo:Record ; dct:title ?title . FILTER regex(str(?URI), "/700871#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+---------------------------------------------------------------------------
+| URI                                     | title                         |
+===========================================================================
+| <http://localhost:2020/record/700871#_> | "シングル・オリジナル・カラオケ"^^xsd:string |
+---------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?URI ?title WHERE { ?URI rdf:type mo:Record ; dct:title ?title . FILTER regex(str(?URI), "/1054769#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+------------------------------------------------------------------------
+| URI                                      | title                     |
+========================================================================
+| <http://localhost:2020/record/1054769#_> | "The Tunnels"^^xsd:string |
+------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?URI ?title WHERE { ?URI rdf:type mo:Record ; dct:title ?title . FILTER regex(str(?URI), "/680684#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+---------------------------------------------------------------------------
+| URI                                     | title                         |
+===========================================================================
+| <http://localhost:2020/record/680684#_> | "シングル・オリジナル・カラオケ"^^xsd:string |
+---------------------------------------------------------------------------
+[EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
+		Number of values from the SQL query result = 1.
+		Number of the values from the SPARQL query result = 1.
+		Relations counter of the SPARQL result set = 1.
 .
 ##################################################
 [EXEC]  MediumsTrackCountCheck
@@ -185,6 +368,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_count ?trackCount . FILTER regex(str(?URI), "/837390#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -193,7 +377,6 @@ SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_coun
 ===========================================================
 | <http://localhost:2020/record/837390#_> | "15"^^xsd:int |
 -----------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -219,6 +402,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_count ?trackCount . FILTER regex(str(?URI), "/632711#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -227,7 +411,6 @@ SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_coun
 ===========================================================
 | <http://localhost:2020/record/632711#_> | "15"^^xsd:int |
 -----------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -253,6 +436,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_count ?trackCount . FILTER regex(str(?URI), "/587724#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -261,7 +445,6 @@ SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_coun
 ==========================================================
 | <http://localhost:2020/record/587724#_> | "4"^^xsd:int |
 ----------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -287,6 +470,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_count ?trackCount . FILTER regex(str(?URI), "/724128#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -295,7 +479,6 @@ SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_coun
 ==========================================================
 | <http://localhost:2020/record/724128#_> | "1"^^xsd:int |
 ----------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -321,6 +504,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_count ?trackCount . FILTER regex(str(?URI), "/724129#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
@@ -329,7 +513,6 @@ SELECT DISTINCT ?URI ?trackCount WHERE { ?URI rdf:type mo:Record ; mo:track_coun
 ==========================================================
 | <http://localhost:2020/record/724129#_> | "1"^^xsd:int |
 ----------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -388,14 +571,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/41968#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
------------------------------------------------------------------------------
-| reocordURI                             | mediaTypeURI                     |
-=============================================================================
-| <http://localhost:2020/record/41968#_> | <http://purl.org/ontology/mt/CD> |
------------------------------------------------------------------------------
+---------------------------------------------------------
+| reocordURI                             | mediaTypeURI |
+=========================================================
+| <http://localhost:2020/record/41968#_> | mt:CD        |
+---------------------------------------------------------
 [EXEC]  The comparision of the values for the key "41968" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -421,14 +605,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/93#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
------------------------------------------------------------------------------------
-| reocordURI                          | mediaTypeURI                              |
-===================================================================================
-| <http://localhost:2020/record/93#_> | <http://purl.org/ontology/mt/VinylRecord> |
------------------------------------------------------------------------------------
+--------------------------------------------------------
+| reocordURI                          | mediaTypeURI   |
+========================================================
+| <http://localhost:2020/record/93#_> | mt:VinylRecord |
+--------------------------------------------------------
 [EXEC]  The comparision of the values for the key "93" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -454,14 +639,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/288902#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
-------------------------------------------------------------------------------
-| reocordURI                              | mediaTypeURI                     |
-==============================================================================
-| <http://localhost:2020/record/288902#_> | <http://purl.org/ontology/mt/CD> |
-------------------------------------------------------------------------------
+----------------------------------------------------------
+| reocordURI                              | mediaTypeURI |
+==========================================================
+| <http://localhost:2020/record/288902#_> | mt:CD        |
+----------------------------------------------------------
 [EXEC]  The comparision of the values for the key "288902" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -487,14 +673,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/600623#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
-------------------------------------------------------------------------------
-| reocordURI                              | mediaTypeURI                     |
-==============================================================================
-| <http://localhost:2020/record/600623#_> | <http://purl.org/ontology/mt/CD> |
-------------------------------------------------------------------------------
+----------------------------------------------------------
+| reocordURI                              | mediaTypeURI |
+==========================================================
+| <http://localhost:2020/record/600623#_> | mt:CD        |
+----------------------------------------------------------
 [EXEC]  The comparision of the values for the key "600623" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -520,14 +707,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/600625#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
----------------------------------------------------------------------------------------
-| reocordURI                              | mediaTypeURI                              |
-=======================================================================================
-| <http://localhost:2020/record/600625#_> | <http://purl.org/ontology/mt/VinylRecord> |
----------------------------------------------------------------------------------------
+------------------------------------------------------------
+| reocordURI                              | mediaTypeURI   |
+============================================================
+| <http://localhost:2020/record/600625#_> | mt:VinylRecord |
+------------------------------------------------------------
 [EXEC]  The comparision of the values for the key "600625" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -553,20 +741,126 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX is: <http://purl.org/ontology/is/core#>
 PREFIX isi: <http://purl.org/ontology/is/inst/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
 SELECT DISTINCT ?reocordURI ?mediaTypeURI WHERE { ?reocordURI rdf:type mo:Record ; mo:media_type ?mediaTypeURI . FILTER regex(str(?reocordURI), "/600624#_") } 
 [EXEC] SPARQL query result
 [PRECONFIG]  prefixes already set
-------------------------------------------------------------------------------------
-| reocordURI                              | mediaTypeURI                           |
-====================================================================================
-| <http://localhost:2020/record/600624#_> | <http://purl.org/ontology/mt/Cassette> |
-------------------------------------------------------------------------------------
+----------------------------------------------------------
+| reocordURI                              | mediaTypeURI |
+==========================================================
+| <http://localhost:2020/record/600624#_> | mt:Cassette  |
+----------------------------------------------------------
 [EXEC]  The comparision of the values for the key "600624" between the SQL query and the SPARQL has the following results.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
 		Relations counter of the SPARQL result set = 1.
+.
+##################################################
+[EXEC]  MediumsTracksRelationsCheck
+##################################################
 
-Time: 134.068
+[EXEC]  Prefetch some id values that are utilised in the proper SQL query.
 
-OK (3 tests)
+[EXEC]  DB query:
+		SELECT musicbrainz.medium.id AS id FROM musicbrainz.medium LIMIT 1
+
+[EXEC]  DB query:
+		SELECT musicbrainz.medium.id AS medium_id, musicbrainz.track.id AS track_id FROM musicbrainz.tracklist INNER JOIN musicbrainz.medium ON medium.tracklist = tracklist.id INNER JOIN musicbrainz.track ON track.tracklist = tracklist.id WHERE musicbrainz.medium.id = '41968'
+[EXEC]  fetched 9 relations for ID 41968
+
+[EXEC]  DB query:
+		SELECT musicbrainz.medium.id AS medium_id, musicbrainz.track.id AS track_id FROM musicbrainz.tracklist INNER JOIN musicbrainz.medium ON medium.tracklist = tracklist.id INNER JOIN musicbrainz.track ON track.tracklist = tracklist.id WHERE musicbrainz.medium.id = '93'
+[EXEC]  fetched 13 relations for ID 93
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?recordURI ?trackURI WHERE { ?recordURI rdf:type mo:Record ; mo:track ?trackURI . FILTER regex(str(?recordURI), "/41968#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+-------------------------------------------------------------------------------
+| recordURI                              | trackURI                           |
+===============================================================================
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/10#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/11#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/14#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/15#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/16#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/17#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/18#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/19#_> |
+| <http://localhost:2020/record/41968#_> | <http://localhost:2020/track/20#_> |
+-------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "41968" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 9.
+		Number of the values from the SPARQL query result = 9.
+		Relations counter of the SPARQL result set = 9.
+
+[EXEC]  SPARQL query:
+		PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX ov: <http://open.vocab.org/terms/>
+PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mbz: <http://test.musicbrainz.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX event: <http://purl.org/NET/c4dm/event.owl#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX d2r: <http://sites.wiwiss.fu-berlin.de/suhl/bizer/d2r-server/config.rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX map: <file:/home/kurtjx/srcs/d2r-server-0.7/mapping.n3#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX vocab: <http://localhost:2020/vocab/resource/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX is: <http://purl.org/ontology/is/core#>
+PREFIX isi: <http://purl.org/ontology/is/inst/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX mt: <http://purl.org/ontology/mt/>
+SELECT DISTINCT ?recordURI ?trackURI WHERE { ?recordURI rdf:type mo:Record ; mo:track ?trackURI . FILTER regex(str(?recordURI), "/93#_") } 
+[EXEC] SPARQL query result
+[PRECONFIG]  prefixes already set
+--------------------------------------------------------------------------------
+| recordURI                           | trackURI                               |
+================================================================================
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182532#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182533#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182534#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182535#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182536#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182537#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182538#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182539#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182540#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182541#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182542#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182543#_> |
+| <http://localhost:2020/record/93#_> | <http://localhost:2020/track/182544#_> |
+--------------------------------------------------------------------------------
+[EXEC]  The comparision of the values for the key "93" between the SQL query and the SPARQL has the following results.
+		Number of values from the SQL query result = 13.
+		Number of the values from the SPARQL query result = 13.
+		Relations counter of the SPARQL result set = 13.
+
+Time: 500.298
+
+OK (5 tests)
 
