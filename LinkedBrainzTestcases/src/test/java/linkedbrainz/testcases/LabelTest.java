@@ -566,6 +566,60 @@ public class LabelTest
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
+	
+	/**
+	 * Fetches 5 labels from the DB and resolves their label codes against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelsLabelCodes()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("label");
+
+		classTableRows.add("label_code");
+
+		// add Warp Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "mo:lc", "labelCode", 0,
+						5, false, false,
+						new Condition("label", "label_code", "IS NOT NULL", false),
+						"'46f0f4cd-8aab-4b33-b698-f459faf64190'",
+						"LabelsLabelCodesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+	
+	/**
+	 * Fetches 5 labels from the DB and resolves their IPI codes against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkLabelsIPICodes()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("label");
+
+		classTableRows.add("ipi_code");
+
+		// add Warp Records as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:Label", "mo:ipi", "ipiCode", 0,
+						5, false, false,
+						new Condition("label", "ipi_code", "IS NOT NULL", false),
+						"'46f0f4cd-8aab-4b33-b698-f459faf64190'",
+						"LabelsIPICodesCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
 
 	public static junit.framework.Test suite()
 	{
