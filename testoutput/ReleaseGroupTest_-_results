@@ -1961,7 +1961,7 @@ SELECT DISTINCT ?releaseGroupURI ?musicMozURI WHERE { ?releaseGroupURI rdf:type 
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
-Time: 12.842
+Time: 12.382
 
 OK (10 tests)
 

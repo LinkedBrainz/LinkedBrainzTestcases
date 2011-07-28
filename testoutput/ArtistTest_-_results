@@ -499,7 +499,6 @@ SELECT DISTINCT ?URI ?name WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid "
 ===================================================================================
 | <http://localhost:2020/artist/8972b1c1-6482-4750-b51f-596d2edea8b1#_> | "WIK▲N" |
 -----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -533,7 +532,6 @@ SELECT DISTINCT ?URI ?name WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid "
 =============================================================================================
 | <http://localhost:2020/artist/efe3f931-0fc7-428f-b68e-616c87bbcfd2#_> | "Macaulay Culkin" |
 ---------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -567,7 +565,6 @@ SELECT DISTINCT ?URI ?name WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid "
 ===========================================================================================
 | <http://localhost:2020/artist/b4f76788-7e6f-41b7-ac7b-dfb67f66282e#_> | "Gustav Ruppke" |
 -------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -601,7 +598,6 @@ SELECT DISTINCT ?URI ?name WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid "
 =========================================================================================
 | <http://localhost:2020/artist/49add228-eac5-4de8-836c-d75cde7369c3#_> | "Pete Moutso" |
 -----------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -635,7 +631,6 @@ SELECT DISTINCT ?URI ?name WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid "
 =====================================================================================
 | <http://localhost:2020/artist/c112a400-af49-4665-8bba-741531d962a1#_> | "Zachary" |
 -------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -677,7 +672,6 @@ SELECT DISTINCT ?URI ?sortName WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gu
 ====================================================================================
 | <http://localhost:2020/artist/8972b1c1-6482-4750-b51f-596d2edea8b1#_> | "WIK▲N"  |
 ------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -711,7 +705,6 @@ SELECT DISTINCT ?URI ?sortName WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gu
 ==============================================================================================
 | <http://localhost:2020/artist/efe3f931-0fc7-428f-b68e-616c87bbcfd2#_> | "Culkin, Macaulay" |
 ----------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -745,7 +738,6 @@ SELECT DISTINCT ?URI ?sortName WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gu
 ===========================================================================================
 | <http://localhost:2020/artist/b4f76788-7e6f-41b7-ac7b-dfb67f66282e#_> | "Gustav Ruppke" |
 -------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -779,7 +771,6 @@ SELECT DISTINCT ?URI ?sortName WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gu
 ==========================================================================================
 | <http://localhost:2020/artist/49add228-eac5-4de8-836c-d75cde7369c3#_> | "Moutso, Pete" |
 ------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -813,7 +804,6 @@ SELECT DISTINCT ?URI ?sortName WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gu
 =====================================================================================
 | <http://localhost:2020/artist/c112a400-af49-4665-8bba-741531d962a1#_> | "Zachary" |
 -------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -1060,7 +1050,6 @@ SELECT DISTINCT ?URI ?gender WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid
 ==================================================================================
 | <http://localhost:2020/artist/cfa26ff9-73d1-4109-a9c1-baf84a63212f#_> | "Male" |
 ----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -1094,7 +1083,6 @@ SELECT DISTINCT ?URI ?gender WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid
 ==================================================================================
 | <http://localhost:2020/artist/154039ae-9b52-42ab-ae07-2ed14cffd482#_> | "Male" |
 ----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -1128,7 +1116,6 @@ SELECT DISTINCT ?URI ?gender WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid
 ==================================================================================
 | <http://localhost:2020/artist/4c4c72ca-b948-4535-b948-b83d3da4e1b2#_> | "Male" |
 ----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -1162,7 +1149,6 @@ SELECT DISTINCT ?URI ?gender WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid
 ==================================================================================
 | <http://localhost:2020/artist/3b1464ca-c640-4102-b4a4-aaca9ddca442#_> | "Male" |
 ----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -1196,7 +1182,6 @@ SELECT DISTINCT ?URI ?gender WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_guid
 ==================================================================================
 | <http://localhost:2020/artist/db08dae0-013a-43a8-b735-cc8aa62a83c1#_> | "Male" |
 ----------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -10597,7 +10582,6 @@ SELECT DISTINCT ?URI ?country WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gui
 =========================================================================================================
 | <http://localhost:2020/artist/cfa26ff9-73d1-4109-a9c1-baf84a63212f#_> | <http://ontologi.es/place/EE> |
 ---------------------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -10631,7 +10615,6 @@ SELECT DISTINCT ?URI ?country WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gui
 =========================================================================================================
 | <http://localhost:2020/artist/154039ae-9b52-42ab-ae07-2ed14cffd482#_> | <http://ontologi.es/place/DE> |
 ---------------------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -10665,7 +10648,6 @@ SELECT DISTINCT ?URI ?country WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gui
 =========================================================================================================
 | <http://localhost:2020/artist/4c4c72ca-b948-4535-b948-b83d3da4e1b2#_> | <http://ontologi.es/place/ES> |
 ---------------------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -10699,7 +10681,6 @@ SELECT DISTINCT ?URI ?country WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gui
 =========================================================================================================
 | <http://localhost:2020/artist/3b1464ca-c640-4102-b4a4-aaca9ddca442#_> | <http://ontologi.es/place/DE> |
 ---------------------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -10733,7 +10714,6 @@ SELECT DISTINCT ?URI ?country WHERE { ?URI a mo:MusicArtist ; mo:musicbrainz_gui
 =========================================================================================================
 | <http://localhost:2020/artist/db08dae0-013a-43a8-b735-cc8aa62a83c1#_> | <http://ontologi.es/place/EE> |
 ---------------------------------------------------------------------------------------------------------
-[EXEC]  before condition case check
 [EXEC]  The number of relations from the SPARQL query seem to be equal to the number of fetched rows from the SQL query.
 		Number of values from the SQL query result = 1.
 		Number of the values from the SPARQL query result = 1.
@@ -13707,7 +13687,7 @@ SELECT DISTINCT ?artistURI ?vgmdbURI WHERE { ?artistURI rdf:type mo:MusicArtist 
 		Number of the values from the SPARQL query result = 0.
 		Relations counter of the SPARQL result set = 0.
 
-Time: 35.592
+Time: 96.378
 
 OK (28 tests)
 
