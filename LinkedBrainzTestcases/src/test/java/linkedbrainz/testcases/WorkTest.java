@@ -504,6 +504,33 @@ public class WorkTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
+	/**
+	 * Fetches 5 works from the DB and resolves their ISWC codes against the
+	 * result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkWORKsISWCs()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("work");
+
+		classTableRows.add("iswc");
+
+		// add "Symphony No. 9" from Antonín Dvořák as proof GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimplePropertyViaGUIDOnTheLeft(classTables,
+						classTableRows, "mo:MusicalWork", "mo:iswc", "ISWC", 0,
+						5, false, false,
+						new Condition("work", "iswc", "IS NOT NULL", false),
+						"'d59d99ea-23d4-4a80-b066-edca32ee158f'",
+						"WorksISWCsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(WorkTest.class);
