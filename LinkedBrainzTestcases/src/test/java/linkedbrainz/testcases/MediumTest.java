@@ -59,7 +59,7 @@ public class MediumTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
 						"mo:Record", "mo:track_count", "trackCount", "#_", 1,
-						5, false, false, "93", "MediumsTrackCountCheck");
+						5, false, false, null, "93", "MediumsTrackCountCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}

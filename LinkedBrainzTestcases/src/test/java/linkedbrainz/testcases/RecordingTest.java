@@ -203,7 +203,7 @@ public class RecordingTest
 	}
 
 	/**
-	 * Fetches 5 recording from the DB and resolves their length against the
+	 * Fetches 5 recordings from the DB and resolves their length against the
 	 * result of the related SPARQL query.
 	 * 
 	 */

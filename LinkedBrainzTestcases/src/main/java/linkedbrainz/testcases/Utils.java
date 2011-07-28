@@ -90,7 +90,7 @@ public class Utils
 	private String sqlFailMsg = null;
 	private String sparqlFailMsg = null;
 	private String queryCounterFailMsg = null;
-	
+
 	// the "secret option three" ;)
 	private boolean optionThree = false;
 
@@ -752,6 +752,9 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -764,13 +767,17 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			String fragmentId, int limit, boolean comparisonOnResource,
-			boolean multipleValues, String proofId, String checkName)
+			boolean multipleValues, Condition condition, String proofId,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("gid", 1, true);
 
+		setCondition(condition);
+
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, multipleValues, proofId, checkName);
+				comparisonOnResource, multipleValues, initCondition(condition),
+				proofId, checkName);
 	}
 
 	/**
@@ -809,6 +816,9 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -822,13 +832,16 @@ public class Utils
 			String className, String propertyName, String valueName,
 			String fragmentId, int numberOfJoins, int limit,
 			boolean comparisonOnResource, boolean multipleValues,
-			String proofId, String checkName)
+			Condition condition, String proofId, String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("id", numberOfJoins, true);
 
+		setCondition(condition);
+
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, multipleValues, proofId, checkName);
+				comparisonOnResource, multipleValues, initCondition(condition),
+				proofId, checkName);
 	}
 
 	/**
@@ -865,6 +878,9 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param condition
+	 *            the condition object that includes specific values that are
+	 *            used to initialise the condition statements
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -877,13 +893,17 @@ public class Utils
 			ArrayList<String> classTables, ArrayList<String> classTableRows,
 			String className, String propertyName, String valueName,
 			String fragmentId, int limit, boolean comparisonOnResource,
-			boolean multipleValues, String proofId, String checkName)
+			boolean multipleValues, Condition condition, String proofId,
+			String checkName)
 	{
 		initSqlQueryForCheckSimpleProperty("id", 1, false);
 
+		setCondition(condition);
+
 		return checkSimplePropertyViaID(classTables, classTableRows, className,
 				propertyName, valueName, fragmentId, limit,
-				comparisonOnResource, multipleValues, proofId, checkName);
+				comparisonOnResource, multipleValues, initCondition(condition),
+				proofId, checkName);
 	}
 
 	/**
@@ -920,6 +940,8 @@ public class Utils
 	 * @param multipleValues
 	 *            indicates whether multiple values for the query keys are
 	 *            expected or not
+	 * @param withCondition
+	 *            indicates whether a condition is set or not
 	 * @param proofId
 	 *            a hardcoded Id, since one could fetch instances that have no
 	 *            relations and then wondering about the results. This Id should
@@ -932,7 +954,7 @@ public class Utils
 			ArrayList<String> classTableRows, String className,
 			String propertyName, String valueName, String fragmentId,
 			int limit, boolean comparisonOnResource, boolean multipleValues,
-			String proofId, String checkName)
+			boolean withCondition, String proofId, String checkName)
 	{
 		String initSparqlQuery2 = Utils.DEFAULT_PREFIXES
 				+ "SELECT DISTINCT ?URI ?VALUE_NAME "
@@ -2357,23 +2379,22 @@ public class Utils
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 2:
-				if(!optionThree)
-				{	
-				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-						+ "FROM musicbrainz.CLASS3 "
-						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
-						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
-						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
-				}
-				else
+				if (!optionThree)
 				{
 					initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
-						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
-						+ "FROM musicbrainz.CLASS3 "
-						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
-						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW4 = CLASS3.id "
-						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+							+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+							+ "FROM musicbrainz.CLASS3 "
+							+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
+							+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
+							+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				} else
+				{
+					initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+							+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+							+ "FROM musicbrainz.CLASS3 "
+							+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+							+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW4 = CLASS3.id "
+							+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				}
 				break;
 			case 3:
@@ -3112,7 +3133,7 @@ public class Utils
 			this.condition = condition;
 		}
 	}
-	
+
 	public boolean isOptionThree()
 	{
 		return optionThree;

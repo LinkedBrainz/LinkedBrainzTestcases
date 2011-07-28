@@ -143,7 +143,7 @@ public class ReleaseTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaGUIDOnTheLeftWithFragment(classTables,
 						classTableRows, "mo:ReleaseEvent", "event:place",
-						"country", "#event", 5, true, false,
+						"country", "#event", 5, true, false, null,
 						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
 						"ReleasesCountryCheck");
 

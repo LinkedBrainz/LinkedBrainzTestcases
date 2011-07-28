@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import junit.framework.JUnit4TestAdapter;
+import linkedbrainz.testcases.model.Condition;
 import linkedbrainz.testcases.model.TestResult;
 
 import org.junit.Test;
@@ -61,7 +62,7 @@ public class TrackTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
 						"mo:Track", "dct:title", "title", "#_", 1, 1, false,
-						false, "11", "TrackNamesCheck");
+						false, null, "11", "TrackNamesCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
@@ -169,7 +170,43 @@ public class TrackTest
 		TestResult testResult = Utils.getInstance()
 				.checkSimplePropertyViaIDOnTheLeft(classTables, classTableRows,
 						"mo:Track", "mo:track_number", "trackNumber", "#_", 0,
-						1, false, false, "11", "TracksTrackNumberCheck");
+						1, false, false, null, "11", "TracksTrackNumberCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
+	/**
+	 * Fetches 1 track from the DB and resolves its length against the result of
+	 * the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkRecordingsLength()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("track");
+
+		classTableRows.add("length");
+
+		// add ""Five Man Army" from Massive Attack as proof id
+		TestResult testResult = Utils
+				.getInstance()
+				.checkSimplePropertyViaIDOnTheLeft(
+						classTables,
+						classTableRows,
+						"mo:Track",
+						"mo:duration",
+						"length",
+						"#_",
+						0,
+						1,
+						false,
+						false,
+						new Condition("track", "length", "IS NOT NULL", false,
+								"linkedbrainz.d2rs.translator.DurationTranslator"),
+						"11", "RecordingsLengthCheck");
 
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
