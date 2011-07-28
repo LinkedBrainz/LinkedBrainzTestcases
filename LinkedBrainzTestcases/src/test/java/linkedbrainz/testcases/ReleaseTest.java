@@ -473,6 +473,45 @@ public class ReleaseTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
+	/**
+	 * Fetches 5 releases from the DB and resolves their catalog numbers against
+	 * the result of the related SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkReleaseCatalogueNumbers()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+
+		classTables.add("release");
+		classTables.add("release_label");
+
+		classTableRows.add("release");
+		classTableRows.add("catalog_number");
+
+		// add "Sgt. Pepper’s Lonely Hearts Club Band" (PMC 7027) from The
+		// Beatles as proof
+		// GUID
+		TestResult testResult = Utils.getInstance()
+				.checkSimpleInversePropertyViaGUIDOnTheLeft(
+						classTables,
+						classTableRows,
+						"mo:Release",
+						"mo:catalogue_number",
+						"catalogueNumber",
+						1,
+						5,
+						false,
+						true,
+						new Condition("release_label", "catalog_number",
+								"IS NOT NULL", false),
+						"44b7cab1-0ce1-404e-9089-b458eb3fa530",
+						"ReleaseCatalogueNumbersCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(ReleaseTest.class);
