@@ -112,6 +112,54 @@ public class MediumTest
 		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
 	}
 
+	/**
+	 * Fetches 1 (+1) medium(s) and its tracks from the DB and resolves them via
+	 * a SPARQL query.
+	 * 
+	 */
+	@Test
+	public void checkMediumsTracksRelations()
+	{
+		ArrayList<String> classTables = new ArrayList<String>();
+		ArrayList<String> classTableRows = new ArrayList<String>();
+		ArrayList<String> classNames = new ArrayList<String>();
+		ArrayList<String> valueNames = new ArrayList<String>();
+
+		classTables.add("medium");
+		classTables.add("track");
+		classTables.add("tracklist");
+
+		classTableRows.add("id");
+		classTableRows.add("id");
+		classTableRows.add("tracklist");
+		classTableRows.add("tracklist");
+
+		classNames.add("mo:Record");
+		classNames.add("mo:Track");
+
+		valueNames.add("recordURI");
+		valueNames.add("trackURI");
+		valueNames.add("trackURI");
+
+		Utils utils = Utils.getInstance();
+
+		// let's start hacking ;)
+		// this option initialises another SQL query pattern where two table
+		// columns are in the FK position of third table's identifier one
+		utils.setOptionThree(true);
+
+		// add track list from "Sgt. Pepper’s Lonely Hearts Club Band" (PMC
+		// 7027) from The
+		// Beatles as proof id (see 44b7cab1-0ce1-404e-9089-b458eb3fa530 for the
+		// related release)
+		TestResult testResult = utils
+				.checkURIPropertyViaIDOnTheLeftAndIDOnTheRight(classTables,
+						classTableRows, classNames, "mo:track", valueNames,
+						"#_", "#_", 2, 1, "93", "MediumsTracksRelationsCheck");
+
+		assertTrue(testResult.getFailMsg(), testResult.isSucceeded());
+	}
+
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(MediumTest.class);

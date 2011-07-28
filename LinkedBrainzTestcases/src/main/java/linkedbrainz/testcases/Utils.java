@@ -90,6 +90,9 @@ public class Utils
 	private String sqlFailMsg = null;
 	private String sparqlFailMsg = null;
 	private String queryCounterFailMsg = null;
+	
+	// the "secret option three" ;)
+	private boolean optionThree = false;
 
 	private Utils()
 	{
@@ -1160,14 +1163,17 @@ public class Utils
 
 						Translator translator = null;
 						String value = values.get(valuesKey);
-						
+
 						if (condition != null)
-						{					
+						{
 							if (condition.getTranslatorClass() != null)
 							{
 
-								/*System.out
-										.println("[EXEC]  here we go in the Translator class case");*/
+								/*
+								 * System.out.println(
+								 * "[EXEC]  here we go in the Translator class case"
+								 * );
+								 */
 
 								if (getTranslatorInstance(condition
 										.getTranslatorClass()) != null)
@@ -1878,9 +1884,9 @@ public class Utils
 	 * @param limit
 	 *            the result limit of the SQL query
 	 * @param proofID
-	 *            a hardcoded GUID, since one could fetch instances that have no
-	 *            relations and then wondering about the results. This GUID
-	 *            should usually deliver an appropriated result.
+	 *            a hardcoded ID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This ID should
+	 *            usually deliver an appropriated result.
 	 * @param checkName
 	 *            the name of the specific check
 	 * @return the result of the test (incl. fail message)
@@ -1895,6 +1901,74 @@ public class Utils
 				classTableRows, classNames, propertyName, valueNames, false,
 				true, false, false, false, numberOfJoins, limit, proofID,
 				false, false, leftSideFragmentId, null, checkName);
+	}
+
+	/**
+	 * Fetches some instances from the DB and resolves the values of a specific
+	 * property against the result of the related SPARQL query.
+	 * 
+	 * @param classTables
+	 *            the list of table for the SQL query currently consists of 4
+	 *            items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation and is located on
+	 *            the right side of the first INNER JOIN. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation and is located on the right side of the
+	 *            third INNER JOIN. The third one is located on the left side of
+	 *            the INNER JOINs. The fourth one is located on the right side
+	 *            of the second INNER JOIN.
+	 * @param classTableRows
+	 *            the list of table rows for the SQL query currently consists of
+	 *            5 items. The first one delivers the GUID(s) for the check that
+	 *            are located on the left side of the relation. The second one
+	 *            delivers the id(s) for the check that are located on the right
+	 *            side of the relation. The third one is the non-'id' row of the
+	 *            first INNER JOIN. The forth one is the non-'id' row of the
+	 *            second INNER JOIN. The fifth one is the non-'id' row of the
+	 *            third INNER JOIN.
+	 * @param classNames
+	 *            the list of class names for the SPARQL query currently
+	 *            consists of 2 items. The first one is the class name of the
+	 *            resource of the left side of the relation. The second one is
+	 *            the class name of the resource of the right side of the
+	 *            relation.
+	 * @param propertyName
+	 *            the property name of the relation.
+	 * @param valueNames
+	 *            the list of value names for the SPARQL query currently
+	 *            consists of 3 items. The first one is the value name for
+	 *            resources of the left side of the relation. The second one is
+	 *            the value name for resources of the right side of the
+	 *            relation. The third one is the value name for the resource ids
+	 *            of the right side of the relation.
+	 * @param leftSideFragmentId
+	 *            the fragment id of the URI of the left side of the relation
+	 * @param rightSideFragmentId
+	 *            the fragment id of the URI of the right side of the relation
+	 *            that includes the instance id as well
+	 * @param numberOfJoins
+	 *            indicates the number of joins of the SQL query
+	 * @param limit
+	 *            the result limit of the SQL query
+	 * @param proofID
+	 *            a hardcoded ID, since one could fetch instances that have no
+	 *            relations and then wondering about the results. This ID should
+	 *            usually deliver an appropriated result.
+	 * @param checkName
+	 *            the name of the specific check
+	 * @return the result of the test (incl. fail message)
+	 */
+	public TestResult checkURIPropertyViaIDOnTheLeftAndIDOnTheRight(
+			ArrayList<String> classTables, ArrayList<String> classTableRows,
+			ArrayList<String> classNames, String propertyName,
+			ArrayList<String> valueNames, String leftSideFragmentId,
+			String rightSideFragmentId, int numberOfJoins, int limit,
+			String proofID, String checkName)
+	{
+		return checkURIPropertyViaGUIDAndOrIDAndOrURI(classTables,
+				classTableRows, classNames, propertyName, valueNames, false,
+				false, false, false, false, numberOfJoins, limit, proofID,
+				true, false, leftSideFragmentId, rightSideFragmentId, checkName);
 	}
 
 	/**
@@ -2122,6 +2196,11 @@ public class Utils
 				+ "?VALUE_NAME2 rdf:type CLASS_NAME2 ; "
 				+ "mo:musicbrainz_guid ?VALUE_NAME3 . "
 				+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
+		String leftSideFragmentIdAndRightSideIDOrURI = Utils.DEFAULT_PREFIXES
+				+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
+				+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
+				+ "PROPERTY_NAME ?VALUE_NAME2 . "
+				+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
 
 		// to init the candidates SQL query and the SPARQL query
 		if (leftSideGUID)
@@ -2189,7 +2268,6 @@ public class Utils
 		{
 			initCandidatesSqlQuery(classTables.get(0), "id", limit);
 
-			// TODO: parametrise leftsideFragmentId
 			// left side = ID + right side = GUID
 			if (rightSideGUID && !rightSideURI)
 			{
@@ -2198,16 +2276,12 @@ public class Utils
 			// left side = ID + right side = ID
 			else if (!rightSideGUID && !rightSideURI)
 			{
-				// TODO
+				initSparqlQuery = leftSideFragmentIdAndRightSideIDOrURI;
 			}
 			// left side = ID + right side = URI
 			else if (rightSideURI)
 			{
-				initSparqlQuery = Utils.DEFAULT_PREFIXES
-						+ "SELECT DISTINCT ?VALUE_NAME1 ?VALUE_NAME3 "
-						+ "WHERE { ?VALUE_NAME1 rdf:type CLASS_NAME1 ; "
-						+ "PROPERTY_NAME ?VALUE_NAME2 . "
-						+ "FILTER regex(str(?VALUE_NAME1), \"/ID_PLACEHOLDERLEFT_SIDE_FRAGMENT_ID\") } ";
+				initSparqlQuery = leftSideFragmentIdAndRightSideIDOrURI;
 
 				URIComparison = true;
 			}
@@ -2283,12 +2357,24 @@ public class Utils
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
 				break;
 			case 2:
+				if(!optionThree)
+				{	
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
 						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
 						+ "FROM musicbrainz.CLASS3 "
 						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS3.CLASS_ROW3 = CLASS1.id "
 						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.id = CLASS3.CLASS_ROW4 "
 						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				}
+				else
+				{
+					initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
+						+ "musicbrainz.CLASS2.CLASS_ROW2 AS CLASS2_id "
+						+ "FROM musicbrainz.CLASS3 "
+						+ "INNER JOIN musicbrainz.CLASS1 ON CLASS1.CLASS_ROW3 = CLASS3.id "
+						+ "INNER JOIN musicbrainz.CLASS2 ON CLASS2.CLASS_ROW4 = CLASS3.id "
+						+ "WHERE musicbrainz.CLASS1.CLASS_ROW1 = 'ID_PLACEHOLDER'";
+				}
 				break;
 			case 3:
 				initSqlQuery = "SELECT musicbrainz.CLASS1.CLASS_ROW1 AS CLASS1_id, "
@@ -3025,5 +3111,15 @@ public class Utils
 		{
 			this.condition = condition;
 		}
+	}
+	
+	public boolean isOptionThree()
+	{
+		return optionThree;
+	}
+
+	public void setOptionThree(boolean optionThree)
+	{
+		this.optionThree = optionThree;
 	}
 }
