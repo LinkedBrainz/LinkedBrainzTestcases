@@ -17,12 +17,13 @@ public class AllPropertiesTest
 	/**
 	 * Tries to fetch all available properties in a dataset.
 	 */
-	@Test
+	/*@Test
 	public void checkPropertyAvailability()
 	{
 
 		String allPropertiesQuery = Utils.DEFAULT_PREFIXES
-				+ "SELECT DISTINCT ?property " + "WHERE { [] ?property [] } "
+				+ "SELECT DISTINCT ?property " + "WHERE { [] ?property [] ."
+				+ "LIMIT 100 } "
 				+ "ORDER BY ?property ";
 		SPARQLResultSet result = null;
 
@@ -45,6 +46,6 @@ public class AllPropertiesTest
 	public static junit.framework.Test suite()
 	{
 		return new JUnit4TestAdapter(AllPropertiesTest.class);
-	}
+	}*/
 
 }

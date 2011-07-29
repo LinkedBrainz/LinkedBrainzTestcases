@@ -29,6 +29,12 @@ import com.hp.hpl.jena.sparql.resultset.ResultSetMem;
 import de.fuberlin.wiwiss.d2rq.values.Translator;
 
 /**
+ * A utilities class to manage the execution of different parts of the tests for
+ * the LinkedBrainz test cases of the MusicBrainz NGS to Music Ontology etc.
+ * mapping. The tests are mainly dealing with a comparison of the results of
+ * various SQL queries against the MusicBrainz database and analog SPARQL
+ * queries against a triple store that is filled with triples that were
+ * generated from a mapping description.
  * 
  * @author zazi
  * 
@@ -38,9 +44,20 @@ import de.fuberlin.wiwiss.d2rq.values.Translator;
 public class Utils
 {
 
+	/**
+	 * Holds the one and only Utils class instance.
+	 */
 	private static Utils instance = null;
 
+	/**
+	 * The URL of the SPARQL endpoint that used for the execution of the test
+	 * SPARQL queries.
+	 */
 	public static final String SERVICE_ENDPOINT = "http://localhost:2020/sparql";
+
+	/**
+	 * The set of default prefixes that can be used by a SPARQL query.
+	 */
 	public static final String DEFAULT_PREFIXES = "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n"
 			+ "PREFIX ov: <http://open.vocab.org/terms/>\n"
 			+ "PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\n"
@@ -60,41 +77,187 @@ public class Utils
 			+ "PREFIX is: <http://purl.org/ontology/is/core#>\n"
 			+ "PREFIX isi: <http://purl.org/ontology/is/inst/>\n"
 			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n"
-			+ "PREFIX mt: <http://purl.org/ontology/mt/>\n";
+			+ "PREFIX mt: <http://purl.org/ontology/mt/>\n"
+			+ "PREFIX time: <http://www.w3.org/2006/time#>\n"
+			+ "PREFIX tl: <http://purl.org/NET/c4dm/timeline.owl#>\n";
+
+	/**
+	 * A timeout value for the execution of a SPARQL query.
+	 */
 	public static final long TIMEOUT = 100000;
+
+	/**
+	 * A prefix map for ARQ (usually with the same prefixes like the default
+	 * prefixes list above).
+	 */
 	private PrefixMapping prefixMapping = null;
 
+	/**
+	 * The JDBC database driver for the SQL database connection.
+	 */
 	private static final String DB_DRIVER = "org.postgresql.Driver";
+
+	/**
+	 * The database related URI schema and database type prefix for JDBC.
+	 */
 	private static final String DB_CONNECTION = "jdbc:postgresql";
+
+	/**
+	 * The hostname or IP of the SQL database connection.
+	 */
 	private static final String DB_HOST = "localhost";
+
+	/**
+	 * The port of the database SQL connection.
+	 */
 	private static final String DB_PORT = "5432";
+
+	/**
+	 * The name of the SQL database.
+	 */
 	private static final String DB = "musicbrainz_db";
+
+	/**
+	 * The database username to access the SQL database.
+	 */
 	private static final String DB_USER = "musicbrainz";
+
+	/**
+	 * The password of the database username to access the SQL database.
+	 */
 	private static final String DB_PASSWORD = "musicbrainz";
+
+	/**
+	 * Holds the SQL database connection if one could be established.
+	 */
 	private Connection dbConnection = null;
 
+	/**
+	 * Holds a model instance of the current result set of a SQL query execution
+	 * for further processing.
+	 */
 	private SQLResultSet sqlResultSet = null;
+
+	/**
+	 * Holds a model instance of the current result of a SPARQL query execution
+	 * for further processing.
+	 */
 	private SPARQLResultSet sparqlResultSet = null;
+
+	/**
+	 * Holds the current SPARQL query, i.e., such a query often includes an id
+	 * value as condition.
+	 */
 	private String currentSparqlQuery = null;
+
+	/**
+	 * Holds the current result of a SPARQL query execution for further
+	 * processing.
+	 */
 	private com.hp.hpl.jena.query.ResultSet sparqlRS = null;
+
+	/**
+	 * Counts the number of all matches of a SQL to SPARQL query result set
+	 * comparison. This counter is often used to decided whether a test was
+	 * executed successfully or not by comparing its value against tue number of
+	 * results of the related SQL query.
+	 */
 	private int queryCounter = 0;
+
+	/**
+	 * Holds the candidates SQL query that usually pre-fetches a specific kind
+	 * of id. These ids are later used in a proper SQL query.
+	 */
 	private String candidatesSqlQuery = null;
+
+	/**
+	 * Holds the initial SQL query which usually consists of many placeholder
+	 * which will be replaced by concrete values during the query preparation
+	 * task.
+	 */
 	private String initSqlQuery = null;
+
+	/**
+	 * Holds an optional SQL query condition which will be included into a
+	 * proper SQL query during the query preparation task.
+	 */
 	private String sqlQueryCondition = null;
+
+	/**
+	 * Holds an optional SPARQL query condition which will be included into a
+	 * proper SPARQL query during the query preparation task.
+	 */
 	private String sparqlQueryCondition = null;
+
+	/**
+	 * Holds the current instance of a condition model that is used to
+	 * initialise the different query conditions.
+	 */
 	private Condition condition = null;
+
+	/**
+	 * Holds the initial SPARQL query which usually consists of many placeholder
+	 * which will be replaced by concrete values during the query preparation
+	 * task.
+	 */
 	private String initSparqlQuery = null;
+
+	/**
+	 * Holds a limit for the different queries.
+	 */
 	private int limit = 0;
+
+	/**
+	 * Holds an initial message for describing a failure during a SQL query
+	 * execution. The placeholder will later be replaced by a concrete value
+	 * that identifies the related test.
+	 */
 	private String initSqlFailMsg = "CHECK_NAME failed due to a SQLException";
+
+	/**
+	 * Holds an initial message for describing a failure during a SPARQL query
+	 * execution. The placeholder will later be replaced by a concrete value
+	 * that identifies the related test.
+	 */
 	private String initSparqlFailMsg = "CHECK_NAME failed due to a SPARQL query execution";
+
+	/**
+	 * Holds an initial message for describing a failure during a the query
+	 * result comparison. The placeholder will later be replaced by a concrete
+	 * value that identifies the related test.
+	 */
 	private String initQueryCounterFailMsg = "dunno - query counter in CHECK_NAME must be not equal to ";
+
+	/**
+	 * Holds a concrete message for describing a failure during a SQL query
+	 * execution of a specific test.
+	 */
 	private String sqlFailMsg = null;
+
+	/**
+	 * Holds a concrete message for describing a failure during a SPARQL query
+	 * execution of a specific test.
+	 */
 	private String sparqlFailMsg = null;
+
+	/**
+	 * Holds a concrete message for describing a failure during a query result
+	 * comparison of a specific test.
+	 */
 	private String queryCounterFailMsg = null;
 
-	// the "secret option three" ;)
+	/**
+	 * ... the "secret option three" ;)
+	 * 
+	 * This value is currently utilised to identify query pattern which doesn't
+	 * really match the common types of query pattern. This is a bit hacky and
+	 * should probably be replaced by a better implementation.
+	 */
 	private boolean optionThree = false;
 
+	/**
+	 * The private constructor to keep this class as an Singleton instance.
+	 */
 	private Utils()
 	{
 
@@ -103,7 +266,7 @@ public class Utils
 	/**
 	 * Singleton
 	 * 
-	 * @return the one and only Utils instance
+	 * @return the one and only Utils instance.
 	 */
 	public static Utils getInstance()
 	{
@@ -162,6 +325,9 @@ public class Utils
 			prefixMapping.setNsPrefix("xsd",
 					"http://www.w3.org/2001/XMLSchema#");
 			prefixMapping.setNsPrefix("mt", "http://purl.org/ontology/mt/");
+			prefixMapping.setNsPrefix("time", "http://www.w3.org/2006/time#");
+			prefixMapping.setNsPrefix("tl",
+					"http://purl.org/NET/c4dm/timeline.owl#");
 
 			prefixMapping.lock();
 		} else
@@ -188,7 +354,7 @@ public class Utils
 		// here
 		QueryEngineHTTP qe = (QueryEngineHTTP) QueryExecutionFactory
 				.sparqlService(serviceEndpoint, query);
-		qe.addParam("timeout", "10000");
+		qe.addParam("timeout", Long.toString(TIMEOUT));
 
 		SPARQLResultSet resultSet = null;
 		ResultSetMem tempRS = null;
@@ -3181,6 +3347,15 @@ public class Utils
 		}
 	}
 
+	/**
+	 * This method tries to create an instance of specific translator class that
+	 * can be indentified via the given translator class string.
+	 * 
+	 * @param translatorClassString
+	 *            the class name of a specific translator class
+	 * @return an instance of the specific translator class or null if this
+	 *         instanciation task didn't succeed.
+	 */
 	private Translator getTranslatorInstance(String translatorClassString)
 	{
 		Class translatorClass = null;
@@ -3206,11 +3381,23 @@ public class Utils
 		return translator;
 	}
 
+	/**
+	 * A getter method for a condition model instance.
+	 * 
+	 * @return the current condition model instance or null if no condition is
+	 *         set.
+	 */
 	private Condition getCondition()
 	{
 		return condition;
 	}
 
+	/**
+	 * A setter method to set the current condition model instance.
+	 * 
+	 * @param condition
+	 *            the current condition model instance.
+	 */
 	private void setCondition(Condition condition)
 	{
 		if (condition != null)
@@ -3219,11 +3406,26 @@ public class Utils
 		}
 	}
 
+	/**
+	 * Returns whether "option three" is set or not. Currently, this is a
+	 * workaround for identifying SQL query pattern that didn't really match the
+	 * common SQL query patterns.
+	 * 
+	 * @return true if "option three" is set; otherwise false
+	 */
 	public boolean isOptionThree()
 	{
 		return optionThree;
 	}
 
+	/**
+	 * A setter method to set/switch on "option three". Currently, this is a
+	 * workaround for identifying SQL query pattern that didn't really match the
+	 * common SQL query patterns.
+	 * 
+	 * @param optionThree
+	 *            if this value is set to true "option three" is enabled.
+	 */
 	public void setOptionThree(boolean optionThree)
 	{
 		this.optionThree = optionThree;
